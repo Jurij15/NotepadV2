@@ -9,32 +9,36 @@
     <Grid Margin="0,0,0,492">
         <Menu Margin="0,0,0,-21" Background="#FFB3B3B3">
             <MenuItem Header="_File">
-                <MenuItem Header="New"/>
-                <MenuItem Header="Open"/>
-                <MenuItem Header="Save"/>
+                <MenuItem Header="New" x:Name="NewBtn" Click="NewBtn_Click"/>
+                <MenuItem Header="Open" x:Name="OpenBtn" Click="OpenBtn_Click"/>
+                <MenuItem Header="Save" x:Name="SaveBtn" Click="SaveBtn_Click"/>
                 <Separator/>
-                <MenuItem Header="Exit"/>
+                <MenuItem Header="Exit" x:Name="ExitBtn" Click="ExitBtn_Click"/>
             </MenuItem>
             <MenuItem Header="_Edit">
-                <MenuItem Header="Undo"/>
-                <MenuItem Header="Redo"/>
-                <MenuItem Header="Cut"/>
-                <MenuItem Header="Copy"/>
-                <MenuItem Header="Paste"/>
-                <MenuItem Header="Select All"/>
-                <MenuItem Header="Date/Time"/>
+                <MenuItem Header="Undo" x:Name="UndoBtn" Click="UndoBtn_Click"/>
+                <MenuItem Header="Redo" x:Name="RedoBtn" Click="RedoBtn_Click"/>
+                <MenuItem Header="Cut" x:Name="CutBtn" Click="CutBtn_Click"/>
+                <MenuItem Header="Copy" x:Name="CopyBtn" Click="CopyBtn_Click"/>
+                <MenuItem Header="Paste" x:Name="PasteBtn" Click="PasteBtn_Click"/>
+                <MenuItem Header="Select All" x:Name="SelectAllBtn" Click="SelectAllBtn_Click"/>
+                <MenuItem Header="Date/Time" x:Name="DateTimeBtn" Click="DateTimeBtn_Click"/>
             </MenuItem>
             <MenuItem Header="_Format">
-                <MenuItem Header="Font"/>
-                <MenuItem Header="Color"/>
+                <MenuItem Header="Font" x:Name="FontBtn" Click="FontBtn_Click"/>
+                <MenuItem Header="Color" x:Name="ColorBtn" Click="ColorBtn_Click"/>
             </MenuItem>
             <MenuItem Header="_Tools">
-                <MenuItem Header="Web Browser"/>
-                <MenuItem Header="PDF Reader"/>
+                <MenuItem Header="Web Browser" x:Name="WebBrowserBtn" Click="WebBrowserBtn_Click"/>
+                <MenuItem Header="PDF Reader" x:Name="PDFReaderBtn" Click="PDFReaderBtn_Click"/>
             </MenuItem>
             <MenuItem Header="_About">
-                <MenuItem Header="About Notepad_by_Jurij15"/>
+                <MenuItem Header="About Notepad_by_Jurij15" x:Name="AboutBtn" Click="AboutBtn_Click"/>
+                <MenuItem Header="Update" x:Name="UpdateBtn" Click="UpdateBtn_Click"/>
             </MenuItem>
+            <TextBox x:Name="versionstringbox" IsReadOnly="True" TextWrapping="Wrap" Width="124"/>
         </Menu>
+        <RichTextBox Margin="1,22,0,-490" x:Name="TextBox">
+        </RichTextBox>
     </Grid>
 </Window>
