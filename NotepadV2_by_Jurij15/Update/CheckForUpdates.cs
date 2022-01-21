@@ -14,7 +14,9 @@ namespace NotepadV2_by_Jurij15.Update
     {
             public void UpdateCheck()
             {
-            Version version = new Version();
+            try
+            {
+                Version version = new Version();
                 var url = "http://localhost:4000/api/versioncheck/latestversion";
 
                 var request = WebRequest.Create(url);
@@ -36,6 +38,12 @@ namespace NotepadV2_by_Jurij15.Update
                 {
                     //do nothing because the app is up to date
                 }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Couldd't check for updates");
+            }
             }
         }
     }
