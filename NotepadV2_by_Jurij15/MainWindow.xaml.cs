@@ -17,6 +17,7 @@ using System.IO;
 using System.Data;
 using Microsoft.Win32;
 using NotepadV2_by_Jurij15.Update;
+using NotepadV2_by_Jurij15.Windows;
 
 namespace NotepadV2_by_Jurij15
 {
@@ -29,9 +30,12 @@ namespace NotepadV2_by_Jurij15
         {
             Version version = new Version();
             VersionPopUp versionPopUp = new VersionPopUp();
+            //no more version popup on startup (soon)
             versionPopUp.VerPopUp();
             CheckForUpdates checkForUpdates = new CheckForUpdates();
-            checkForUpdates.UpdateCheck();
+            //no more checking for updates on startup
+            //checkForUpdates.UpdateCheck();
+
             versionstringbox.Text = version.VersionString;
         }
 
@@ -129,7 +133,14 @@ namespace NotepadV2_by_Jurij15
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Under works!!");
+            CheckForUpdates checkForUpdates = new CheckForUpdates();
+            checkForUpdates.UpdateCheck();
+        }
+
+        private void PatchNotesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PatchNotesWindow patchNotes = new PatchNotesWindow();
+            patchNotes.ShowDialog();
         }
     }
 }
