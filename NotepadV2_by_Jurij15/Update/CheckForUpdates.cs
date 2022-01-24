@@ -36,7 +36,7 @@ namespace NotepadV2_by_Jurij15.Update
                 }
                 else if (data == version.VersionString)
                 {
-                    //do nothing because the app is up to date
+                    MessageBox.Show("Up to date");
                 }
             }
             catch (Exception ex)

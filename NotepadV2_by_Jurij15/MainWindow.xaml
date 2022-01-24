@@ -39,7 +39,7 @@
             </MenuItem>
             <TextBlock x:Name="versionstringbox" TextWrapping="Wrap" Text="versionstring" HorizontalAlignment="Left"/>
         </Menu>
-        <RichTextBox Margin="1,22,0,-490" x:Name="TextBox">
+        <RichTextBox Margin="1,22,0,-490" x:Name="TextBox1">
         </RichTextBox>
     </Grid>
 </Window>
