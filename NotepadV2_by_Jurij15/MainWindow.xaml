@@ -6,7 +6,27 @@
         xmlns:local="clr-namespace:NotepadV2_by_Jurij15"
         mc:Ignorable="d"
         Title="NotepadV2_by_Jurij15" Height="530" Width="1001">
+
     <Grid Margin="0,0,0,492">
+        <!--this goes into the "<grid>" section -->
+        <Rectangle Height="77" Width="5" VerticalAlignment="Top" HorizontalAlignment="Left" MouseDown="move_window">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="UI_RES\Title_top_left.png" />
+                <!-- could be solidcolor as well -->
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Height="77" Margin="5,0,5,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" MouseDown="move_window">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="UI_RES\Title_top_middle.png" />
+                <!-- could be solidcolor as well -->
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Height="77" Width="5" VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="move_window">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="UI_RES\Title_top_right.png" />
+                <!-- could be solidcolor as well -->
+            </Rectangle.Fill>
+        </Rectangle>
         <Menu Margin="0,0,0,-21" Background="#FFB3B3B3">
             <MenuItem Header="_File">
                 <MenuItem Header="New" x:Name="NewBtn" Click="NewBtn_Click"/>

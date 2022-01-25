@@ -35,8 +35,26 @@ namespace NotepadV2_by_Jurij15
             CheckForUpdates checkForUpdates = new CheckForUpdates();
             //no more checking for updates on startup
             //checkForUpdates.UpdateCheck();
-
+            /*
             versionstringbox.Text = version.VersionString;
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+
+            // Set active window colors
+            titleBar.ForegroundColor = Windows.UI.Colors.White;
+            titleBar.BackgroundColor = Windows.UI.Colors.Green;
+            titleBar.ButtonForegroundColor = Windows.UI.Colors.White;
+            titleBar.ButtonBackgroundColor = Windows.UI.Colors.SeaGreen;
+            titleBar.ButtonHoverForegroundColor = Windows.UI.Colors.White;
+            titleBar.ButtonHoverBackgroundColor = Windows.UI.Colors.DarkSeaGreen;
+            titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.Gray;
+            titleBar.ButtonPressedBackgroundColor = Windows.UI.Colors.LightGreen;
+
+            // Set inactive window colors
+            titleBar.InactiveForegroundColor = Windows.UI.Colors.Gray;
+            titleBar.InactiveBackgroundColor = Windows.UI.Colors.SeaGreen;
+            titleBar.ButtonInactiveForegroundColor = Windows.UI.Colors.Gray;
+            titleBar.ButtonInactiveBackgroundColor = Windows.UI.Colors.SeaGreen;
+            */
         }
 
         public MainWindow()
@@ -126,12 +144,14 @@ namespace NotepadV2_by_Jurij15
 
         private void WebBrowserBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            WebBrowserWindow webBrowser = new WebBrowserWindow();
+            webBrowser.ShowDialog();
         }
 
         private void PDFReaderBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            PDFReader pdfReader = new PDFReader();
+            pdfReader.ShowDialog();
         }
 
         private void AboutBtn_Click(object sender, RoutedEventArgs e)
