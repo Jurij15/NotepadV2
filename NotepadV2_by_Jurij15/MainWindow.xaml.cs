@@ -18,6 +18,8 @@ using System.Data;
 using Microsoft.Win32;
 using NotepadV2_by_Jurij15.Update;
 using NotepadV2_by_Jurij15.Windows;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
 
 namespace NotepadV2_by_Jurij15
 {
@@ -26,6 +28,35 @@ namespace NotepadV2_by_Jurij15
     /// </summary>
     public partial class MainWindow : Window
     {
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg,
+                int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public void move_window(object sender, MouseButtonEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(new WindowInteropHelper(this).Handle,
+                WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+        }
+        // for the title bar
+        private void EXIT(object sender, MouseButtonEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void MINIMIZE(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void MAX_RESTORE(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
+            else this.WindowState = WindowState.Normal;
+        }
         public void onstartup()
         {
             Version version = new Version();
@@ -35,10 +66,9 @@ namespace NotepadV2_by_Jurij15
             CheckForUpdates checkForUpdates = new CheckForUpdates();
             //no more checking for updates on startup
             //checkForUpdates.UpdateCheck();
-            /*
             versionstringbox.Text = version.VersionString;
+            /*
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-
             // Set active window colors
             titleBar.ForegroundColor = Windows.UI.Colors.White;
             titleBar.BackgroundColor = Windows.UI.Colors.Green;
