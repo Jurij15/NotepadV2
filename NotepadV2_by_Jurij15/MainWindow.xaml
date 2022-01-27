@@ -5,40 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotepadV2_by_Jurij15"
         mc:Ignorable="d"
-        Title="NotepadV2_by_Jurij15" Height="530" Width="1001" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+        Title="NotepadV2_by_Jurij15" Height="550" Width="1082" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
 
-    <Grid Margin="0,0,0,492">
-        <!--this goes into the "<grid>" section -->
+    <Grid Margin="0,0,0,492" Name="Main">
+        <Grid.Resources>
+            <ImageBrush x:Key="Close_inact" ImageSource="UI_RES\Close_inact.png" />
+            <ImageBrush x:Key="Min_inact" ImageSource="UI_RES\Minimize_inact.png" />
+            <ImageBrush x:Key="Max_inact" ImageSource="UI_RES\Maximize_inact.png" />
+            <ImageBrush x:Key="Close_act" ImageSource="UI_RES\Close_act.png" />
+            <ImageBrush x:Key="Min_act" ImageSource="UI_RES\Minimize_act.png" />
+            <ImageBrush x:Key="Max_act" ImageSource="UI_RES\Maximize_act.png" />
+            <ImageBrush x:Key="Close_pr" ImageSource="UI_RES\Close_pr.png" />
+            <ImageBrush x:Key="Min_pr" ImageSource="UI_RES\Minimize_pr.png" />
+            <ImageBrush x:Key="Max_pr" ImageSource="UI_RES\Maximize_pr.png" />
+        </Grid.Resources>
         <Rectangle Height="77" Width="5" VerticalAlignment="Top" HorizontalAlignment="Left" MouseDown="move_window">
             <Rectangle.Fill>
-                <SolidColorBrush Color="#FF676767" />
-                <!-- could be solidcolor as well -->
+                <ImageBrush ImageSource="UI_RES\Title_top_left.png" />
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Height="77" Margin="1,0,-1,0" VerticalAlignment="Top" MouseDown="move_window">
+        <Rectangle Height="77" Margin="5,0,5,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" MouseDown="move_window" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <Rectangle.Fill>
-                <SolidColorBrush Color="#FF676767" />
-                <!-- could be solidcolor as well -->
+                <ImageBrush ImageSource="UI_RES\Title_top_middle.png" />
             </Rectangle.Fill>
         </Rectangle>
+        <Rectangle Margin="8,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Width="56" Height="15" Fill="Transparent"
+                   MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" />
+        <Ellipse Margin="8,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                 Width="14" Height="15" MouseLeftButtonUp="EXIT" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Close_pressing" Name="Close_btn" 
+                 Fill="{DynamicResource Close_inact}" />
+        <Ellipse Margin="29,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                 Width="14" Height="15" MouseLeftButtonUp="MINIMIZE" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Min_pressing" Name="Min_btn" 
+                 Fill="{StaticResource Min_inact}" />
+        <Ellipse Margin="50,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                 Width="14" Height="15" MouseLeftButtonUp="MAX_RESTORE" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Max_pressing" Name="Max_btn" 
+                 Fill="{StaticResource Max_inact}" />
         <Rectangle Height="77" Width="5" VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="move_window">
             <Rectangle.Fill>
-                <SolidColorBrush Color="#FF676767" />
-                <!-- could be solidcolor as well -->
+                <ImageBrush ImageSource="UI_RES\Title_top_right.png" />
             </Rectangle.Fill>
         </Rectangle>
-        <!--this goes into the "<grid>" section -->
-        <Rectangle Margin="8,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
-                   Width="56" Height="15" Fill="Transparent" />
-        <Ellipse Margin="8,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
-                 Width="14" Height="15" MouseLeftButtonUp="EXIT" Name="Close_btn"
-                 Fill="Red" />
-        <Ellipse Margin="48,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
-                 Width="14" Height="15" MouseLeftButtonUp="MINIMIZE" Name="Min_btn"
-                 Fill="Green" />
-        <Ellipse Margin="27,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
-                 Width="14" Height="15" MouseLeftButtonUp="MAX_RESTORE" Name="Max_btn"
-                 Fill="Yellow" />
         <Menu Margin="1,22,-1,-9" Background="#FFB3B3B3">
             <MenuItem Header="_File">
                 <MenuItem Header="New" x:Name="NewBtn" Click="NewBtn_Click"/>
@@ -71,7 +84,7 @@
             </MenuItem>
             <TextBlock x:Name="versionstringbox" TextWrapping="Wrap" Text="versionstring" HorizontalAlignment="Left"/>
         </Menu>
-        <RichTextBox Margin="1,47,0,-490" x:Name="TextBox1">
+        <RichTextBox Margin="1,47,0,-490" x:Name="TextBox1" FontFamily="Arial" VerticalScrollBarVisibility="Visible">
         </RichTextBox>
     </Grid>
 </Window>

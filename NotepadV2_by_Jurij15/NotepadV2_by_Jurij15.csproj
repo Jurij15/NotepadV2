@@ -9,7 +9,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Close_act.png" />
+    <None Remove="Close_inact.png" />
+    <None Remove="Close_pr.png" />
+    <None Remove="Maximize_act.png" />
+    <None Remove="Maximize_inact.png" />
+    <None Remove="Maximize_pr.png" />
+    <None Remove="Minimize_act.png" />
+    <None Remove="Minimize_inact.png" />
+    <None Remove="Minimize_pr.png" />
+    <None Remove="title_top_left.png" />
+    <None Remove="Title_top_middle.png" />
+    <None Remove="Title_top_right.png" />
+    <None Remove="UI_RES\Close_act.png" />
+    <None Remove="UI_RES\Close_inact.png" />
+    <None Remove="UI_RES\Close_pr.png" />
+    <None Remove="UI_RES\Maximize_act.png" />
+    <None Remove="UI_RES\Maximize_inact.png" />
+    <None Remove="UI_RES\Maximize_pr.png" />
+    <None Remove="UI_RES\Minimize_act.png" />
+    <None Remove="UI_RES\Minimize_inact.png" />
+    <None Remove="UI_RES\Minimize_pr.png" />
+    <None Remove="UI_RES\title_top_left.png" />
+    <None Remove="UI_RES\Title_top_middle.png" />
+    <None Remove="UI_RES\Title_top_right.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="klipartz.com.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="UI_RES\Maximize_inact.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +48,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Windows\ui_res\" />
+    <Resource Include="UI_RES\Close_act.png" />
+    <Resource Include="UI_RES\Close_inact.png" />
+    <Resource Include="UI_RES\Close_pr.png" />
+    <Resource Include="UI_RES\Maximize_act.png" />
+    <Resource Include="UI_RES\Maximize_pr.png" />
+    <Resource Include="UI_RES\Minimize_act.png" />
+    <Resource Include="UI_RES\Minimize_inact.png" />
+    <Resource Include="UI_RES\Minimize_pr.png" />
+    <Resource Include="UI_RES\title_top_left.png" />
+    <Resource Include="UI_RES\Title_top_middle.png" />
+    <Resource Include="UI_RES\Title_top_right.png" />
   </ItemGroup>
 
 </Project>

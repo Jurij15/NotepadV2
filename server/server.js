@@ -26,7 +26,7 @@ app.get("/testfile", function (req, res) {
     }
 });
 app.get("/api/versioncheck/latestversion", function (req, res) {
-    res.send("0.2 alpha")
+    res.send("0.3 alpha")
     console.log("Retrieved versioninfo (/api/versioncheck/latestversion)")
 });
 var server = app.listen(4000, function () {

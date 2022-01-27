@@ -20,6 +20,7 @@ using NotepadV2_by_Jurij15.Update;
 using NotepadV2_by_Jurij15.Windows;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using Run = System.Windows.Documents.Run;
 
 namespace NotepadV2_by_Jurij15
 {
@@ -30,18 +31,21 @@ namespace NotepadV2_by_Jurij15
     {
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg,
                 int wParam, int lParam);
+
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
+
         public void move_window(object sender, MouseButtonEventArgs e)
         {
             ReleaseCapture();
             SendMessage(new WindowInteropHelper(this).Handle,
                 WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
-        // for the title bar
+
         private void EXIT(object sender, MouseButtonEventArgs e)
         {
             Environment.Exit(0);
@@ -57,6 +61,36 @@ namespace NotepadV2_by_Jurij15
             if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
             else this.WindowState = WindowState.Normal;
         }
+
+        private void Activate_Title_Icons(object sender, MouseEventArgs e)
+        {
+            Close_btn.Fill = (ImageBrush)Main.Resources["Close_act"];
+            Min_btn.Fill = (ImageBrush)Main.Resources["Min_act"];
+            Max_btn.Fill = (ImageBrush)Main.Resources["Max_act"];
+        }
+
+        private void Deactivate_Title_Icons(object sender, MouseEventArgs e)
+        {
+            Close_btn.Fill = (ImageBrush)Main.Resources["Close_inact"];
+            Min_btn.Fill = (ImageBrush)Main.Resources["Min_inact"];
+            Max_btn.Fill = (ImageBrush)Main.Resources["Max_inact"];
+        }
+
+        private void Close_pressing(object sender, MouseButtonEventArgs e)
+        {
+            Close_btn.Fill = (ImageBrush)Main.Resources["Close_pr"];
+        }
+
+        private void Min_pressing(object sender, MouseButtonEventArgs e)
+        {
+            Min_btn.Fill = (ImageBrush)Main.Resources["Min_pr"];
+        }
+
+        private void Max_pressing(object sender, MouseButtonEventArgs e)
+        {
+            Max_btn.Fill = (ImageBrush)Main.Resources["Max_pr"];
+        }
+
         public void onstartup()
         {
             Version version = new Version();
@@ -67,23 +101,12 @@ namespace NotepadV2_by_Jurij15
             //no more checking for updates on startup
             //checkForUpdates.UpdateCheck();
             versionstringbox.Text = version.VersionString;
+            //textbox fix wired spacing
+            RichTextBox rtb = new RichTextBox();
+            //setLineFormat(1,1);
             /*
-            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            // Set active window colors
-            titleBar.ForegroundColor = Windows.UI.Colors.White;
-            titleBar.BackgroundColor = Windows.UI.Colors.Green;
-            titleBar.ButtonForegroundColor = Windows.UI.Colors.White;
-            titleBar.ButtonBackgroundColor = Windows.UI.Colors.SeaGreen;
-            titleBar.ButtonHoverForegroundColor = Windows.UI.Colors.White;
-            titleBar.ButtonHoverBackgroundColor = Windows.UI.Colors.DarkSeaGreen;
-            titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.Gray;
-            titleBar.ButtonPressedBackgroundColor = Windows.UI.Colors.LightGreen;
-
-            // Set inactive window colors
-            titleBar.InactiveForegroundColor = Windows.UI.Colors.Gray;
-            titleBar.InactiveBackgroundColor = Windows.UI.Colors.SeaGreen;
-            titleBar.ButtonInactiveForegroundColor = Windows.UI.Colors.Gray;
-            titleBar.ButtonInactiveBackgroundColor = Windows.UI.Colors.SeaGreen;
+            Paragraph p = rtb.Document.Blocks.FirstBlock as Paragraph;
+            p.LineHeight = 1;
             */
         }
 
@@ -105,7 +128,7 @@ namespace NotepadV2_by_Jurij15
             openFileDialog.ShowDialog();
             TextBox1.Document.Blocks.Clear();
             string location = openFileDialog.FileName;
-            TextBox1.Document.Blocks.Add(new Paragraph(new Run(File.ReadAllText(location))));
+            TextBox1.Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(location))));
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
