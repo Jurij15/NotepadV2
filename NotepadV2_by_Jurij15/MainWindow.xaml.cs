@@ -188,24 +188,31 @@ namespace NotepadV2_by_Jurij15
 
         private void FontBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            FontDialog dlg = new FontDialog();
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                TextBox1.FontFamily = new FontFamily(dlg.Font.Name);
+                TextBox1.FontSize = dlg.Font.Size * 98.0 / 72.0;
+                TextBox1.FontWeight = dlg.Font.Bold ? FontWeights.Bold : FontWeights.Regular;
+                TextBox1.FontStyle = dlg.Font.Italic ? FontStyles.Italic : FontStyles.Normal;
+            }
         }
 
         private void ColorBtn_Click(object sender, RoutedEventArgs e)
-        {
+        { 
 
         }
 
         private void WebBrowserBtn_Click(object sender, RoutedEventArgs e)
         {
             WebBrowserWindow webBrowser = new WebBrowserWindow();
-            webBrowser.ShowDialog();
+            webBrowser.Show();
         }
 
         private void PDFReaderBtn_Click(object sender, RoutedEventArgs e)
         {
             PDFReader pdfReader = new PDFReader();
-            pdfReader.ShowDialog();
+            pdfReader.Show();
         }
 
         private void AboutBtn_Click(object sender, RoutedEventArgs e)
