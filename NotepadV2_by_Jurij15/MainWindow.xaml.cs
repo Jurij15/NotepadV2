@@ -21,6 +21,7 @@ using NotepadV2_by_Jurij15.Windows;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using Run = System.Windows.Documents.Run;
+using System.Windows.Forms;
 
 namespace NotepadV2_by_Jurij15
 {
@@ -62,14 +63,14 @@ namespace NotepadV2_by_Jurij15
             else this.WindowState = WindowState.Normal;
         }
 
-        private void Activate_Title_Icons(object sender, MouseEventArgs e)
+        private void Activate_Title_Icons(object sender, System.Windows.Input.MouseEventArgs e)
         {
             Close_btn.Fill = (ImageBrush)Main.Resources["Close_act"];
             Min_btn.Fill = (ImageBrush)Main.Resources["Min_act"];
             Max_btn.Fill = (ImageBrush)Main.Resources["Max_act"];
         }
 
-        private void Deactivate_Title_Icons(object sender, MouseEventArgs e)
+        private void Deactivate_Title_Icons(object sender, System.Windows.Input.MouseEventArgs e)
         {
             Close_btn.Fill = (ImageBrush)Main.Resources["Close_inact"];
             Min_btn.Fill = (ImageBrush)Main.Resources["Min_inact"];
@@ -102,7 +103,7 @@ namespace NotepadV2_by_Jurij15
             //checkForUpdates.UpdateCheck();
             versionstringbox.Text = version.VersionString;
             //textbox fix wired spacing
-            RichTextBox rtb = new RichTextBox();
+            System.Windows.Controls.RichTextBox rtb = new System.Windows.Controls.RichTextBox();
             //setLineFormat(1,1);
             /*
             Paragraph p = rtb.Document.Blocks.FirstBlock as Paragraph;
@@ -123,7 +124,7 @@ namespace NotepadV2_by_Jurij15
 
         private void OpenBtn_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             openFileDialog.ShowDialog();
             TextBox1.Document.Blocks.Clear();
@@ -133,7 +134,7 @@ namespace NotepadV2_by_Jurij15
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
             saveFileDialog.Filter = "Text File (*.txt)|*.txt|Show All Files (*.*)|*.*";
             saveFileDialog.FileName = "Untitled";
             saveFileDialog.Title = "Save As";
@@ -209,8 +210,8 @@ namespace NotepadV2_by_Jurij15
 
         private void AboutBtn_Click(object sender, RoutedEventArgs e)
         {
-            VersionPopUp versionPopUp = new VersionPopUp();
-            versionPopUp.VerPopUp();
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.ShowDialog();
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)

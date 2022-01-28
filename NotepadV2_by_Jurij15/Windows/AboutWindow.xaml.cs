@@ -17,9 +17,9 @@ using System.Windows.Interop;
 namespace NotepadV2_by_Jurij15.Windows
 {
     /// <summary>
-    /// Interaction logic for PDFReader.xaml
+    /// Interaction logic for AboutWindow.xaml
     /// </summary>
-    public partial class PDFReader : Window
+    public partial class AboutWindow : Window
     {
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -82,7 +82,7 @@ namespace NotepadV2_by_Jurij15.Windows
         {
             Max_btn.Fill = (ImageBrush)Main.Resources["Max_pr"];
         }
-        public PDFReader()
+        public AboutWindow()
         {
             InitializeComponent();
         }
