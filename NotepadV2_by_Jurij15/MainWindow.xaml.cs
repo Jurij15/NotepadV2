@@ -97,8 +97,8 @@ namespace NotepadV2_by_Jurij15
             Version version = new Version();
             VersionPopUp versionPopUp = new VersionPopUp();
             //no more version popup on startup (soon)
-            versionPopUp.VerPopUp();
-            CheckForUpdates checkForUpdates = new CheckForUpdates();
+            //versionPopUp.VerPopUp();
+            //CheckForUpdates checkForUpdates = new CheckForUpdates();
             //no more checking for updates on startup
             //checkForUpdates.UpdateCheck();
             versionstringbox.Text = version.VersionString;
@@ -199,8 +199,12 @@ namespace NotepadV2_by_Jurij15
         }
 
         private void ColorBtn_Click(object sender, RoutedEventArgs e)
-        { 
-
+        {
+            ColorDialog dlg = new ColorDialog();
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                TextBox1.Foreground = new SolidColorBrush(Color.FromArgb(dlg.Color.A, dlg.Color.R, dlg.Color.G, dlg.Color.B));            
+            }
         }
 
         private void WebBrowserBtn_Click(object sender, RoutedEventArgs e)
@@ -218,7 +222,7 @@ namespace NotepadV2_by_Jurij15
         private void AboutBtn_Click(object sender, RoutedEventArgs e)
         {
             AboutWindow aboutWindow = new AboutWindow();
-            aboutWindow.ShowDialog();
+            aboutWindow.Show();
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
@@ -230,7 +234,7 @@ namespace NotepadV2_by_Jurij15
         private void PatchNotesBtn_Click(object sender, RoutedEventArgs e)
         {
             PatchNotesWindow patchNotes = new PatchNotesWindow();
-            patchNotes.ShowDialog();
+            patchNotes.Show();
         }
     }
 }

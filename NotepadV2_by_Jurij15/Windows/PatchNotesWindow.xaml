@@ -5,8 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotepadV2_by_Jurij15.Windows"
         mc:Ignorable="d"
-        Title="PatchNotes" Height="257" Width="187">
-    <Grid>
+        Title="PatchNotes" Height="257" Width="187"  WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True">
+    <Grid x:Name="Main">
+        <Grid.Resources>
+            <ImageBrush x:Key="Close_inact" ImageSource="../UI_RES\Close_inact.png" />
+            <ImageBrush x:Key="Min_inact" ImageSource="../UI_RES\Minimize_inact.png" />
+            <ImageBrush x:Key="Max_inact" ImageSource="../UI_RES\Maximize_inact.png" />
+            <ImageBrush x:Key="Close_act" ImageSource="../UI_RES\Close_act.png" />
+            <ImageBrush x:Key="Min_act" ImageSource="../UI_RES\Minimize_act.png" />
+            <ImageBrush x:Key="Max_act" ImageSource="../UI_RES\Maximize_act.png" />
+            <ImageBrush x:Key="Close_pr" ImageSource="../UI_RES\Close_pr.png" />
+            <ImageBrush x:Key="Min_pr" ImageSource="../UI_RES\Minimize_pr.png" />
+            <ImageBrush x:Key="Max_pr" ImageSource="../UI_RES\Maximize_pr.png" />
+        </Grid.Resources>
+        <Rectangle Height="24" Width="5" VerticalAlignment="Top" HorizontalAlignment="Left" MouseDown="move_window">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="../UI_RES\Title_top_left.png" />
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Height="24" Margin="5,0,5,0" VerticalAlignment="Top" MouseDown="move_window" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="../UI_RES\Title_top_middle.png" />
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Margin="8,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Width="56" Height="15" Fill="Transparent"
+                   MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" />
+        <Ellipse Margin="8,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                 Width="14" Height="15" MouseLeftButtonUp="EXIT" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Close_pressing" Name="Close_btn" 
+                 Fill="{DynamicResource Close_inact}" />
+        <Ellipse Margin="29,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                 Width="14" Height="15" MouseLeftButtonUp="MINIMIZE" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Min_pressing" Name="Min_btn" 
+                 Fill="{StaticResource Min_inact}" />
+        <Ellipse Margin="50,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                 Width="14" Height="15" MouseLeftButtonUp="MAX_RESTORE" 
+                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
+                 MouseLeftButtonDown="Max_pressing" Name="Max_btn" 
+                 Fill="{StaticResource Max_inact}" />
+        <Rectangle Height="24" Width="5" VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="move_window">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="../UI_RES\Title_top_right.png" />
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock HorizontalAlignment="Center" Margin="0,24,0,0" TextWrapping="Wrap" Text="Patch Notes" VerticalAlignment="Top" Height="34" Width="116" FontSize="20"/>
 
+        <Button Click="Button_Click" Content="Close" HorizontalAlignment="Left" Margin="120,233,0,0" VerticalAlignment="Top" Width="63"/>
+        <TextBox
+  x:Name="tbMultiLine"
+  TextWrapping="Wrap"
+  AcceptsReturn="True"
+  VerticalScrollBarVisibility="Visible" Margin="0,50,0,29" TextChanged="tbMultiLine_TextChanged"
+Text="New updates:&#xD;&#xA;-Basic notepad features are (probably) fully finished&#xD;&#xA;-NEW CUSTOM TITLEBAR&#xD;&#xA;--I wanted it to look more like old MacOS versions (10.6)&#xD;&#xA;--it is applied to everything, except messageboxes&#xD;&#xA;--I might still change it tho&#xD;&#xA;-PDF and Web Browser&#xD;&#xA;--Still in early phases of development (both display Microsoft site)&#xD;&#xA;--Both will be made in WebView2&#xD;&#xA;New fixes:&#xD;&#xA;-The version popup on startup has been removed"
+/>
     </Grid>
 </Window>

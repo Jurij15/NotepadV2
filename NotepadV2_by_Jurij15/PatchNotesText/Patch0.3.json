@@ -1,0 +1,11 @@
+﻿New updates:
+-Basic notepad features are (probably) fully finished
+-NEW CUSTOM TITLEBAR
+--I wanted it to look more like old MacOS versions (10.6)
+--it is applied to everything, except messageboxes
+--I might still change it tho
+-PDF and Web Browser
+--Still in early phases of development (both display Microsoft site)
+--Both will be made in WebView2
+New fixes:
+-The version popup on startup has been removed

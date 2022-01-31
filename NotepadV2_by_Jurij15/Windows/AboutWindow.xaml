@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotepadV2_by_Jurij15.Windows"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="185" Width="222" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+        Title="AboutWindow" Height="185" Width="222" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True">
     <Grid x:Name="Main">
         <Grid.Resources>
             <ImageBrush x:Key="Close_inact" ImageSource="../UI_RES\Close_inact.png" />
@@ -18,12 +18,12 @@
             <ImageBrush x:Key="Min_pr" ImageSource="../UI_RES\Minimize_pr.png" />
             <ImageBrush x:Key="Max_pr" ImageSource="../UI_RES\Maximize_pr.png" />
         </Grid.Resources>
-        <Rectangle Height="38" Width="5" VerticalAlignment="Top" HorizontalAlignment="Left" MouseDown="move_window">
+        <Rectangle Height="24" Width="5" VerticalAlignment="Top" HorizontalAlignment="Left" MouseDown="move_window">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="../UI_RES\Title_top_left.png" />
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Height="38" Margin="5,0,5,0" VerticalAlignment="Top" MouseDown="move_window" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <Rectangle Height="24" Margin="5,0,5,0" VerticalAlignment="Top" MouseDown="move_window" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="../UI_RES\Title_top_middle.png" />
             </Rectangle.Fill>
@@ -46,10 +46,16 @@
                  MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
                  MouseLeftButtonDown="Max_pressing" Name="Max_btn" 
                  Fill="{StaticResource Max_inact}" />
-        <Rectangle Height="38" Width="5" VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="move_window">
+        <Rectangle Height="24" Width="5" VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="move_window">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="../UI_RES\Title_top_right.png" />
             </Rectangle.Fill>
         </Rectangle>
+        <TextBlock HorizontalAlignment="Left" Margin="50,29,0,0" Text="NotepadV2" TextWrapping="Wrap" VerticalAlignment="Top" Width="107" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,56,0,0" TextWrapping="Wrap" Text="Made by Jurij15, to learn C#" VerticalAlignment="Top" Height="17" Width="218"/>
+        <Button x:Name="CloseBtn" Click="CloseBtn_Click" Content="Close" HorizontalAlignment="Left" Margin="156,161,0,0" VerticalAlignment="Top" Width="56"/>
+        <Button x:Name="DebugConsBtn" Click="DebugConsBtn_Click" Content="Debug Console" HorizontalAlignment="Left" Margin="5,161,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,109,0,0" TextWrapping="Wrap" Text="Resources Used: C#, WPF, NodeJS, MS-Edge WebView2" VerticalAlignment="Top" Width="218"/>
+        <TextBlock HorizontalAlignment="Left" Margin="2,80,0,0" TextWrapping="Wrap" Text="TBD" VerticalAlignment="Top" Width="215"/>
     </Grid>
 </Window>

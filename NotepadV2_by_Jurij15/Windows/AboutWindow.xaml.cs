@@ -86,5 +86,15 @@ namespace NotepadV2_by_Jurij15.Windows
         {
             InitializeComponent();
         }
+
+        private void DebugConsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Under Works");
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
