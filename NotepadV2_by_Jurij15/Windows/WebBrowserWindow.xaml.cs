@@ -85,6 +85,7 @@ namespace NotepadV2_by_Jurij15.Windows
         public WebBrowserWindow()
         {
             InitializeComponent();
+            this.ShowInTaskbar = true;
         }
     }
 }

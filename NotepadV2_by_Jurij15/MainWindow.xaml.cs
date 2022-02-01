@@ -210,7 +210,7 @@ namespace NotepadV2_by_Jurij15
         private void WebBrowserBtn_Click(object sender, RoutedEventArgs e)
         {
             WebBrowserWindow webBrowser = new WebBrowserWindow();
-            webBrowser.Show();
+        webBrowser.Show();
         }
 
         private void PDFReaderBtn_Click(object sender, RoutedEventArgs e)

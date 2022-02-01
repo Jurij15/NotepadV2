@@ -1,1 +1,4 @@
-﻿about box with checkforupdates and checkserverstat
+﻿about box with checkforupdates and checkserverstat - under works
+
+web browser finish
+pdfreader finish

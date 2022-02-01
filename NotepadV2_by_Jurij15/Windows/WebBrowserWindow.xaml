@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NotepadV2_by_Jurij15.Windows"
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="NotepadV2_by_Jurij15.Windows.WebBrowserWindow"
         mc:Ignorable="d"
-        Title="WebBrowserWindow" Height="450" Width="800" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True">
+        Title="WebBrowserWindow" Height="450" Width="800" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="True">
     <Grid x:Name="Main">
         <Grid.Resources>
             <ImageBrush x:Key="Close_inact" ImageSource="../UI_RES\Close_inact.png" />
