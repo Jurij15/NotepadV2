@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NotepadV2_by_Jurij15.Windows"
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="NotepadV2_by_Jurij15.Windows.PDFReader"
         mc:Ignorable="d"
-        Title="PDFReader" Height="450" Width="800" WindowStartupLocation="Manual" WindowStyle="None"  AllowsTransparency="True">
+        Title="PDFReader" Height="618" Width="995" WindowStartupLocation="Manual" WindowStyle="None"  AllowsTransparency="True" Background="Gray">
     <Grid x:Name="Main">
         <Grid.Resources>
             <ImageBrush x:Key="Close_inact" ImageSource="../UI_RES\Close_inact.png" />
@@ -53,7 +53,10 @@
             </Rectangle.Fill>
         </Rectangle>
         <Wpf:WebView2 Name="webView"
-                  Source="https://www.google.com" Margin="0,24,0,0"
+                  Source="https://www.google.com" Margin="0,24,0,33"
     />
+        <TextBox x:Name="filepathbox" IsReadOnly="True" HorizontalAlignment="Left" Margin="5,590,0,0" TextWrapping="Wrap" Text="File Path" VerticalAlignment="Top" Width="475" Height="18"/>
+        <Button Click="Open_Click" x:Name="Open" Content="Open" HorizontalAlignment="Left" Margin="485,588,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button Click="CloseBtn_Click" x:Name="CloseBtn" Content="Close" HorizontalAlignment="Left" Margin="600,588,0,0" VerticalAlignment="Top" Width="110"/>
     </Grid>
 </Window>

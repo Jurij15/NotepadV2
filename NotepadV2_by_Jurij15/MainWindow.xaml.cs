@@ -210,12 +210,14 @@ namespace NotepadV2_by_Jurij15
         private void WebBrowserBtn_Click(object sender, RoutedEventArgs e)
         {
             WebBrowserWindow webBrowser = new WebBrowserWindow();
+            webBrowser.ShowInTaskbar = true;
         webBrowser.Show();
         }
 
         private void PDFReaderBtn_Click(object sender, RoutedEventArgs e)
         {
             PDFReader pdfReader = new PDFReader();
+            pdfReader.ShowInTaskbar = true;
             pdfReader.Show();
         }
 

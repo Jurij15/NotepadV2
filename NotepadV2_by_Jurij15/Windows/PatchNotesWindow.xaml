@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotepadV2_by_Jurij15.Windows"
         mc:Ignorable="d"
-        Title="PatchNotes" Height="257" Width="187"  WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True">
+        Title="PatchNotes" Height="320" Width="255"  WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True">
     <Grid x:Name="Main">
         <Grid.Resources>
             <ImageBrush x:Key="Close_inact" ImageSource="../UI_RES\Close_inact.png" />
@@ -53,13 +53,13 @@
         </Rectangle>
         <TextBlock HorizontalAlignment="Center" Margin="0,24,0,0" TextWrapping="Wrap" Text="Patch Notes" VerticalAlignment="Top" Height="34" Width="116" FontSize="20"/>
 
-        <Button Click="Button_Click" Content="Close" HorizontalAlignment="Left" Margin="120,233,0,0" VerticalAlignment="Top" Width="63"/>
+        <Button Click="Button_Click" Content="Close" HorizontalAlignment="Left" Margin="182,290,0,0" VerticalAlignment="Top" Width="63"/>
         <TextBox
   x:Name="tbMultiLine"
   TextWrapping="Wrap"
   AcceptsReturn="True"
-  VerticalScrollBarVisibility="Visible" Margin="0,50,0,29" TextChanged="tbMultiLine_TextChanged"
-Text="New updates:&#xD;&#xA;-Basic notepad features are (probably) fully finished&#xD;&#xA;-NEW CUSTOM TITLEBAR&#xD;&#xA;--I wanted it to look more like old MacOS versions (10.6)&#xD;&#xA;--it is applied to everything, except messageboxes&#xD;&#xA;--I might still change it tho&#xD;&#xA;-PDF and Web Browser&#xD;&#xA;--Still in early phases of development (both display Microsoft site)&#xD;&#xA;--Both will be made in WebView2&#xD;&#xA;New fixes:&#xD;&#xA;-The version popup on startup has been removed"
+  VerticalScrollBarVisibility="Visible" Margin="0,50,0,35" TextChanged="tbMultiLine_TextChanged"
+Text="Patch 0.4 alpha&#xA; New updates: &#xA;-API has been (finnaly) moved to heroku (yay no more localhost) &#xA;--Download site is in the works, will be made in the next build &#xA;-Much progress made in PDFReader and WebBrowser&#xA; --There are still a lot of issues that need to be fixed&#xD;&#xA; Known issues: &#xD;&#xA;-Web browser&#xD;&#xA; --Searching directly in AdressBox might crash the program"
 />
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using Microsoft.Web.WebView2.Core;
 
 namespace NotepadV2_by_Jurij15.Windows
 {
@@ -86,6 +87,45 @@ namespace NotepadV2_by_Jurij15.Windows
         {
             InitializeComponent();
             this.ShowInTaskbar = true;
+        }
+
+        private void GoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (webView != null && webView.CoreWebView2 != null)
+            {
+                webView.CoreWebView2.Navigate(AddressBox.Text);
+            }
+        }
+
+        private void ForwardBtn_Click(object sender, RoutedEventArgs e)
+        {
+            webView.GoForward();
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            webView.GoBack();
+        }
+
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string homepage = "www.google.com";
+            webView.CoreWebView2.Navigate(homepage);
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void StopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            webView.Stop();
+        }
+
+        private void ReloadBtn_Click(object sender, RoutedEventArgs e)
+        {
+            webView.Reload();
         }
     }
 }

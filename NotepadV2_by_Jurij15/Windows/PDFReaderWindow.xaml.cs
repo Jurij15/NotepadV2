@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using Microsoft.Win32;
 
 namespace NotepadV2_by_Jurij15.Windows
 {
@@ -85,6 +86,21 @@ namespace NotepadV2_by_Jurij15.Windows
         public PDFReader()
         {
             InitializeComponent();
+        }
+
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+            openFileDialog.ShowDialog();
+            filepathbox.Text = openFileDialog.FileName;
+
+                webView.CoreWebView2.Navigate(openFileDialog.FileName);
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

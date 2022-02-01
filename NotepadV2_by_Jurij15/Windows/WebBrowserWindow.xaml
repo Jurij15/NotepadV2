@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NotepadV2_by_Jurij15.Windows"
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="NotepadV2_by_Jurij15.Windows.WebBrowserWindow"
         mc:Ignorable="d"
-        Title="WebBrowserWindow" Height="450" Width="800" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="True">
+        Title="WebBrowserWindow" Height="602" Width="952" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="True" Background="Gray">
     <Grid x:Name="Main">
         <Grid.Resources>
             <ImageBrush x:Key="Close_inact" ImageSource="../UI_RES\Close_inact.png" />
@@ -53,7 +53,15 @@
             </Rectangle.Fill>
         </Rectangle>
         <Wpf:WebView2 Name="webView"
-                  Source="https://www.google.com" Margin="0,24,0,0"
+                  Source="https://www.google.com" Margin="0,24,0,30"
     />
+        <TextBox x:Name="AddressBox" HorizontalAlignment="Left" Margin="2,577,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" Height="18"/>
+        <Button Click="GoBtn_Click" x:Name="GoBtn" Content="GO!" HorizontalAlignment="Left" Margin="378,575,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Click="ForwardBtn_Click" x:Name="ForwardBtn" Content="Forward" HorizontalAlignment="Left" Margin="530,575,0,0" VerticalAlignment="Top" Width="80" Height="20"/>
+        <Button Click="backBtn_Click" x:Name="backBtn" Content="Back" HorizontalAlignment="Left" Margin="700,575,0,0" VerticalAlignment="Top" Width="81"/>
+        <Button Click="HomeBtn_Click" x:Name="HomeBtn" Content="Home" HorizontalAlignment="Left" Margin="786,575,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Click="ExitBtn_Click" x:Name="ExitBtn" Content="Exit" HorizontalAlignment="Left" Margin="871,575,0,0" VerticalAlignment="Top" Width="79"/>
+        <Button Click="StopBtn_Click" x:Name="StopBtn" Content="Stop" HorizontalAlignment="Left" Margin="615,575,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Click="ReloadBtn_Click" x:Name="ReloadBtn" Content="Reload" HorizontalAlignment="Left" Margin="463,575,0,0" VerticalAlignment="Top" Width="62"/>
     </Grid>
 </Window>
