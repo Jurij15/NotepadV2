@@ -31,5 +31,42 @@ namespace NotepadV2_by_Jurij15 {
                 return ((string)(this["IsInDev"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("true")]
+        public string CanUseWebBrowser {
+            get {
+                return ((string)(this["CanUseWebBrowser"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("true")]
+        public string CanUsePDFReader {
+            get {
+                return ((string)(this["CanUsePDFReader"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("true")]
+        public string CanSeeServerChecksWindow {
+            get {
+                return ((string)(this["CanSeeServerChecksWindow"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://notepadv2-by-jurij15-api.herokuapp.com/api/versioncheck/latestversion")]
+        public string UpdatesAddres {
+            get {
+                return ((string)(this["UpdatesAddres"]));
+            }
+        }
     }
 }
