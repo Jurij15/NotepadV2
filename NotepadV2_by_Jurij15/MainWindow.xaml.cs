@@ -109,6 +109,18 @@ namespace NotepadV2_by_Jurij15
             Paragraph p = rtb.Document.Blocks.FirstBlock as Paragraph;
             p.LineHeight = 1;
             */
+            Settings settings = new Settings();
+            string indevsetting = settings.IsInDev;
+            string indev = "true";
+            string notindev = "false";
+            if (indevsetting == notindev)
+            {
+                versionstringbox.Text = "";
+            }
+            else if (indevsetting == indev)
+            {
+                //do nothing, just countiniue
+            }
         }
 
         public MainWindow()

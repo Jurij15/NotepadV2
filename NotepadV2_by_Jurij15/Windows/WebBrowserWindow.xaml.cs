@@ -109,7 +109,7 @@ namespace NotepadV2_by_Jurij15.Windows
 
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
         {
-            string homepage = "www.google.com";
+            string homepage = "https://www.google.com";
             webView.CoreWebView2.Navigate(homepage);
         }
 

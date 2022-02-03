@@ -55,7 +55,7 @@
         <Wpf:WebView2 Name="webView"
                   Source="https://www.google.com" Margin="0,24,0,30"
     />
-        <TextBox x:Name="AddressBox" HorizontalAlignment="Left" Margin="2,577,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" Height="18"/>
+        <TextBox Text="https://" x:Name="AddressBox" HorizontalAlignment="Left" Margin="2,577,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" Height="18"/>
         <Button Click="GoBtn_Click" x:Name="GoBtn" Content="GO!" HorizontalAlignment="Left" Margin="378,575,0,0" VerticalAlignment="Top" Width="80"/>
         <Button Click="ForwardBtn_Click" x:Name="ForwardBtn" Content="Forward" HorizontalAlignment="Left" Margin="530,575,0,0" VerticalAlignment="Top" Width="80" Height="20"/>
         <Button Click="backBtn_Click" x:Name="backBtn" Content="Back" HorizontalAlignment="Left" Margin="700,575,0,0" VerticalAlignment="Top" Width="81"/>
