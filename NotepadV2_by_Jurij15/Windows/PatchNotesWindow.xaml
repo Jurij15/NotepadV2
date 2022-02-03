@@ -59,7 +59,7 @@
   TextWrapping="Wrap"
   AcceptsReturn="True"
   VerticalScrollBarVisibility="Visible" Margin="0,50,0,35" TextChanged="tbMultiLine_TextChanged"
-Text="Patch 0.4 alpha&#xA; New updates: &#xA;-API has been (finnaly) moved to heroku (yay no more localhost) &#xA;--Download site is in the works, will be made in the next build &#xA;-Much progress made in PDFReader and WebBrowser&#xA; --There are still a lot of issues that need to be fixed&#xD;&#xA; Known issues: &#xD;&#xA;-Web browser&#xD;&#xA; --Searching directly in AdressBox might crash the program"
+Text="Patch 0.4.1 alpha&#xD;&#xA;-Fixes:&#xD;&#xA;--Web browser no longer crashes&#xD;&#xA;--PDFreader minor issues fixed"
 />
     </Grid>
 </Window>

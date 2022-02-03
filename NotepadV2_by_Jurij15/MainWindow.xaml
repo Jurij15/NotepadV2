@@ -73,7 +73,7 @@
                 <MenuItem Header="Font" x:Name="FontBtn" Click="FontBtn_Click"/>
                 <MenuItem Header="Color" x:Name="ColorBtn" Click="ColorBtn_Click"/>
             </MenuItem>
-            <MenuItem Header="_Extensions">
+            <MenuItem Header="_Extensions" x:Name="ExtensionsTab" Visibility="Visible">
                 <MenuItem Header="Web Browser" x:Name="WebBrowserBtn" Click="WebBrowserBtn_Click"/>
                 <MenuItem Header="PDF Reader" x:Name="PDFReaderBtn" Click="PDFReaderBtn_Click"/>
             </MenuItem>

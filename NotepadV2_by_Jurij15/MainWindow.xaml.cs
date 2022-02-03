@@ -91,6 +91,56 @@ namespace NotepadV2_by_Jurij15
         {
             Max_btn.Fill = (ImageBrush)Main.Resources["Max_pr"];
         }
+        public void checkforlimits()
+        {
+            Settings settings = new Settings();
+            string indevsetting = settings.IsInDev;
+            string allowwebbrow = settings.CanUseWebBrowser;
+            string allowpdfread = settings.CanUsePDFReader;
+            string canseeserverstuffcheckswin = settings.CanSeeServerChecksWindow;
+            string indev = "true";
+            string notindev = "false";
+            if (indevsetting == notindev)
+            {
+                versionstringbox.Text = "";
+            }
+            else if (indevsetting == indev)
+            {
+                //do nothing, just countiniue
+            }
+            if (allowwebbrow == notindev)
+            {
+                WebBrowserBtn.IsEnabled = false;
+            }
+            else if (allowwebbrow == indev)
+            {
+                //do nothing, just cuntiniue
+            }
+            if (allowpdfread == notindev)
+            {
+                PDFReaderBtn.IsEnabled = false;
+            }
+            else if (allowpdfread == indev)
+            {
+                //do nothing, just countiniue
+            }
+            if (canseeserverstuffcheckswin == notindev)
+            {
+                //todo
+            }
+            else if (canseeserverstuffcheckswin == indev)
+            {
+                //do nothing, just countiniue
+            }
+            if (allowpdfread == notindev && allowwebbrow == notindev)
+            {
+                ExtensionsTab.Visibility = Visibility.Hidden;
+            }
+            else if (allowpdfread == indev && allowwebbrow == indev)
+            {
+                ExtensionsTab.Visibility = Visibility.Visible;
+            }
+        }
 
         public void onstartup()
         {
@@ -109,18 +159,7 @@ namespace NotepadV2_by_Jurij15
             Paragraph p = rtb.Document.Blocks.FirstBlock as Paragraph;
             p.LineHeight = 1;
             */
-            Settings settings = new Settings();
-            string indevsetting = settings.IsInDev;
-            string indev = "true";
-            string notindev = "false";
-            if (indevsetting == notindev)
-            {
-                versionstringbox.Text = "";
-            }
-            else if (indevsetting == indev)
-            {
-                //do nothing, just countiniue
-            }
+            checkforlimits();
         }
 
         public MainWindow()
