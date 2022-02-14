@@ -19,7 +19,7 @@ namespace NotepadV2_by_Jurij15.Update
                 Version version = new Version();
                 //soooo, after making a api on heroku, localhost is no longer needed
                 //var url = "http://localhost:4000/api/versioncheck/latestversion";
-                var url = "https://notepadv2-by-jurij15-api.herokuapp.com/api/versioncheck/latestversion";
+                var url = "https://notepadV2api.herokuapp.com/api/versioncheck/latestversion";
 
                 var request = WebRequest.Create(url);
                 request.Method = "GET";

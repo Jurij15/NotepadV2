@@ -5,21 +5,15 @@
     <Setting Name="IsInDev" Type="System.String" Scope="Application">
       <Value Profile="(Default)">true</Value>
     </Setting>
-    <Setting Name="CanUseWebBrowser" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">true</Value>
-    </Setting>
-    <Setting Name="CanUsePDFReader" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">true</Value>
-    </Setting>
-    <Setting Name="CanSeeServerChecksWindow" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">true</Value>
-    </Setting>
     <Setting Name="UpdatesAddres" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;https://notepadv2-by-jurij15-api.herokuapp.com/api/versioncheck/latestversion&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;https://notepadV2api.herokuapp.com/api/versioncheck/latestversion&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">https://notepadv2-by-jurij15-api.herokuapp.com/api/versioncheck/latestversion</Value>
+      <Value Profile="(Default)">https://notepadV2api.herokuapp.com/api/versioncheck/latestversion</Value>
+    </Setting>
+    <Setting Name="IsLimitedEdition" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">false</Value>
     </Setting>
   </Settings>
 </SettingsFile>

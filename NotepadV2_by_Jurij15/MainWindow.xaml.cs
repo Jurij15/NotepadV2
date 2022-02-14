@@ -97,7 +97,6 @@ namespace NotepadV2_by_Jurij15
             string indevsetting = settings.IsInDev;
             string allowwebbrow = settings.CanUseWebBrowser;
             string allowpdfread = settings.CanUsePDFReader;
-            string canseeserverstuffcheckswin = settings.CanSeeServerChecksWindow;
             string indev = "true";
             string notindev = "false";
             if (indevsetting == notindev)
@@ -107,38 +106,6 @@ namespace NotepadV2_by_Jurij15
             else if (indevsetting == indev)
             {
                 //do nothing, just countiniue
-            }
-            if (allowwebbrow == notindev)
-            {
-                WebBrowserBtn.IsEnabled = false;
-            }
-            else if (allowwebbrow == indev)
-            {
-                //do nothing, just cuntiniue
-            }
-            if (allowpdfread == notindev)
-            {
-                PDFReaderBtn.IsEnabled = false;
-            }
-            else if (allowpdfread == indev)
-            {
-                //do nothing, just countiniue
-            }
-            if (canseeserverstuffcheckswin == notindev)
-            {
-                //todo
-            }
-            else if (canseeserverstuffcheckswin == indev)
-            {
-                //do nothing, just countiniue
-            }
-            if (allowpdfread == notindev && allowwebbrow == notindev)
-            {
-                ExtensionsTab.Visibility = Visibility.Hidden;
-            }
-            else if (allowpdfread == indev && allowwebbrow == indev)
-            {
-                ExtensionsTab.Visibility = Visibility.Visible;
             }
         }
 

@@ -55,7 +55,7 @@
         <TextBlock HorizontalAlignment="Center" Margin="0,56,0,0" TextWrapping="Wrap" Text="Made by Jurij15, to learn C#" VerticalAlignment="Top" Height="17" Width="218"/>
         <Button x:Name="CloseBtn" Click="CloseBtn_Click" Content="Close" HorizontalAlignment="Left" Margin="156,161,0,0" VerticalAlignment="Top" Width="56"/>
         <Button x:Name="DebugConsBtn" Click="DebugConsBtn_Click" Content="Debug Console" HorizontalAlignment="Left" Margin="5,161,0,0" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,109,0,0" TextWrapping="Wrap" Text="Resources Used: C#, WPF, NodeJS, MS-Edge WebView2" VerticalAlignment="Top" Width="218"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,109,0,0" TextWrapping="Wrap" Text="Resources Used: C#, WPF, MS-Edge WebView2" VerticalAlignment="Top" Width="218"/>
         <TextBlock HorizontalAlignment="Left" Margin="2,80,0,0" TextWrapping="Wrap" Text="TBD" VerticalAlignment="Top" Width="215"/>
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using System.Net;
 
 namespace NotepadV2_by_Jurij15.Windows
 {
@@ -21,6 +22,12 @@ namespace NotepadV2_by_Jurij15.Windows
     /// </summary>
     public partial class AboutWindow : Window
     {
+        [DllImport("Kernel32")]
+        public static extern void AllocConsole();
+
+        [DllImport("Kernel32")]
+        public static extern void FreeConsole();
+
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -89,7 +96,7 @@ namespace NotepadV2_by_Jurij15.Windows
 
         private void DebugConsBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Under Works");
+            AllocConsole();
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
