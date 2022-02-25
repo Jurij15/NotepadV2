@@ -1,0 +1,4 @@
+﻿this is a crash handler
+in case notepad crashes, it should provide atleast some info on why it crashed
+
+still working on it tho

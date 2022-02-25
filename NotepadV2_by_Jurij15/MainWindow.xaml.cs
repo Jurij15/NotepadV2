@@ -22,6 +22,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using Run = System.Windows.Documents.Run;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace NotepadV2_by_Jurij15
 {
@@ -29,7 +30,7 @@ namespace NotepadV2_by_Jurij15
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    { 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -95,8 +96,6 @@ namespace NotepadV2_by_Jurij15
         {
             Settings settings = new Settings();
             string indevsetting = settings.IsInDev;
-            string allowwebbrow = settings.CanUseWebBrowser;
-            string allowpdfread = settings.CanUsePDFReader;
             string indev = "true";
             string notindev = "false";
             if (indevsetting == notindev)
@@ -129,10 +128,26 @@ namespace NotepadV2_by_Jurij15
             checkforlimits();
         }
 
+        public void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            // Log the exception, display it, etc
+            //Debug.WriteLine(e.Exception.Message);
+            //CrashDetails = e.Exception.Message;
+            
+        }
+        public void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            // Log the exception, display it, etc
+            //Debug.WriteLine((e.ExceptionObject as Exception).Message);
+            //CrashDetails = (e.ExceptionObject as Exception).Message;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
             onstartup();
+            System.Windows.Forms.Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
         }
 
         private void NewBtn_Click(object sender, RoutedEventArgs e)

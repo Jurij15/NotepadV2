@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.Net;
+using System.Diagnostics;
+using System.Threading;
+using NotepadV2_by_Jurij15.Crash;
 
 namespace NotepadV2_by_Jurij15.Windows
 {
@@ -89,9 +92,51 @@ namespace NotepadV2_by_Jurij15.Windows
         {
             Max_btn.Fill = (ImageBrush)Main.Resources["Max_pr"];
         }
+        
+        public void ErrorOccured() 
+        {
+
+        }
         public AboutWindow()
         {
             InitializeComponent();
+            Settings settings = new Settings();
+            string showcrashbutton = settings.CanCrashAppTest;
+            string showcrashbuttontrue = "true";
+            string showcrashbuttonfalse = "false";
+            if (showcrashbutton == showcrashbuttonfalse)
+            {
+                CrashButton.Visibility = Visibility.Hidden;
+            }
+            else if (showcrashbutton == showcrashbuttontrue)
+            {
+                //do nothing, just proceed
+            }
+            MainWindow mainWindow = new MainWindow();
+            System.Windows.Forms.Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+        }
+
+        public void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            // Log the exception, display it, etc
+            //Debug.WriteLine(e.Exception.Message);
+            //string crash = e.Exception.Message;
+            MainWindow main = new MainWindow();
+            //main.CrashDetails = e.Exception.Message;
+            ToCrashHandler toCrashHandler = new ToCrashHandler();
+            toCrashHandler.SendToCrashHandler();
+
+        }
+        public void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            // Log the exception, display it, etc
+            //Debug.WriteLine((e.ExceptionObject as Exception).Message);
+            MainWindow main = new MainWindow();
+            //string crash = (e.ExceptionObject as Exception).Message;
+            //main.CrashDetails = (e.ExceptionObject as Exception).Message;
+            ToCrashHandler toCrashHandler = new ToCrashHandler(); 
+            toCrashHandler.SendToCrashHandler();
         }
 
         private void DebugConsBtn_Click(object sender, RoutedEventArgs e)
@@ -103,5 +148,16 @@ namespace NotepadV2_by_Jurij15.Windows
         {
             Close();
         }
+
+        private void CrashButton_Click(object sender, RoutedEventArgs e)
+        {
+            Exception();
+        }
+
+        private void Exception()
+        {
+            throw new StackOverflowException();
+        }
+        
     }
 }

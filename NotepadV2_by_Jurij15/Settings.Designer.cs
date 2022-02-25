@@ -50,5 +50,14 @@ namespace NotepadV2_by_Jurij15 {
                 return ((string)(this["IsLimitedEdition"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("true")]
+        public string CanCrashAppTest {
+            get {
+                return ((string)(this["CanCrashAppTest"]));
+            }
+        }
     }
 }

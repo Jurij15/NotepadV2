@@ -15,5 +15,8 @@
     <Setting Name="IsLimitedEdition" Type="System.String" Scope="Application">
       <Value Profile="(Default)">false</Value>
     </Setting>
+    <Setting Name="CanCrashAppTest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">true</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
