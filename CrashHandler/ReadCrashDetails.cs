@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows;
 
 namespace CrashHandler
 {
@@ -13,7 +14,7 @@ namespace CrashHandler
         {
             string line;
             string filenamedatetime = DateTime.Now.ToString();
-            string filename = "CrashDetails/crash" + filenamedatetime+".txt";
+            string filename = "CrashDetails/crash.txt";
             try
             {
                 StreamReader sr = new StreamReader(filename);
@@ -24,6 +25,12 @@ namespace CrashHandler
             {
 
                 throw;
+            }
+
+            if (line.Contains("404"))
+            {
+                Console.WriteLine("Error found!");
+                Console.ReadLine();
             }
         }
     }

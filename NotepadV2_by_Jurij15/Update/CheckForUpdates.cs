@@ -45,11 +45,25 @@ namespace NotepadV2_by_Jurij15.Update
             catch (Exception ex)
             {
                 string exceptiontext = ex.Message;
+                string commonerror = "The remote server returned an error";
                 CrashDetails crashDetails = new CrashDetails();
                 crashDetails.CrashDetailsString = exceptiontext;
-                MessageBox.Show(ex.Message, "Couldd't check for updates");
+                ToCrashHandler toCrashHandler = new ToCrashHandler();
+                MessageBox.Show(exceptiontext, "Couldd't check for updates");
+                if (exceptiontext.Contains(commonerror))
+                {
+                    toCrashHandler.error = "UPDATE:404";
+                    toCrashHandler.SendToCrashHandler();
+                }
+                
             }
             }
+        ToCrashHandler toCrashHandler = new ToCrashHandler();
+        public string errorstring   // property
+        {
+            get { return toCrashHandler.error; }
+            set { toCrashHandler.error = value; }
         }
+    }
     }
 

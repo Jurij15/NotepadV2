@@ -8,6 +8,6 @@ namespace NotepadV2_by_Jurij15.Crash
 {
     public class CrashDetails
     {
-        public string? CrashDetailsString { get; set; }
+        public string? CrashDetailsString = null;
     }
 }

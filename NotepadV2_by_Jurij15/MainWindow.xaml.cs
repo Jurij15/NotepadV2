@@ -23,6 +23,7 @@ using System.Windows.Interop;
 using Run = System.Windows.Documents.Run;
 using System.Windows.Forms;
 using System.Threading;
+using NotepadV2_by_Jurij15.Crash;
 
 namespace NotepadV2_by_Jurij15
 {
@@ -106,6 +107,17 @@ namespace NotepadV2_by_Jurij15
             {
                 //do nothing, just countiniue
             }
+            CrashDetails details = new CrashDetails();
+            ToCrashHandler toCrashHandler = new ToCrashHandler();
+            /*
+            while (details.CrashDetailsString ==null)
+            {
+                if (details.CrashDetailsString != null)
+                {
+                    toCrashHandler.SendToCrashHandler();
+                }
+            }
+            */
         }
 
         public void onstartup()
@@ -142,12 +154,32 @@ namespace NotepadV2_by_Jurij15
             //CrashDetails = (e.ExceptionObject as Exception).Message;
         }
 
+        static void CheckForCrashesThread()
+        {
+                CrashDetails details = new CrashDetails();
+                ToCrashHandler toCrashHandler = new ToCrashHandler();
+                while (details.CrashDetailsString == null)
+                {
+                    if (details.CrashDetailsString != null)
+                    {
+                        toCrashHandler.SendToCrashHandler();
+                    }
+                }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
             onstartup();
             System.Windows.Forms.Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            Thread thread = new Thread(CheckForCrashesThread);
+            thread.Start();
+            /*
+            ToCrashHandler toCrashHandler = new ToCrashHandler();
+            toCrashHandler.SendToCrashHandler();
+            */
+
         }
 
         private void NewBtn_Click(object sender, RoutedEventArgs e)

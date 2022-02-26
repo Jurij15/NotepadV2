@@ -11,7 +11,8 @@ namespace CrashHandler
     {
         static void Main (string[] args)
         {
-            
+            ReadCrashDetails readCrashDetails = new ReadCrashDetails();
+            readCrashDetails.ReadDetails();
         }
     }
 }
