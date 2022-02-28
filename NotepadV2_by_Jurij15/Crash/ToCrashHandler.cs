@@ -14,6 +14,7 @@ namespace NotepadV2_by_Jurij15.Crash
 {
     public class ToCrashHandler
     {
+        public string updateerror { get; set; }
         public string error { get; set; }
         [DllImport("Kernel32")]
         public static extern void AllocConsole();
@@ -48,7 +49,7 @@ namespace NotepadV2_by_Jurij15.Crash
             using (FileStream fs = File.Create(filename))
             {
                 CheckForUpdates checkForUpdates = new CheckForUpdates();
-                string lol = error;
+                string lol = updateerror;
                 if (lol.Contains("404"))
                 {
                     /*
@@ -56,7 +57,7 @@ namespace NotepadV2_by_Jurij15.Crash
                     fs.Write(titlee, 0, titlee.Length);
                     */
                     //string text = main.CrashDetails.ToString();
-                    string text = error;
+                    string text = updateerror;
                     
                     Byte[] title = new UTF8Encoding(true).GetBytes(text);
                     fs.Write(title, 0, title.Length);

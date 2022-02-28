@@ -32,6 +32,10 @@ namespace CrashHandler
                 Console.WriteLine("Error found!");
                 Console.ReadLine();
             }
+            else 
+            {
+                Console.WriteLine(line);
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace NotepadV2_by_Jurij15.Update
                 Version version = new Version();
                 //soooo, after making a api on heroku, localhost is no longer needed
                 //var url = "http://localhost:4000/api/versioncheck/latestversion";
-                var url = "https://notepadV2apii.herokuapp.com/api/versioncheck/latestversion";
+                var url = "https://notepadV2api.herokuapp.com/api/versioncheck/latestversion";
 
                 var request = WebRequest.Create(url);
                 request.Method = "GET";
@@ -52,7 +52,7 @@ namespace NotepadV2_by_Jurij15.Update
                 MessageBox.Show(exceptiontext, "Couldd't check for updates");
                 if (exceptiontext.Contains(commonerror))
                 {
-                    toCrashHandler.error = "UPDATE:404";
+                    toCrashHandler.updateerror = "UPDATE:404";
                     toCrashHandler.SendToCrashHandler();
                 }
                 
@@ -61,8 +61,8 @@ namespace NotepadV2_by_Jurij15.Update
         ToCrashHandler toCrashHandler = new ToCrashHandler();
         public string errorstring   // property
         {
-            get { return toCrashHandler.error; }
-            set { toCrashHandler.error = value; }
+            get { return toCrashHandler.updateerror; }
+            set { toCrashHandler.updateerror = value; }
         }
     }
     }

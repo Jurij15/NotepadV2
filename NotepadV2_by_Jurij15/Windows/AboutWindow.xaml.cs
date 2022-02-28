@@ -119,23 +119,21 @@ namespace NotepadV2_by_Jurij15.Windows
 
         public void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
+            ToCrashHandler toCrashHandler = new ToCrashHandler();
             // Log the exception, display it, etc
             //Debug.WriteLine(e.Exception.Message);
-            //string crash = e.Exception.Message;
-            MainWindow main = new MainWindow();
-            //main.CrashDetails = e.Exception.Message;
-            ToCrashHandler toCrashHandler = new ToCrashHandler();
+            //CrashDetails = e.Exception.Message;
+            toCrashHandler.error = e.Exception.Message;
             toCrashHandler.SendToCrashHandler();
 
         }
         public void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            ToCrashHandler toCrashHandler = new ToCrashHandler();
             // Log the exception, display it, etc
             //Debug.WriteLine((e.ExceptionObject as Exception).Message);
-            MainWindow main = new MainWindow();
-            //string crash = (e.ExceptionObject as Exception).Message;
-            //main.CrashDetails = (e.ExceptionObject as Exception).Message;
-            ToCrashHandler toCrashHandler = new ToCrashHandler(); 
+            //CrashDetails = (e.ExceptionObject as Exception).Message;
+            toCrashHandler.error = (e.ExceptionObject as Exception).Message;
             toCrashHandler.SendToCrashHandler();
         }
 

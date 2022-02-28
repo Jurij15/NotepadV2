@@ -3,3 +3,4 @@ New updates:
 -Crash Handler
 --It is 100% not needed, just why not
 ---It is still under heavy development
+-This is the last alpha version
