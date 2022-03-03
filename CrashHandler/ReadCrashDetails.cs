@@ -10,9 +10,10 @@ namespace CrashHandler
 {
     public class ReadCrashDetails
     {
+        public string line { get; set; }
         public void ReadDetails()
         {
-            string line;
+            
             string filenamedatetime = DateTime.Now.ToString();
             string filename = "CrashDetails/crash.txt";
             try
@@ -23,10 +24,8 @@ namespace CrashHandler
             }
             catch (Exception e)
             {
-
-                throw;
+                
             }
-
             if (line.Contains("404"))
             {
                 Console.WriteLine("Error found!");
