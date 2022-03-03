@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace Updater
 {
-    public class Program
+    public class Programrw
     {
+        [STAThread]
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CheckIfServerIsUp checkIfServerIsUp = new CheckIfServerIsUp(); 
+            UpdateWindow updateWindow = new UpdateWindow();
+            updateWindow.Activate();
+            updateWindow.ShowInTaskbar = true;
+            updateWindow.ShowDialog();
+            //updateWindow.Show();
+            Console.ReadLine();
         }
     }
 }
