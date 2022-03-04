@@ -18,12 +18,12 @@ namespace Updater
             CheckIfServerIsUp checkIfServerIsUp = new CheckIfServerIsUp();
             checkIfServerIsUp.CheckServer();
             UpdateWindow updateWindow = new UpdateWindow();
+            string serverstat = checkIfServerIsUp.IsServerUp;
+            Console.WriteLine(serverstat);
             updateWindow.Activate();
             updateWindow.ShowInTaskbar = true;
             updateWindow.ShowDialog();
             //updateWindow.Show();
-            string serverstat = checkIfServerIsUp.IsServerUp;
-            Console.WriteLine(serverstat);
             Console.ReadLine();
         }
     }

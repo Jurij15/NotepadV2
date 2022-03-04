@@ -109,7 +109,9 @@ namespace NotepadV2_by_Jurij15.Windows
 
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
         {
-            string homepage = "https://www.google.com";
+            WebBrowserSettings webBrowserSettings = new WebBrowserSettings();
+
+            string homepage = webBrowserSettings.HomePageAdress;
             webView.CoreWebView2.Navigate(homepage);
         }
 
@@ -126,6 +128,15 @@ namespace NotepadV2_by_Jurij15.Windows
         private void ReloadBtn_Click(object sender, RoutedEventArgs e)
         {
             webView.Reload();
+        }
+
+        private void BrowserPreferences_Click(object sender, RoutedEventArgs e)
+        {
+            WebBrowserPreferencesWindow webBrowserPreferencesWindow = new WebBrowserPreferencesWindow();
+            WebBrowserSettings webBrowserSettings = new WebBrowserSettings();
+            
+            webBrowserPreferencesWindow.ShowDialog();
+
         }
     }
 }
