@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace Updater
 {
@@ -22,6 +23,11 @@ namespace Updater
         public UpdateWindow()
         {
             InitializeComponent();
+        }
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+        {
+            MessageBox.Show("Closing called");
+            Environment.Exit(0);
         }
     }
 }

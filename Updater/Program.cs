@@ -10,17 +10,20 @@ using System.Windows.Forms;
 
 namespace Updater
 {
-    public class Programrw
+    public class Program
     {
         [STAThread]
         static void Main(string[] args)
         {
-            CheckIfServerIsUp checkIfServerIsUp = new CheckIfServerIsUp(); 
+            CheckIfServerIsUp checkIfServerIsUp = new CheckIfServerIsUp();
+            checkIfServerIsUp.CheckServer();
             UpdateWindow updateWindow = new UpdateWindow();
             updateWindow.Activate();
             updateWindow.ShowInTaskbar = true;
             updateWindow.ShowDialog();
             //updateWindow.Show();
+            string serverstat = checkIfServerIsUp.IsServerUp;
+            Console.WriteLine(serverstat);
             Console.ReadLine();
         }
     }

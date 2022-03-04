@@ -20,7 +20,7 @@ namespace Updater
             {
                 //soooo, after making a api on heroku, localhost is no longer needed
                 //var url = "http://localhost:4000/api/versioncheck/latestversion";
-                var url = "https://notepadV2api.herokuapp.com/api/versioncheck/latestversion";
+                var url = "https://notepadV2api.herokuapp.com/api/status";
 
                 var request = WebRequest.Create(url);
                 request.Method = "GET";
