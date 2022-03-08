@@ -297,6 +297,8 @@ namespace NotepadV2_by_Jurij15
                 NewWebBrowser newWebBrowser = new NewWebBrowser();
                 newWebBrowser.ShowInTaskbar = true;
                 newWebBrowser.Show();
+                webToolbar webToolbar = new webToolbar();
+                webToolbar.Show();
             }
             else if (setting != cansee)
             {

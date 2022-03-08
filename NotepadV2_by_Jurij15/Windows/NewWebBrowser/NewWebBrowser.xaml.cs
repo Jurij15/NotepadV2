@@ -16,6 +16,7 @@ using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace NotepadV2_by_Jurij15.Windows.NewWebBrowser
 {
@@ -59,21 +60,21 @@ namespace NotepadV2_by_Jurij15.Windows.NewWebBrowser
 
         private void Activate_Title_Icons(object sender, MouseEventArgs e)
         {
-            Close_btn.Fill = (ImageBrush)Main.Resources["Close_act"];
+            //Close_btn.Fill = (ImageBrush)Main.Resources["Close_act"];
             Min_btn.Fill = (ImageBrush)Main.Resources["Min_act"];
             Max_btn.Fill = (ImageBrush)Main.Resources["Max_act"];
         }
 
         private void Deactivate_Title_Icons(object sender, MouseEventArgs e)
         {
-            Close_btn.Fill = (ImageBrush)Main.Resources["Close_inact"];
+            //Close_btn.Fill = (ImageBrush)Main.Resources["Close_inact"];
             Min_btn.Fill = (ImageBrush)Main.Resources["Min_inact"];
             Max_btn.Fill = (ImageBrush)Main.Resources["Max_inact"];
         }
 
         private void Close_pressing(object sender, MouseButtonEventArgs e)
         {
-            Close_btn.Fill = (ImageBrush)Main.Resources["Close_pr"];
+            //Close_btn.Fill = (ImageBrush)Main.Resources["Close_pr"];
         }
 
         private void Min_pressing(object sender, MouseButtonEventArgs e)
@@ -89,14 +90,20 @@ namespace NotepadV2_by_Jurij15.Windows.NewWebBrowser
         {
             InitializeComponent();
             webToolbar webToolbar = new webToolbar();
-            webToolbar.Show();
+            //webToolbar.Show();
         }
         void WebWindow_Closing(object sender, CancelEventArgs e)
         {
-            MessageBox.Show("Closing called");
             webToolbar webToolbar = new webToolbar();
+            //MessageBox.Show("Closing called");
             //webToolbar.Close();
-            webToolbar.Close();
+            //webToolbar.Close();
+            //webToolbar.Visibility = System.Windows.Visibility.Hidden;
+            //webToolbar.Close();
+            //webToolbar.StartClose();
+            //MessageBox.Show("Closing called");
+            //webToolbar.Hide();
+            //this.Close();
         }
     }
 }

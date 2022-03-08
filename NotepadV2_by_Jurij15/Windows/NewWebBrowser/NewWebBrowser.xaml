@@ -30,19 +30,14 @@
             </Rectangle.Fill>
         </Rectangle>
         <Rectangle Margin="8,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
-                   Width="56" Height="15" Fill="Transparent"
+                   Width="35" Height="15" Fill="Transparent"
                    MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" />
-        <Ellipse Margin="8,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
-                 Width="14" Height="15" MouseLeftButtonUp="EXIT" 
-                 MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
-                 MouseLeftButtonDown="Close_pressing" x:Name="Close_btn" 
-                 Fill="{DynamicResource Close_inact}" />
-        <Ellipse Margin="29,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+        <Ellipse Margin="10,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
                  Width="14" Height="15" MouseLeftButtonUp="MINIMIZE" 
                  MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
                  MouseLeftButtonDown="Min_pressing" x:Name="Min_btn" 
                  Fill="{StaticResource Min_inact}" />
-        <Ellipse Margin="50,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+        <Ellipse Margin="26,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
                  Width="14" Height="15" MouseLeftButtonUp="MAX_RESTORE" 
                  MouseEnter="Activate_Title_Icons" MouseLeave="Deactivate_Title_Icons" 
                  MouseLeftButtonDown="Max_pressing" x:Name="Max_btn" 
