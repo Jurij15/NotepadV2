@@ -198,9 +198,18 @@ namespace NotepadV2_by_Jurij15
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             openFileDialog.ShowDialog();
-            TextBox1.Document.Blocks.Clear();
             string location = openFileDialog.FileName;
-            TextBox1.Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(location))));
+            if (location == "")
+            {
+                //do nothing, since there is no document to open
+            }
+            else if (location != "")
+            {
+                TextBox1.Document.Blocks.Clear();
+                TextBox1.Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(location))));
+            }
+            //TextBox1.Document.Blocks.Clear();
+            //TextBox1.Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(location))));
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
