@@ -1,6 +1,9 @@
 ﻿Release 0.5 alpha
+Pretty much nothing changed
 New updates:
 -Crash Handler
 --It is 100% not needed, just why not
 ---It is still under heavy development
--This is the last alpha version
+-Updater program
+--still under works
+-This is the last alpha version, the next versions will contain more updates

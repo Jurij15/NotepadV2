@@ -68,6 +68,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Update="Settings\userPreferencs.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>userPreferencs.settings</DependentUpon>
+    </Compile>
     <Compile Update="Windows\WebBrowserSettings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
@@ -80,10 +85,18 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Update="Settings\userPreferencs.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>userPreferencs.Designer.cs</LastGenOutput>
+    </None>
     <None Update="Windows\WebBrowserSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>WebBrowserSettings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Windows\NewWebBrowser\" />
   </ItemGroup>
 
 </Project>

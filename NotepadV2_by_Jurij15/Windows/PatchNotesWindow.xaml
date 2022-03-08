@@ -59,7 +59,7 @@
   TextWrapping="Wrap"
   AcceptsReturn="True"
   VerticalScrollBarVisibility="Visible" Margin="0,50,0,35" TextChanged="tbMultiLine_TextChanged"
-Text="Patch 0.4.1 alpha&#xD;&#xA;-Fixes:&#xD;&#xA;--Web browser no longer crashes&#xD;&#xA;--PDFreader minor issues fixed"
+Text="Release 0.5 alpha&#xD;&#xA;Pretty much nothing changed&#xD;&#xA;New updates:&#xD;&#xA;-Crash Handler&#xD;&#xA;--It is 100% not needed, just why not&#xD;&#xA;---It is still under heavy development&#xD;&#xA;-Updater program&#xD;&#xA;--still under works&#xD;&#xA;-This is the last alpha version, the next versions will contain more updates"
 />
     </Grid>
 </Window>
