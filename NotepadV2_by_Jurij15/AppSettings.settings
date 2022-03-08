@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NotepadV2_by_Jurij15" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NotepadV2_by_Jurij15" GeneratedClassName="AppSettings">
   <Profiles />
   <Settings>
     <Setting Name="IsInDev" Type="System.String" Scope="Application">
@@ -16,6 +16,9 @@
       <Value Profile="(Default)">false</Value>
     </Setting>
     <Setting Name="CanCrashAppTest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">true</Value>
+    </Setting>
+    <Setting Name="CanSeeNewBrowser" Type="System.String" Scope="Application">
       <Value Profile="(Default)">true</Value>
     </Setting>
   </Settings>

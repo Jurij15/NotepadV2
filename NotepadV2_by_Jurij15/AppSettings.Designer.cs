@@ -13,11 +13,11 @@ namespace NotepadV2_by_Jurij15 {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.0.3.0")]
-    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class AppSettings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        private static AppSettings defaultInstance = ((AppSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new AppSettings())));
         
-        public static Settings Default {
+        public static AppSettings Default {
             get {
                 return defaultInstance;
             }
@@ -57,6 +57,15 @@ namespace NotepadV2_by_Jurij15 {
         public string CanCrashAppTest {
             get {
                 return ((string)(this["CanCrashAppTest"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("true")]
+        public string CanSeeNewBrowser {
+            get {
+                return ((string)(this["CanSeeNewBrowser"]));
             }
         }
     }

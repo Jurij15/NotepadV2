@@ -24,6 +24,7 @@ using Run = System.Windows.Documents.Run;
 using System.Windows.Forms;
 using System.Threading;
 using NotepadV2_by_Jurij15.Crash;
+using NotepadV2_by_Jurij15.Windows.NewWebBrowser;
 
 namespace NotepadV2_by_Jurij15
 {
@@ -95,7 +96,7 @@ namespace NotepadV2_by_Jurij15
         }
         public void checkforlimits()
         {
-            Settings settings = new Settings();
+            AppSettings settings = new AppSettings();
             string indevsetting = settings.IsInDev;
             string indev = "true";
             string notindev = "false";
@@ -279,9 +280,21 @@ namespace NotepadV2_by_Jurij15
 
         private void WebBrowserBtn_Click(object sender, RoutedEventArgs e)
         {
-            WebBrowserWindow webBrowser = new WebBrowserWindow();
-            webBrowser.ShowInTaskbar = true;
-        webBrowser.Show();
+            AppSettings appSettings = new AppSettings();
+            string setting = appSettings.CanSeeNewBrowser;
+            string cansee = "true";
+            if (setting == cansee)
+            {
+                NewWebBrowser newWebBrowser = new NewWebBrowser();
+                newWebBrowser.ShowInTaskbar = true;
+                newWebBrowser.Show();
+            }
+            else if (setting != cansee)
+            {
+                WebBrowserWindow webBrowser = new WebBrowserWindow();
+                webBrowser.ShowInTaskbar = true;
+                webBrowser.Show();
+            }
         }
 
         private void PDFReaderBtn_Click(object sender, RoutedEventArgs e)

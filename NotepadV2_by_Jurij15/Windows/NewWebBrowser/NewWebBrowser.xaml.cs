@@ -11,26 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
-using System.Net;
-using System.Diagnostics;
-using System.Threading;
-using NotepadV2_by_Jurij15.Crash;
+using System.ComponentModel;
 
-namespace NotepadV2_by_Jurij15.Windows
+namespace NotepadV2_by_Jurij15.Windows.NewWebBrowser
 {
     /// <summary>
-    /// Interaction logic for AboutWindow.xaml
+    /// Interaction logic for NewWebBrowser.xaml
     /// </summary>
-    public partial class AboutWindow : Window
+    public partial class NewWebBrowser : Window
     {
-        [DllImport("Kernel32")]
-        public static extern void AllocConsole();
-
-        [DllImport("Kernel32")]
-        public static extern void FreeConsole();
-
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -92,70 +85,18 @@ namespace NotepadV2_by_Jurij15.Windows
         {
             Max_btn.Fill = (ImageBrush)Main.Resources["Max_pr"];
         }
-        
-        public void ErrorOccured() 
-        {
-
-        }
-        public AboutWindow()
+        public NewWebBrowser()
         {
             InitializeComponent();
-            AppSettings settings = new AppSettings();
-            string showcrashbutton = settings.CanCrashAppTest;
-            string showcrashbuttontrue = "true";
-            string showcrashbuttonfalse = "false";
-            if (showcrashbutton == showcrashbuttonfalse)
-            {
-                CrashButton.Visibility = Visibility.Hidden;
-            }
-            else if (showcrashbutton == showcrashbuttontrue)
-            {
-                //do nothing, just proceed
-            }
-            MainWindow mainWindow = new MainWindow();
-            System.Windows.Forms.Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
-            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            webToolbar webToolbar = new webToolbar();
+            webToolbar.Show();
         }
-
-        public void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        void WebWindow_Closing(object sender, CancelEventArgs e)
         {
-            ToCrashHandler toCrashHandler = new ToCrashHandler();
-            // Log the exception, display it, etc
-            //Debug.WriteLine(e.Exception.Message);
-            //CrashDetails = e.Exception.Message;
-            toCrashHandler.error = e.Exception.Message;
-            toCrashHandler.SendToCrashHandler();
-
+            MessageBox.Show("Closing called");
+            webToolbar webToolbar = new webToolbar();
+            //webToolbar.Close();
+            webToolbar.Close();
         }
-        public void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            ToCrashHandler toCrashHandler = new ToCrashHandler();
-            // Log the exception, display it, etc
-            //Debug.WriteLine((e.ExceptionObject as Exception).Message);
-            //CrashDetails = (e.ExceptionObject as Exception).Message;
-            toCrashHandler.error = (e.ExceptionObject as Exception).Message;
-            toCrashHandler.SendToCrashHandler();
-        }
-
-        private void DebugConsBtn_Click(object sender, RoutedEventArgs e)
-        {
-            AllocConsole();
-        }
-
-        private void CloseBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void CrashButton_Click(object sender, RoutedEventArgs e)
-        {
-            Exception();
-        }
-
-        private void Exception()
-        {
-            throw new StackOverflowException();
-        }
-        
     }
 }
