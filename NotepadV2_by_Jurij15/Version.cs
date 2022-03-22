@@ -8,8 +8,8 @@ namespace NotepadV2_by_Jurij15
 {
     public class Version
     {
-        public string VersionString = "0.4 alpha";
+        public string VersionString = "0.5 alpha";
 
-        public string PatchNotesVer = "0.4";
+        public string PatchNotesVer = "0.5";
     }
 }
