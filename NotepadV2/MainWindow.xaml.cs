@@ -22,10 +22,30 @@ namespace NotepadV2
     /// </summary>
     public partial class MainWindow : Window
     {
+        public void Init(bool bDebug, bool bDebugSettings)
+        {
+            Settings.ReadConfigFile();
+            if (bDebug)
+            {
+                Util.SetupConsole();
+                Util.SetupLogger();
+            }
+
+            if (bDebugSettings)
+            {
+                MessageBox.Show(Settings.CheckConfingFileExisting().ToString());
+                MessageBox.Show(Global.Theme.ToString());
+                MessageBox.Show(Global.ShowTimeInMenuBar.ToString());
+                MessageBox.Show(Global.ShowTimeInMenuBar.ToString());
+            }
+
+            this.Title = Global.AppTitle;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show(strings.LocalAppData);
+            Init(Global.bGlobalDebug, Global.bDebugSettingsMain);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
