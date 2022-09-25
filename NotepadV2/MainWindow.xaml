@@ -13,6 +13,7 @@
             <MenuItem Header="File">
 
             </MenuItem>
+            
         </Menu>
         <Menu x:Name="ShortcutsMenu" DockPanel.Dock="Top" Background="#FF3C3C3C">
             <MenuItem Header="TEST"/>

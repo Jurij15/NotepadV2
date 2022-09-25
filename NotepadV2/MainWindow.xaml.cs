@@ -25,6 +25,7 @@ namespace NotepadV2
         public void Init(bool bDebug, bool bDebugSettings)
         {
             Settings.ReadConfigFile();
+            Arguments.ProcessCommandLineArgs(true);
             if (bDebug)
             {
                 Util.SetupConsole();
@@ -39,13 +40,14 @@ namespace NotepadV2
                 MessageBox.Show(Global.ShowTimeInMenuBar.ToString());
             }
 
-            this.Title = Global.AppTitle;
+            this.Title = Global.AppTitle; 
         }
 
         public MainWindow()
         {
             InitializeComponent();
             Init(Global.bGlobalDebug, Global.bDebugSettingsMain);
+            MessageBox.Show(Global.bGlobalDebug.ToString());
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
