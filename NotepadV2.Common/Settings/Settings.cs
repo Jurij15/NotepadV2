@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogSharper;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace NotepadV2.Common.Settings
         {
             if (CheckConfingFileExisting())
             {
+                Logger.Info("Settings file already exists!");
                 foreach (var line in File.ReadAllLines(strings.AppDataSavesFile))
                 {
                     if (line.Contains("Theme"))
@@ -69,6 +71,7 @@ namespace NotepadV2.Common.Settings
                         }
                     }
                 }
+                LogSucess();
                 return true;
             }
             else if (!CheckConfingFileExisting())
@@ -128,6 +131,11 @@ namespace NotepadV2.Common.Settings
                 Global.Error = ex.Message;
                 throw ex.InnerException;
             }
+        }
+
+        public static void LogSucess()
+        {
+            Logger.Success("Applied all settings!");
         }
     }
 }

@@ -24,13 +24,14 @@ namespace NotepadV2
     {
         public void Init(bool bDebug, bool bDebugSettings)
         {
-            Settings.ReadConfigFile();
             Arguments.ProcessCommandLineArgs(true);
             if (bDebug)
             {
                 Util.SetupConsole();
                 Util.SetupLogger();
             }
+
+            Settings.ReadConfigFile();
 
             if (bDebugSettings)
             {
@@ -47,7 +48,6 @@ namespace NotepadV2
         {
             InitializeComponent();
             Init(Global.bGlobalDebug, Global.bDebugSettingsMain);
-            MessageBox.Show(Global.bGlobalDebug.ToString());
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

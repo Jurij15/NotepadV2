@@ -22,10 +22,9 @@ namespace NotepadV2.Common
                 if (arg.Contains("-debug"))
                 {
                     Logger.Info("Detected -debug command line argument!");
-                    MessageBox.Show("Detected -debug command line argument!");
+                    //MessageBox.Show("Detected -debug command line argument!");
                     Global.bGlobalDebug = true;
                 }
-                //Console.WriteLine(arg); 
             }
         }
     }
