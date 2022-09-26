@@ -56,11 +56,13 @@ namespace NotepadV2
             if (Global.Theme.Contains("Dark"))
             {
                 ModernWpf.ThemeManager.Current.ApplicationTheme = ModernWpf.ApplicationTheme.Dark;
+                ThemeBtn.Content = "Light";
                 Logger.Info("App theme is DARK");
             }
             else if (Global.Theme.Contains("Light"))
             {
                 ModernWpf.ThemeManager.Current.ApplicationTheme = ModernWpf.ApplicationTheme.Light;
+                ThemeBtn.Content = "Dark";
                 Logger.Info("App theme is LIGHT");
             }
         }
@@ -85,6 +87,25 @@ namespace NotepadV2
         {
             ClockPopUp window = new ClockPopUp();
             window.Show();
+        }
+
+        private void ThemeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Add config saving
+            if (ThemeBtn.Content == "Dark")
+            {
+                ThemeBtn.Content = "Light";
+                ModernWpf.ThemeManager.Current.ApplicationTheme = ModernWpf.ApplicationTheme.Light;
+                Global.Theme = "Light";
+                Logger.Success("Theme changed to" + Global.Theme);
+            }
+            else if (ThemeBtn.Content == "Light")
+            {
+                ThemeBtn.Content = "Dark";
+                ModernWpf.ThemeManager.Current.ApplicationTheme = ModernWpf.ApplicationTheme.Dark;
+                Global.Theme = "Dark";
+                Logger.Success("Theme changed to" + Global.Theme);
+            }
         }
     }
 }

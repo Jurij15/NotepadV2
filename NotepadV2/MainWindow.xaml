@@ -40,6 +40,7 @@
                 <MenuItem Header="About JJPad"/>
             </MenuItem>
             <Button Content="Time" x:Name="TimeBtn" Click="TimeBtn_Click"/>
+            <Button Content="ThemBtn" x:Name="ThemeBtn" Click="ThemeBtn_Click"/>
         </Menu>
         <Menu x:Name="ShortcutsMenu" DockPanel.Dock="Top" Background="#FF3C3C3C">
             <MenuItem Header="TEST"/>
