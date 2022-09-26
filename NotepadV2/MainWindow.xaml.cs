@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using LogSharper;
 using NotepadV2.Common;
 using NotepadV2.Common.Settings;
 using NotepadV2.Windows;
@@ -33,7 +34,7 @@ namespace NotepadV2
                 Util.SetupLogger();
             }
 
-            Settings.ReadConfigFile();
+            Settings.ParseConfigFile();
 
             if (bDebugSettings)
             {
@@ -50,6 +51,18 @@ namespace NotepadV2
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_tick;
             timer.Start();
+
+            //set the current theme
+            if (Global.Theme.Contains("Dark"))
+            {
+                ModernWpf.ThemeManager.Current.ApplicationTheme = ModernWpf.ApplicationTheme.Dark;
+                Logger.Info("App theme is DARK");
+            }
+            else if (Global.Theme.Contains("Light"))
+            {
+                ModernWpf.ThemeManager.Current.ApplicationTheme = ModernWpf.ApplicationTheme.Light;
+                Logger.Info("App theme is LIGHT");
+            }
         }
 
         public MainWindow()
