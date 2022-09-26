@@ -12,8 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using NotepadV2.Common;
 using NotepadV2.Common.Settings;
+using NotepadV2.Windows;
 
 namespace NotepadV2
 {
@@ -42,6 +44,12 @@ namespace NotepadV2
             }
 
             this.Title = Global.AppTitle; 
+
+            //start the timer
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_tick;
+            timer.Start();
         }
 
         public MainWindow()
@@ -50,9 +58,20 @@ namespace NotepadV2
             Init(Global.bGlobalDebug, Global.bDebugSettingsMain);
         }
 
+        void timer_tick(object sender, EventArgs e)
+        {
+            TimeBtn.Content = DateTime.Now.ToString("HH:mm:ss");
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void TimeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ClockPopUp window = new ClockPopUp();
+            window.Show();
         }
     }
 }
