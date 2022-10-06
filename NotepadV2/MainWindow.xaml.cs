@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,6 +26,85 @@ namespace NotepadV2
     /// </summary>
     public partial class MainWindow : Window
     {
+        public class Functions
+        {
+            public class TextBoxSpecific
+            {
+                public static void PasteFromClipboard()
+                {
+                    MainWindow main = new MainWindow();
+                    main.TextBox.Paste();
+                }
+
+                public static void CopyToClipboard()
+                {
+                    MainWindow main = new MainWindow();
+                    main.TextBox.Copy();
+                }
+
+                public static void CutToClipboard()
+                {
+                    MainWindow main = new MainWindow();
+                    main.TextBox.Cut();
+                }
+
+                public static void TextBoxUndo()
+                {
+                    MainWindow main = new MainWindow();
+                    main.TextBox.Undo();
+                }
+
+                public static void TextBoxRedo()
+                {
+                    MainWindow main = new MainWindow();
+                    main.TextBox.Redo();
+                }
+
+                public static void TextBoxSelectAll()
+                {
+                    MainWindow main = new MainWindow();
+                    main.TextBox.SelectAll();
+                }
+
+                public static void TextBoxInsertDateTime()
+                {
+                    MainWindow main = new MainWindow();
+                    string CurrentText = new TextRange(main.TextBox.Document.ContentStart, main.TextBox.Document.ContentEnd).Text;
+                    string NewText = CurrentText + Util.GetCurrentDateTimeString();
+
+                    main.TextBox.Document.Blocks.Clear();
+                    main.TextBox.Document.Blocks.Add(new Paragraph(new Run(NewText)));
+                }
+            }
+
+            public static string GetCurrentAppTitle()
+            {
+                return Util.GetCurrentAppTitle();
+            }
+
+            public static string GetCurrentDocumentLocation()
+            {
+                if (Global.DocumentLocation != null)
+                {
+                    return Global.DocumentLocation;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+            public static string GetCurrentDocumentTitle()
+            {
+                if (Global.DocumentFileTitle != null)
+                {
+                    return Global.DocumentFileTitle;
+                }
+                else
+                {
+                    return null
+                }
+        }
         public void Init(bool bDebug, bool bDebugSettings)
         {
             Arguments.ProcessCommandLineArgs(true);

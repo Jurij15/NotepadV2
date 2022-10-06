@@ -43,7 +43,12 @@
             <Button Content="ThemBtn" x:Name="ThemeBtn" Click="ThemeBtn_Click"/>
         </Menu>
         <Menu x:Name="ShortcutsMenu" DockPanel.Dock="Top" Background="#FF3C3C3C">
-            <MenuItem Header="TEST"/>
+            <MenuItem Header="New"/>
+            <MenuItem Header="Save"/>
+            <MenuItem Header="Undo"/>
+            <MenuItem Header="Copy"/>
+            <MenuItem Header="Paste"/>
+            <TextBox TextWrapping="NoWrap" IsReadOnly="True" x:Name="PathBox" Width="274"/>
         </Menu>
         <RichTextBox x:Name="TextBox" DockPanel.Dock="Top"/>
     </DockPanel>

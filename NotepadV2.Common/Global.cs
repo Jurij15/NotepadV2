@@ -22,6 +22,8 @@ namespace NotepadV2.Common
 
         //some other things (will probably get changed on runtime)
         public static string DocumentFileTitle { get; set; }
+        public static string DocumentLocation { get; set; }
         public static string AppTitle = "NotepadV2";
+        public static string AppTitleDefault = "NotepadV2";
     }
 }

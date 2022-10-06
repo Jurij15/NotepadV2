@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using LogSharper;
+using Windows.Perception.Spatial.Preview;
 
 namespace NotepadV2.Common
 {
@@ -23,6 +24,28 @@ namespace NotepadV2.Common
             LoggerSettings.UseColorLoggingSettingChange(true, false, 0);
             LoggerSettings.UseTimeDateOnLoggingSettingChange(false, false, 0);
             LogSharper.LogSharper.Setup(true);
+        }
+
+        public static string GetCurrentDateTimeString()
+        {
+            return DateTime.Now.ToString();
+        }
+
+        public static void ProcessNewAppTitle()
+        {
+            if (Global.DocumentFileTitle != null)
+            {
+                Global.AppTitle = Global.DocumentFileTitle + " - " + Global.AppTitleDefault;
+            }
+            else if (Global.DocumentFileTitle == null)
+            {
+                Global.AppTitle = Global.AppTitleDefault;
+            }
+        }
+
+        public static string GetCurrentAppTitle()
+        {
+            return Global.AppTitle;
         }
     }
 }
