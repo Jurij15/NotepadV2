@@ -26,7 +26,7 @@ namespace NotepadV2
     /// </summary>
     public partial class MainWindow : Window
     {
-        public class Functions
+        public class MainWindowFunctions
         {
             public class TextBoxSpecific
             {
@@ -102,8 +102,9 @@ namespace NotepadV2
                 }
                 else
                 {
-                    return null
+                    return null;
                 }
+            }
         }
         public void Init(bool bDebug, bool bDebugSettings)
         {
@@ -124,7 +125,7 @@ namespace NotepadV2
                 MessageBox.Show(Global.ShowTimeInMenuBar.ToString());
             }
 
-            this.Title = Global.AppTitle; 
+            this.Title = Global.AppTitle;
 
             //start the timer
             DispatcherTimer timer = new DispatcherTimer();
