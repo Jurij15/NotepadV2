@@ -11,44 +11,42 @@
     <DockPanel LastChildFill="True">
         <Menu x:Name="MainMenu" DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="New"/>
-                <MenuItem Header="Open"/>
-                <MenuItem Header="Save"/>
+                <MenuItem Header="New" x:Name="MenuNewBtn" Click="MenuNewBtn_Click"/>
+                <MenuItem Header="Open" x:Name="MenuOpenBtn" Click="MenuOpenBtn_Click"/>
+                <MenuItem Header="Save" x:Name="MenuSaveBtn" Click="MenuSaveBtn_Click"/>
                 <Separator/>
-                <MenuItem Header="Preferences"/>
+                <MenuItem Header="Preferences" x:Name="MenuPreferencesBtn" Click="MenuPreferencesBtn_Click"/>
+                <MenuItem Header="Instance Manager" x:Name="InstanceManagerBtn" Click="InstanceManagerBtn_Click"/>
                 <Separator/>
-                <MenuItem Header="Exit"/>
+                <MenuItem Header="Exit" x:Name="MenuExitBtn" Click="MenuExitBtn_Click"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                    <MenuItem Header="Undo"/>
-                    <MenuItem Header="Redo"/>
-                    <MenuItem Header="Cut"/>
-                    <MenuItem Header="Copy"/>
-                    <MenuItem Header="Paste"/>
-                    <MenuItem Header="Select All"/>
-                    <MenuItem Header="Date/Time"/>
+                <MenuItem Header="Undo" x:Name="MenuUndoBtn" Click="MenuUndoBtn_Click"/>
+                <MenuItem Header="Redo" x:Name="MenuRedoBtn" Click="MenuRedoBtn_Click"/>
+                <MenuItem Header="Cut" x:Name="MenuCutBtn" Click="MenuCutBtn_Click"/>
+                <MenuItem Header="Copy" x:Name="MenuCopyBtn" Click="MenuCopyBtn_Click"/>
+                <MenuItem Header="Paste" x:Name="MenuPasteBtn" Click="MenuPasteBtn_Click"/>
+                <MenuItem Header="Select All" x:Name="MenuSelectAllBtn" Click="MenuSelectAllBtn_Click"/>
+                <MenuItem Header="Date/Time" x:Name="MenuTimeDateBtn" Click="MenuTimeDateBtn_Click"/>
                 </MenuItem>
-                <MenuItem Header="Format">
-                    <MenuItem Header="Font"/>
-                    <MenuItem Header="Color"/>
-                </MenuItem>
-                <MenuItem Header="Extensions">
-                    <MenuItem Header="Web Browser"/>
-                    <MenuItem Header="PDF Reader"/>
-                </MenuItem>
+            <MenuItem Header="Format">
+                <MenuItem Header="Font" x:Name="MenuFontBtn" Click="MenuFontBtn_Click"/>
+                <MenuItem Header="Color" x:Name="MenuColorBtn" Click="MenuColorBtn_Click"/>
+            </MenuItem>
             <MenuItem Header="About">
-                <MenuItem Header="About JJPad"/>
+                <MenuItem Header="About JJPad"  x:Name="MenuAboutBtn" Click="MenuAboutBtn_Click"/>
             </MenuItem>
             <Button Content="Time" x:Name="TimeBtn" Click="TimeBtn_Click"/>
             <Button Content="ThemBtn" x:Name="ThemeBtn" Click="ThemeBtn_Click"/>
         </Menu>
         <Menu x:Name="ShortcutsMenu" DockPanel.Dock="Top" Background="#FF3C3C3C">
             <MenuItem Header="New"/>
+            <MenuItem Header="Open"/>
             <MenuItem Header="Save"/>
             <MenuItem Header="Undo"/>
             <MenuItem Header="Copy"/>
             <MenuItem Header="Paste"/>
-            <TextBox TextWrapping="NoWrap" IsReadOnly="True" x:Name="PathBox" Width="274"/>
+            <TextBox TextWrapping="NoWrap" IsReadOnly="True" x:Name="PathBox" Width="551"/>
         </Menu>
         <RichTextBox x:Name="TextBox" DockPanel.Dock="Top"/>
     </DockPanel>

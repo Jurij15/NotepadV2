@@ -18,6 +18,10 @@ using LogSharper;
 using NotepadV2.Common;
 using NotepadV2.Common.Settings;
 using NotepadV2.Windows;
+using System.IO;
+using System.IO.Compression;
+using System.Web;
+using Microsoft.Win32;
 
 namespace NotepadV2
 {
@@ -105,6 +109,67 @@ namespace NotepadV2
                     return null;
                 }
             }
+
+            public class General
+            {
+                public static void OpenFileWithDialog()
+                {
+                    MainWindow main = new MainWindow();
+                    Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+                    openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                    openFileDialog.ShowDialog();
+                    string docToOpen = openFileDialog.FileName;
+                    string tabcontent = openFileDialog.SafeFileName;
+                    if (docToOpen == null)
+                    {
+                        //no doc to open, do nothing
+                    }
+                    else if (docToOpen != null)
+                    {
+                        main.TextBox.Document.Blocks.Clear();
+                        main.TextBox.Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(docToOpen))));
+                        main.PathBox.Text = docToOpen;
+                    }
+                }
+
+                public static void OpenFile(string filePath, string safeFilePath)
+                {
+                    MainWindow main = new MainWindow();
+                    string docToOpen = filePath;
+                    string tabcontent = safeFilePath;
+                    if (docToOpen == null)
+                    {
+                        //no doc to open, do nothing
+                    }
+                    else if (docToOpen != null)
+                    {
+                        main.TextBox.Document.Blocks.Clear();
+                        main.TextBox.Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(docToOpen))));
+                        main.PathBox.Text = docToOpen;
+                    }
+                }
+
+                public static void SaveFile(string filePath, string safeFilePath)
+                {
+
+                }
+
+                public static void SaveFileWithDialog()
+                {
+
+                }
+
+                public static void New()
+                {
+                    MainWindow main = new MainWindow();
+                    main.TextBox.Document.Blocks.Clear();
+                }
+
+                public static void Close()
+                {
+                    Environment.Exit(0);
+                }
+            }
         }
         public void Init(bool bDebug, bool bDebugSettings)
         {
@@ -187,6 +252,114 @@ namespace NotepadV2
                 Global.Theme = "Dark";
                 Logger.Success("Theme changed to" + Global.Theme);
             }
+        }
+
+        private void MenuNewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox.Document.Blocks.Clear();
+        }
+
+        private void MenuOpenBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog.ShowDialog();
+            string docToOpen = openFileDialog.FileName;
+            string tabcontent = openFileDialog.SafeFileName;
+            if (docToOpen == null)
+            {
+                //no doc to open, do nothing
+            }
+            else if (docToOpen != null)
+            {
+                TextBox.Document.Blocks.Clear();
+                TextBox.Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(docToOpen))));
+                PathBox.Text = docToOpen;
+            }
+        }
+
+        private void MenuSaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.Filter = "Text File (*.txt)|*.txt|Show All Files (*.*)|*.*";
+            saveFileDialog.FileName = "Untitled";
+            saveFileDialog.Title = "Save As";
+            string range = new TextRange(TextBox.Document.ContentStart, TextBox.Document.ContentEnd).Text;
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, range);
+            }
+        }
+
+        private void MenuPreferencesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PreferencesWindow prefs = new PreferencesWindow();
+            prefs.ShowDialog();
+        }
+
+        private void InstanceManagerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            InstanceManager instancemng = new InstanceManager();
+            instancemng.ShowDialog();
+        }
+
+        private void MenuExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void MenuUndoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox.Undo();
+        }
+
+        private void MenuRedoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox.Redo();
+        }
+
+        private void MenuCutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox.Cut();
+        }
+
+        private void MenuCopyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox.Copy();
+        }
+
+        private void MenuPasteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox.Paste();
+        }
+
+        private void MenuSelectAllBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox.SelectAll();
+        }
+
+        private void MenuTimeDateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string CurrentText = new TextRange(TextBox.Document.ContentStart, TextBox.Document.ContentEnd).Text;
+            string NewText = CurrentText + Util.GetCurrentDateTimeString();
+
+            TextBox.Document.Blocks.Clear();
+            TextBox.Document.Blocks.Add(new Paragraph(new Run(NewText)));
+        }
+
+        private void MenuFontBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //todo
+        }
+
+        private void MenuColorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //todo
+        }
+
+        private void MenuAboutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //todo
         }
     }
 }
