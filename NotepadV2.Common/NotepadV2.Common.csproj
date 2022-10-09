@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Arguments.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="InstanceManager\InstanceManagerFunctions.cs" />
     <Compile Include="LogSharper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\Settings.cs" />

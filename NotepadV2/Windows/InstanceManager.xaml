@@ -3,8 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NotepadV2.Windows"
+        xmlns:local="clr-namespace:NotepadV2.Windows"  ui:WindowHelper.UseModernWindowStyle="True" xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
-        Title="InstanceManager" Height="450" Width="800">
-    <Grid/>
+        ShowInTaskbar="True"
+        Title="Instance Manager" Height="303" Width="593">
+    <DockPanel LastChildFill="True">
+        <Menu x:Name="MenuControl" DockPanel.Dock="Top">
+            <MenuItem Header="New" x:Name="NewInstanceBtn" Click="NewInstanceBtn_Click"/>
+            <MenuItem Header="Kill" x:Name="KilInstanceBtn" Click="KilInstanceBtn_Click"/>
+            <TextBox x:Name="InstanceName" Width="458"/>
+        </Menu>
+        <ListBox x:Name="InstancesListBox" Width="591" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+    </DockPanel>
 </Window>

@@ -30,6 +30,7 @@ namespace NotepadV2
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region MainWindowFunctions
         public class MainWindowFunctions
         {
             public class TextBoxSpecific
@@ -171,6 +172,7 @@ namespace NotepadV2
                 }
             }
         }
+        #endregion
         public void Init(bool bDebug, bool bDebugSettings)
         {
             Arguments.ProcessCommandLineArgs(true);
@@ -294,7 +296,10 @@ namespace NotepadV2
         private void MenuPreferencesBtn_Click(object sender, RoutedEventArgs e)
         {
             PreferencesWindow prefs = new PreferencesWindow();
-            prefs.ShowDialog();
+            prefs.ShowInTaskbar = true;
+            prefs.ShowActivated = true;
+            prefs.Owner = null;
+            prefs.Show();
         }
 
         private void InstanceManagerBtn_Click(object sender, RoutedEventArgs e)

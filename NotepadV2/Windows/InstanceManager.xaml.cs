@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NotepadV2.Common.InstanceManager;
 
 namespace NotepadV2.Windows
 {
@@ -22,6 +23,24 @@ namespace NotepadV2.Windows
         public InstanceManager()
         {
             InitializeComponent();
+
+            IMFuncs.GetAllInstances();
+
+            foreach (var instance in IMFuncs.AllInstancesNames)
+            {
+                InstancesListBox.Items.Add(instance);
+            }
+        }
+
+        private void KilInstanceBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string InstanceName = InstancesListBox.Items[InstancesListBox.SelectedIndex].ToString();
+            IMFuncs.KillInstance(IMFuncs.GetInstancePID(InstanceName));
+        }
+
+        private void NewInstanceBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
