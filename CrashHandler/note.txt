@@ -1,7 +1,0 @@
-﻿this is a crash handler
-in case notepad crashes, it should provide atleast some info on why it crashed
-
-still working on it tho
-
-update 22.3.2022
-I don't think I will even use crash handler in the end, so this is kinda useless
