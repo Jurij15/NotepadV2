@@ -34,7 +34,7 @@
                 <MenuItem Header="Color" x:Name="MenuColorBtn" Click="MenuColorBtn_Click"/>
             </MenuItem>
             <MenuItem Header="About">
-                <MenuItem Header="About JJPad"  x:Name="MenuAboutBtn" Click="MenuAboutBtn_Click"/>
+                <MenuItem Header="About NotepadV2"  x:Name="MenuAboutBtn" Click="MenuAboutBtn_Click"/>
             </MenuItem>
             <Button Content="Time" x:Name="TimeBtn" Click="TimeBtn_Click"/>
             <Button Content="ThemBtn" x:Name="ThemeBtn" Click="ThemeBtn_Click"/>

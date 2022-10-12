@@ -180,6 +180,7 @@ namespace NotepadV2
             {
                 Util.SetupConsole();
                 Util.SetupLogger();
+                this.Title = Global.AppTitle + "Debug Release";
             }
 
             Settings.ParseConfigFile();
@@ -364,7 +365,7 @@ namespace NotepadV2
 
         private void MenuAboutBtn_Click(object sender, RoutedEventArgs e)
         {
-            //todo
+            ContentDialog.ShowContentDialog("NotepadV2", strings.AboutString, "OK", false);
         }
     }
 }

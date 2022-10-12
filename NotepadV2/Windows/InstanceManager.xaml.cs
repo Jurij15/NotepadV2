@@ -40,7 +40,12 @@ namespace NotepadV2.Windows
 
         private void NewInstanceBtn_Click(object sender, RoutedEventArgs e)
         {
+            IMFuncs.CreateNewInstance();
+        }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
         }
     }
 }

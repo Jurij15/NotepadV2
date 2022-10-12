@@ -7,6 +7,8 @@ using System.IO;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Windows.UI.Xaml;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 
 namespace NotepadV2.Common.InstanceManager
 {
@@ -44,6 +46,13 @@ namespace NotepadV2.Common.InstanceManager
                 return process.Id;
             }
             return 0;
+        }
+
+        public static void CreateNewInstance()
+        {
+            string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+            MessageBox.Show(executable);
         }
     }
 }
