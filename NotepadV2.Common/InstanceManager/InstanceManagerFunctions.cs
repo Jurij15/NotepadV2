@@ -51,7 +51,7 @@ namespace NotepadV2.Common.InstanceManager
 
         public static void CreateNewInstance()
         {
-            string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string executable = System.Reflection.Assembly.GetEntryAssembly().Location;
 
             MessageBox.Show(executable);
         }

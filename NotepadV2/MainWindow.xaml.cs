@@ -303,11 +303,14 @@ namespace NotepadV2
 
         private void MenuPreferencesBtn_Click(object sender, RoutedEventArgs e)
         {
+            /*
             PreferencesWindow prefs = new PreferencesWindow();
             prefs.ShowInTaskbar = true;
             prefs.ShowActivated = true;
             prefs.Owner = null;
             prefs.Show();
+            */
+            ContentDialog.ShowPreferencesDialog();
         }
 
         private void InstanceManagerBtn_Click(object sender, RoutedEventArgs e)
