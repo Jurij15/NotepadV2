@@ -227,6 +227,12 @@ namespace NotepadV2
             TimeBtn.Content = DateTime.Now.ToString("HH:mm:ss");
         }
 
+        public void AdjustAppTitleByDocumentName(string DocumentName)
+        {
+            Global.AppTitle = DocumentName + "-" + Global.AppTitleDefault;
+            this.Title = Global.AppTitle;
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);
@@ -278,6 +284,7 @@ namespace NotepadV2
                 TextBox.Document.Blocks.Clear();
                 TextBox.Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(docToOpen))));
                 PathBox.Text = docToOpen;
+                AdjustAppTitleByDocumentName(docToOpen);
             }
         }
 

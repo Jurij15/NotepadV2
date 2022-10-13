@@ -45,7 +45,16 @@ namespace NotepadV2.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            
+            IMFuncs.AllInstancesNames.Clear();
+        }
+
+        private void InstancesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            InstanceNameBox.Clear();
+            PIDBox.Clear();
+            string instancename = InstancesListBox.Items[InstancesListBox.SelectedIndex].ToString();
+            InstanceNameBox.Text = instancename;
+            PIDBox.Text = IMFuncs.GetInstancePID(instancename).ToString();
         }
     }
 }

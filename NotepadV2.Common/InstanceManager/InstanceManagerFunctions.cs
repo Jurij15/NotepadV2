@@ -21,11 +21,12 @@ namespace NotepadV2.Common.InstanceManager
 
             foreach (var process in AllProcesses)
             {
-                if (process.ProcessName.Contains(Global.AppTitleDefault))
+                if (process.MainWindowTitle.Contains(Global.AppTitleDefault))
                 {
-                    AllInstancesNames.Add(process.ProcessName);
+                    AllInstancesNames.Add(process.MainWindowTitle);
+                    MessageBox.Show(process.MainWindowTitle);
                 }
-                else if (!process.ProcessName.Contains(Global.AppTitleDefault))
+                else if (!process.MainWindowTitle.Contains(Global.AppTitleDefault))
                 {
                     continue;
                 }

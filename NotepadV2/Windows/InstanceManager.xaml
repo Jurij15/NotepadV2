@@ -11,8 +11,9 @@
         <Menu x:Name="MenuControl" DockPanel.Dock="Top">
             <MenuItem Header="New" x:Name="NewInstanceBtn" Click="NewInstanceBtn_Click"/>
             <MenuItem Header="Kill" x:Name="KilInstanceBtn" Click="KilInstanceBtn_Click"/>
-            <TextBox x:Name="InstanceName" Width="458"/>
+            <TextBox x:Name="InstanceNameBox" Width="363"/>
+            <TextBox TextWrapping="Wrap" x:Name="PIDBox" Width="86"/>
         </Menu>
-        <ListBox x:Name="InstancesListBox" Width="591" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <ListBox SelectionChanged="InstancesListBox_SelectionChanged" x:Name="InstancesListBox" Width="591" d:ItemsSource="{d:SampleData ItemCount=5}"/>
     </DockPanel>
 </Window>
