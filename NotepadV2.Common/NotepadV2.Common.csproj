@@ -170,6 +170,7 @@
     <Compile Include="strings.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Version.cs" />
+    <Compile Include="Web.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ModernWpfUI">

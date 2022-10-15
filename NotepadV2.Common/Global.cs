@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace NotepadV2.Common
 {
@@ -26,5 +27,6 @@ namespace NotepadV2.Common
         public static string DocumentLocation { get; set; }
         public static string AppTitle = "NotepadV2";
         public static string AppTitleDefault = "NotepadV2";
+        public static bool IsCurrentlDocumentSaved { get; set; }
     }
 }

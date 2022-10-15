@@ -22,6 +22,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Web;
 using Microsoft.Win32;
+using NotepadV2.Dialogs;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace NotepadV2
 {
@@ -240,7 +242,15 @@ namespace NotepadV2
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Environment.Exit(0);
+            if (!Global.IsCurrentlDocumentSaved)
+            {
+                ContentDialog.ShowSimpleContentDialog("Do You want to save the document?", "..", "OK", false) ;  //TODO Finish This
+            }
+            else if (Global.IsCurrentlDocumentSaved)
+            {
+                Environment.Exit(0);
+            }
+            //Environment.Exit(0);
         }
 
         private void TimeBtn_Click(object sender, RoutedEventArgs e)
@@ -291,6 +301,7 @@ namespace NotepadV2
                 PathBox.Text = docToOpen;
                 AdjustAppTitleByDocumentName(docToOpen);
             }
+            Global.IsCurrentlDocumentSaved = false;
         }
 
         private void MenuSaveBtn_Click(object sender, RoutedEventArgs e)
@@ -374,7 +385,9 @@ namespace NotepadV2
 
         private void MenuAboutBtn_Click(object sender, RoutedEventArgs e)
         {
-            ContentDialog.ShowContentDialog("NotepadV2", strings.AboutString, "OK", false);
+            //ContentDialog.ShowSimpleContentDialog("NotepadV2", strings.AboutString, "OK", false);
+            AboutDialog about = new AboutDialog();
+            about.ShowAsync();
         }
     }
 }

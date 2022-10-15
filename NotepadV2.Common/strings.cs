@@ -14,6 +14,6 @@ namespace NotepadV2.Common
 
         public static string AppDataSavesFile = RootAppDataDir + "/Settings.config";
 
-        public static string AboutString = "A simple notepad project" + Environment.NewLine + "Made with <3 by Jurij15" + Environment.NewLine + "GitHub Repo: https://github.com/Jurij15/NotepadV2" + Environment.NewLine + "Version " + Version.GetVersionString();
+        public static string AboutString = "A simple notepad project" + Environment.NewLine + Environment.NewLine + "Made with <3 by Jurij15";
     }
 }

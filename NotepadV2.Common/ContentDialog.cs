@@ -10,7 +10,7 @@ namespace NotepadV2.Common
 {
     public class ContentDialog
     {
-        public static void ShowContentDialog(string Title, string Content, string CloseButtonText, bool bFullScreen)
+        public static void ShowSimpleContentDialog(string Title, string Content, string CloseButtonText, bool bFullScreen)
         {
             ModernWpf.Controls.ContentDialog dialog = new ModernWpf.Controls.ContentDialog();
             dialog.Title = Title;

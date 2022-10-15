@@ -1,0 +1,19 @@
+﻿<ui:ContentDialog
+    x:Class="NotepadV2.Dialogs.AboutDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    Title="About NotepadV2"
+    PrimaryButtonText="GitHub"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    CloseButtonText="Close"
+    DefaultButton="Close" Height="315" Width="423">
+
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Separator/>
+        <TextBlock x:Name="AboutBlock"/>
+        <Separator/>
+        <TextBlock x:Name="VersionBox"/>
+    </StackPanel>
+
+</ui:ContentDialog>
