@@ -214,6 +214,11 @@ namespace NotepadV2
                 ThemeBtn.Content = "Dark";
                 Logger.Info("App theme is LIGHT");
             }
+
+            if (!Global.ShowThemeBtnInMenubar)
+            {
+                ThemeBtn.Visibility = Visibility.Collapsed;
+            }
         }
 
         public MainWindow()
@@ -310,7 +315,9 @@ namespace NotepadV2
             prefs.Owner = null;
             prefs.Show();
             */
-            ContentDialog.ShowPreferencesDialog();
+            ///ContentDialog.ShowPreferencesDialog();
+            NotepadV2.Dialogs.PreferencesDialog dialog = new NotepadV2.Dialogs.PreferencesDialog();
+            dialog.ShowAsync();
         }
 
         private void InstanceManagerBtn_Click(object sender, RoutedEventArgs e)

@@ -1,0 +1,21 @@
+﻿<ui:ContentDialog
+    x:Class="NotepadV2.Dialogs.PreferencesDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    Title="Preferences"
+    PrimaryButtonText="Save"
+    CloseButtonText="Cancel"
+    DefaultButton="Primary" Height="315" Width="423">
+
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Label Content="Theme"/>
+        <RadioButton Content="Dark Mode" Height="30" Width="111" x:Name="DarkModeRadio" Checked="DarkModeRadio_Checked"/>
+        <RadioButton Content="Light Mode" Height="30" Width="111" x:Name="LightModeRadio" Checked="LightModeRadio_Checked"/>
+        <Separator/>
+        <Label Content="Other Settings"/>
+        <CheckBox Content="Show shortcuts bar"/>
+        <CheckBox Content="Show time in menu"/>
+    </StackPanel>
+
+</ui:ContentDialog>

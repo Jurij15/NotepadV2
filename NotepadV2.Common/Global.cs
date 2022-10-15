@@ -19,6 +19,7 @@ namespace NotepadV2.Common
         //global settings
         public static bool bGlobalDebug = true;
         public static bool bDebugSettingsMain = false;
+        public static bool ShowThemeBtnInMenubar = false;
 
         //some other things (will probably get changed on runtime)
         public static string DocumentFileTitle { get; set; }
