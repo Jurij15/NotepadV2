@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace NotepadV2.Common.Settings
 {
+    /// <summary> TODO
+    /// REWRITE THIS WITH SAVING SUPPORT!
+    /// </summary>
     public class Settings
     { 
         public static bool RecreateConfigFile()

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotepadV2"
         mc:Ignorable="d"
-        Title="Notepad" Height="530" Width="912"
+        Title="Notepad" Height="648" Width="1040"
                  xmlns:ui="http://schemas.modernwpf.com/2019" Closing="Window_Closing"
         ui:WindowHelper.UseModernWindowStyle="True">
     <DockPanel LastChildFill="True">
@@ -29,6 +29,10 @@
                 <MenuItem Header="Select All" x:Name="MenuSelectAllBtn" Click="MenuSelectAllBtn_Click"/>
                 <MenuItem Header="Date/Time" x:Name="MenuTimeDateBtn" Click="MenuTimeDateBtn_Click"/>
             </MenuItem>
+            <MenuItem Header="Tabs" x:Name="TabsMenuItem">
+                <MenuItem Header="Add Tab" x:Name="AddTabBtn" Click="AddTabBtn_Click"/>
+                <MenuItem Header="Close Tab" x:Name="CloseTabBtn" Click="CloseTabBtn_Click"/>
+            </MenuItem>
             <MenuItem Header="Format">
                 <MenuItem Header="Font" x:Name="MenuFontBtn" Click="MenuFontBtn_Click"/>
                 <MenuItem Header="Color" x:Name="MenuColorBtn" Click="MenuColorBtn_Click"/>
@@ -46,11 +50,20 @@
             <MenuItem Header="Undo"/>
             <MenuItem Header="Copy"/>
             <MenuItem Header="Paste"/>
-            <TextBox TextWrapping="NoWrap" IsReadOnly="True" x:Name="PathBox" Width="551"/>
+            <TextBox TextWrapping="NoWrap" IsReadOnly="True" x:Name="PathBox" Width="681" />
         </Menu>
         <ui:ContentDialog Content="TestDialog" x:Name="TestDialog" Visibility="Collapsed">
-            
+
         </ui:ContentDialog>
-        <RichTextBox x:Name="TextBox" DockPanel.Dock="Top"/>
+        <TabControl DockPanel.Dock="Top" x:Name="ControlTabs">
+            <TabControl.Resources>
+                <DataTemplate x:Name="TabTemplate" DataType="TabItem">
+                    <RichTextBox x:Name="TextBox" DockPanel.Dock="Top"/>
+                </DataTemplate>
+            </TabControl.Resources>
+            <TabItem Header="Default">
+                <RichTextBox x:Name="TextBox" DockPanel.Dock="Top"/>
+            </TabItem>
+        </TabControl>
     </DockPanel>
 </Window>

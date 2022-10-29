@@ -24,6 +24,7 @@ using System.Web;
 using Microsoft.Win32;
 using NotepadV2.Dialogs;
 using System.DirectoryServices.ActiveDirectory;
+using ModernWpf.Controls.Primitives;
 
 namespace NotepadV2
 {
@@ -173,6 +174,10 @@ namespace NotepadV2
                     Environment.Exit(0);
                 }
             }
+
+            public static class Tabs
+            {
+            }
         }
         #endregion
         public void Init(bool bDebug, bool bDebugSettings)
@@ -220,6 +225,7 @@ namespace NotepadV2
             if (!Global.ShowThemeBtnInMenubar)
             {
                 ThemeBtn.Visibility = Visibility.Collapsed;
+                ThemeBtn.IsEnabled = false;
             }
         }
 
@@ -361,7 +367,12 @@ namespace NotepadV2
 
         private void MenuSelectAllBtn_Click(object sender, RoutedEventArgs e)
         {
-            TextBox.SelectAll();
+            //This is where it crashes since i cant get the textbox dynamically
+            //TextBox.SelectAll();
+            RichTextBox box = (RichTextBox)sender;
+            //box.SelectAll();
+            //MessageBox.Show(sender.ToString());
+            MessageBox.Show(box.Document.ToString());
         }
 
         private void MenuTimeDateBtn_Click(object sender, RoutedEventArgs e)
@@ -389,5 +400,39 @@ namespace NotepadV2
             AboutDialog about = new AboutDialog();
             about.ShowAsync();
         }
+
+        #region Tabs
+
+        public TabItem GetCurrentlySelectedTab()
+        {
+            return (TabItem)ControlTabs.SelectedItem;
+        }
+        public RichTextBox GetCurrentlySelectedTabTextBox()
+        {
+            //return;
+            return null;
+        }
+        private void CloseTabBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ControlTabs.Items.Remove(GetCurrentlySelectedTab());
+            Global.TabsCount--;
+        }
+
+        private void AddTabBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Global.TabsCount++;
+            TabItem tab = new TabItem();
+            tab.Header = "New Tab";
+            //tab.Name = Global.TabsCount.ToString();
+
+            //tab.Template = (System.Windows.Controls.Datate)ControlTabs.FindResource("TabItem") as System.Windows.DataTemplate;
+
+            RichTextBox rtextbox = new RichTextBox();
+            rtextbox.Name = "TextBox"+Global.TabsCount.ToString();
+            tab.Content = rtextbox;
+
+            ControlTabs.Items.Insert(1, tab);
+        }
+        #endregion
     }
 }
