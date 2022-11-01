@@ -47,6 +47,7 @@ namespace NotepadV2.Common.Settings
             {
                 try
                 {
+                    Directory.CreateDirectory(strings.RootAppDataDir);
                         using (StreamWriter sw = File.CreateText(strings.AppDataSavesFile))
                         {
                             sw.WriteLine("Theme==Dark");
