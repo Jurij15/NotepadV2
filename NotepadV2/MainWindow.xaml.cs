@@ -369,10 +369,17 @@ namespace NotepadV2
         {
             //This is where it crashes since i cant get the textbox dynamically
             //TextBox.SelectAll();
-            RichTextBox box = (RichTextBox)sender;
-            //box.SelectAll();
-            //MessageBox.Show(sender.ToString());
-            MessageBox.Show(box.Document.ToString());
+            //((RichTextBox)DPanel.FindName("TextBox" +"2")).SelectAll();
+            ///((RichTextBox)ControlTabs.FindName("TextBox" + "2")).SelectAll();
+            string s = ((RichTextBox)DPanel.FindName("TextBox" + "")).ToString();
+            MessageBox.Show(s);
+            
+        }
+
+        public static ICommand TestSelectAll(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(sender.ToString());
+            return null;
         }
 
         private void MenuTimeDateBtn_Click(object sender, RoutedEventArgs e)
@@ -407,13 +414,19 @@ namespace NotepadV2
         {
             return (TabItem)ControlTabs.SelectedItem;
         }
+        public int GetSelectedTabIndex()
+        {
+            return ControlTabs.SelectedIndex;
+        }
         public RichTextBox GetCurrentlySelectedTabTextBox()
         {
             //return;
-            return null;
+            return ((RichTextBox)DPanel.FindName("TextBox" + GetSelectedTabIndex().ToString()));
         }
         private void CloseTabBtn_Click(object sender, RoutedEventArgs e)
         {
+            //unregister the name before it the tab gets removed and count is decremented (hope this works)
+            UnregisterName("TextBox"+GetSelectedTabIndex().ToString()); //some issues occured, lets try not to unregister the name
             ControlTabs.Items.Remove(GetCurrentlySelectedTab());
             Global.TabsCount--;
         }
@@ -423,13 +436,14 @@ namespace NotepadV2
             Global.TabsCount++;
             TabItem tab = new TabItem();
             tab.Header = "New Tab";
-            //tab.Name = Global.TabsCount.ToString();
-
-            //tab.Template = (System.Windows.Controls.Datate)ControlTabs.FindResource("TabItem") as System.Windows.DataTemplate;
 
             RichTextBox rtextbox = new RichTextBox();
-            rtextbox.Name = "TextBox"+Global.TabsCount.ToString();
+            int math = GetSelectedTabIndex() + 1;
+            rtextbox.Name = "TextBox"+math.ToString();
             tab.Content = rtextbox;
+            MessageBox.Show(rtextbox.Name);
+            //try to register the name so it can be found using FindName
+            RegisterName(rtextbox.Name, rtextbox);
 
             ControlTabs.Items.Insert(1, tab);
         }
