@@ -180,6 +180,7 @@ namespace NotepadV2
             }
         }
         #endregion
+        #region Init
         public void Init(bool bDebug, bool bDebugSettings)
         {
             Arguments.ProcessCommandLineArgs(true);
@@ -227,10 +228,14 @@ namespace NotepadV2
                 ThemeBtn.Visibility = Visibility.Collapsed;
                 ThemeBtn.IsEnabled = false;
             }
+            if (!Global.ShowPathBox)
+            {
+                PathBox.Visibility = Visibility.Collapsed;
+            }
             TextBox.Name = "TextBoxDefault";
             RegisterName("TextBoxDefault", TextBox);
         }
-
+        #endregion
         public MainWindow()
         {
             InitializeComponent();
@@ -241,15 +246,17 @@ namespace NotepadV2
         {
             TimeBtn.Content = DateTime.Now.ToString("HH:mm:ss");
         }
-
+        #region Old Code
         public void AdjustAppTitleByDocumentName(string DocumentName)
         {
             Global.AppTitle = DocumentName + "-" + Global.AppTitleDefault;
             this.Title = Global.AppTitle;
         }
+        #endregion
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            /*
             if (!Global.IsCurrentlDocumentSaved)
             {
                 ContentDialog.ShowSimpleContentDialog("Do You want to save the document?", "..", "OK", false) ;  //TODO Finish This
@@ -258,7 +265,8 @@ namespace NotepadV2
             {
                 Environment.Exit(0);
             }
-            //Environment.Exit(0);
+            */ //might try to make this work again, but since tabs it no longer works properly
+            Environment.Exit(0);
         }
 
         private void TimeBtn_Click(object sender, RoutedEventArgs e)
@@ -285,7 +293,7 @@ namespace NotepadV2
                 Logger.Success("Theme changed to" + Global.Theme);
             }
         }
-
+        #region MainWindowMenu
         private void MenuNewBtn_Click(object sender, RoutedEventArgs e)
         {
             TextBox.Document.Blocks.Clear();
@@ -307,7 +315,8 @@ namespace NotepadV2
                 GetCurrentlySelectedTabTextBox().Document.Blocks.Clear();
                 GetCurrentlySelectedTabTextBox().Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(docToOpen))));
                 PathBox.Text = docToOpen;
-                AdjustAppTitleByDocumentName(docToOpen);
+                //AdjustAppTitleByDocumentName(docToOpen);
+                GetCurrentlySelectedTab().Header = tabcontent;
             }
             Global.IsCurrentlDocumentSaved = false;
         }
@@ -322,6 +331,7 @@ namespace NotepadV2
             if (saveFileDialog.ShowDialog() == true)
             {
                 File.WriteAllText(saveFileDialog.FileName, range);
+                GetCurrentlySelectedTab().Header = saveFileDialog.SafeFileName;
             }
         }
 
@@ -369,12 +379,6 @@ namespace NotepadV2
 
         private void MenuSelectAllBtn_Click(object sender, RoutedEventArgs e)
         {
-            //This is where it crashes since i cant get the textbox dynamically
-            //TextBox.SelectAll();
-            //((RichTextBox)DPanel.FindName("TextBox" +"2")).SelectAll();
-            ///((RichTextBox)ControlTabs.FindName("TextBox" + "2")).SelectAll();
-            //string s = ((RichTextBox)DPanel.FindName("TextBox" + "")).ToString();
-            //MessageBox.Show(s);
             GetCurrentlySelectedTabTextBox().SelectAll();
         }
 
@@ -403,6 +407,7 @@ namespace NotepadV2
             AboutDialog about = new AboutDialog();
             about.ShowAsync();
         }
+        #endregion
 
         #region Tabs
 
@@ -416,7 +421,7 @@ namespace NotepadV2
         }
         public RichTextBox GetCurrentlySelectedTabTextBox()
         {
-            MessageBox.Show(GetSelectedTabIndex().ToString());
+            //MessageBox.Show(GetSelectedTabIndex().ToString());
             if (GetSelectedTabIndex() == 0)
             {
                 return ((RichTextBox)DPanel.FindName("TextBoxDefault")); //this is the default notepad that is created in normal xaml

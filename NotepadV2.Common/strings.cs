@@ -12,7 +12,7 @@ namespace NotepadV2.Common
 
         public static string RootAppDataDir = LocalAppData + "/NotepadV2";
 
-        public static string AppDataSavesFile = RootAppDataDir + "/Settings.config";
+        public static string AppDataSavesFile = RootAppDataDir + "/Settings.json";
 
         public static string AboutString = "A simple notepad project" + Environment.NewLine + Environment.NewLine + "Made with <3 by Jurij15";
     }

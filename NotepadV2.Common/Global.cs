@@ -13,7 +13,7 @@ namespace NotepadV2.Common
         public static string Theme = "dark"; //dark by default
         public static bool ShortcutsBarVisibility = true; //true by default
         public static bool ShowTimeInMenuBar = true; //true by default
-        public static bool UseTabs = true;
+        public static bool ShowPathBox = false;
 
         //not important DO NOT CHANGE
         public static string Error { get; set; }

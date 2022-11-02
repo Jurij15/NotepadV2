@@ -1,4 +1,5 @@
 ﻿using LogSharper;
+using Microsoft.Build.Tasks.Deployment.Bootstrapper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,9 +7,18 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Data.Json;
+using Windows.UI.Xaml;
+using Newtonsoft.Json;
 
 namespace NotepadV2.Common.Settings
 {
+    public class SettingsBase
+    {
+        public string Theme;
+        public bool ShortcutsBarVisibility;
+        public bool ShowTimeInMenuBar;
+    }
     /// <summary> TODO
     /// REWRITE THIS WITH SAVING SUPPORT!
     /// </summary>
@@ -177,6 +187,41 @@ namespace NotepadV2.Common.Settings
         public static void LogSucess()
         {
             Logger.Success("Applied all settings!");
+        }
+    }
+
+    public class SettingsV2
+    {
+        public static void CreateDirectory()
+        {
+            if (Directory.Exists(strings.RootAppDataDir))
+            {
+
+            }
+            else if (!Directory.Exists(strings.RootAppDataDir))
+            {
+                Directory.CreateDirectory(strings.RootAppDataDir);
+            }
+        }
+
+        public static void InitSettings()
+        {
+            if (!File.Exists(strings.AppDataSavesFile))
+            {
+                CreateDirectory();
+                //set it to default
+                SettingsBase settings = new SettingsBase();
+                settings.Theme = "Dark";
+                settings.ShortcutsBarVisibility = true;
+                settings.ShowTimeInMenuBar = true;
+                string output = JsonConvert.SerializeObject(settings);
+
+                File.WriteAllText(strings.AppDataSavesFile, output);
+            }
+            else if (File.Exists(strings.AppDataSavesFile))
+            {
+
+            }
         }
     }
 }

@@ -8,9 +8,8 @@ namespace NotepadV2
 {
     public class Version
     {
-        public static double VersionNumber = 0.2;
+        public static double VersionNumber = 0.3;
         public static string BaseVersionString = VersionNumber.ToString();
-        public static string VerString = "0.2";
 
         public static string GetVersionString()
         {
