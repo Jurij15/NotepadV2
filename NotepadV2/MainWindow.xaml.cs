@@ -227,6 +227,8 @@ namespace NotepadV2
                 ThemeBtn.Visibility = Visibility.Collapsed;
                 ThemeBtn.IsEnabled = false;
             }
+            TextBox.Name = "TextBoxDefault";
+            RegisterName("TextBoxDefault", TextBox);
         }
 
         public MainWindow()
@@ -296,14 +298,14 @@ namespace NotepadV2
             openFileDialog.ShowDialog();
             string docToOpen = openFileDialog.FileName;
             string tabcontent = openFileDialog.SafeFileName;
-            if (docToOpen == null)
+            if (docToOpen == "")
             {
                 //no doc to open, do nothing
             }
-            else if (docToOpen != null)
+            else if (docToOpen != "")
             {
-                TextBox.Document.Blocks.Clear();
-                TextBox.Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(docToOpen))));
+                GetCurrentlySelectedTabTextBox().Document.Blocks.Clear();
+                GetCurrentlySelectedTabTextBox().Document.Blocks.Add(new Paragraph(new System.Windows.Documents.Run(File.ReadAllText(docToOpen))));
                 PathBox.Text = docToOpen;
                 AdjustAppTitleByDocumentName(docToOpen);
             }
@@ -316,7 +318,7 @@ namespace NotepadV2
             saveFileDialog.Filter = "Text File (*.txt)|*.txt|Show All Files (*.*)|*.*";
             saveFileDialog.FileName = "Untitled";
             saveFileDialog.Title = "Save As";
-            string range = new TextRange(TextBox.Document.ContentStart, TextBox.Document.ContentEnd).Text;
+            string range = new TextRange(GetCurrentlySelectedTabTextBox().Document.ContentStart, GetCurrentlySelectedTabTextBox().Document.ContentEnd).Text;
             if (saveFileDialog.ShowDialog() == true)
             {
                 File.WriteAllText(saveFileDialog.FileName, range);
@@ -342,27 +344,27 @@ namespace NotepadV2
 
         private void MenuUndoBtn_Click(object sender, RoutedEventArgs e)
         {
-            TextBox.Undo();
+            GetCurrentlySelectedTabTextBox().Undo();
         }
 
         private void MenuRedoBtn_Click(object sender, RoutedEventArgs e)
         {
-            TextBox.Redo();
+            GetCurrentlySelectedTabTextBox().Redo();
         }
 
         private void MenuCutBtn_Click(object sender, RoutedEventArgs e)
         {
-            TextBox.Cut();
+            GetCurrentlySelectedTabTextBox().Cut();
         }
 
         private void MenuCopyBtn_Click(object sender, RoutedEventArgs e)
         {
-            TextBox.Copy();
+            GetCurrentlySelectedTabTextBox().Copy();
         }
 
         private void MenuPasteBtn_Click(object sender, RoutedEventArgs e)
         {
-            TextBox.Paste();
+            GetCurrentlySelectedTabTextBox().Paste();
         }
 
         private void MenuSelectAllBtn_Click(object sender, RoutedEventArgs e)
@@ -371,24 +373,18 @@ namespace NotepadV2
             //TextBox.SelectAll();
             //((RichTextBox)DPanel.FindName("TextBox" +"2")).SelectAll();
             ///((RichTextBox)ControlTabs.FindName("TextBox" + "2")).SelectAll();
-            string s = ((RichTextBox)DPanel.FindName("TextBox" + "")).ToString();
-            MessageBox.Show(s);
-            
-        }
-
-        public static ICommand TestSelectAll(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(sender.ToString());
-            return null;
+            //string s = ((RichTextBox)DPanel.FindName("TextBox" + "")).ToString();
+            //MessageBox.Show(s);
+            GetCurrentlySelectedTabTextBox().SelectAll();
         }
 
         private void MenuTimeDateBtn_Click(object sender, RoutedEventArgs e)
         {
-            string CurrentText = new TextRange(TextBox.Document.ContentStart, TextBox.Document.ContentEnd).Text;
+            string CurrentText = new TextRange(GetCurrentlySelectedTabTextBox().Document.ContentStart, GetCurrentlySelectedTabTextBox().Document.ContentEnd).Text;
             string NewText = CurrentText + Util.GetCurrentDateTimeString();
 
-            TextBox.Document.Blocks.Clear();
-            TextBox.Document.Blocks.Add(new Paragraph(new Run(NewText)));
+            GetCurrentlySelectedTabTextBox().Document.Blocks.Clear();
+            GetCurrentlySelectedTabTextBox().Document.Blocks.Add(new Paragraph(new Run(NewText)));
         }
 
         private void MenuFontBtn_Click(object sender, RoutedEventArgs e)
@@ -420,15 +416,27 @@ namespace NotepadV2
         }
         public RichTextBox GetCurrentlySelectedTabTextBox()
         {
-            //return;
+            MessageBox.Show(GetSelectedTabIndex().ToString());
+            if (GetSelectedTabIndex() == 0)
+            {
+                return ((RichTextBox)DPanel.FindName("TextBoxDefault")); //this is the default notepad that is created in normal xaml
+            }
             return ((RichTextBox)DPanel.FindName("TextBox" + GetSelectedTabIndex().ToString()));
         }
         private void CloseTabBtn_Click(object sender, RoutedEventArgs e)
         {
             //unregister the name before it the tab gets removed and count is decremented (hope this works)
-            UnregisterName("TextBox"+GetSelectedTabIndex().ToString()); //some issues occured, lets try not to unregister the name
-            ControlTabs.Items.Remove(GetCurrentlySelectedTab());
-            Global.TabsCount--;
+            if (GetSelectedTabIndex() == 0)
+            {
+                //we must not close the only open tab, we can just reset the text in it
+                MenuNewBtn_Click(sender, e);
+            }
+            else
+            {
+                UnregisterName("TextBox" + GetSelectedTabIndex().ToString());
+                ControlTabs.Items.Remove(GetCurrentlySelectedTab());
+                Global.TabsCount--;
+            }
         }
 
         private void AddTabBtn_Click(object sender, RoutedEventArgs e)
@@ -441,7 +449,7 @@ namespace NotepadV2
             int math = GetSelectedTabIndex() + 1;
             rtextbox.Name = "TextBox"+math.ToString();
             tab.Content = rtextbox;
-            MessageBox.Show(rtextbox.Name);
+            //MessageBox.Show(rtextbox.Name);
             //try to register the name so it can be found using FindName
             RegisterName(rtextbox.Name, rtextbox);
 
