@@ -25,7 +25,7 @@ using Microsoft.Win32;
 using NotepadV2.Dialogs;
 using System.DirectoryServices.ActiveDirectory;
 using ModernWpf.Controls.Primitives;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 //using System.Windows.Forms;
 
 namespace NotepadV2
