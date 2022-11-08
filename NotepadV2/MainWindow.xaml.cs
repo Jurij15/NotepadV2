@@ -25,6 +25,8 @@ using Microsoft.Win32;
 using NotepadV2.Dialogs;
 using System.DirectoryServices.ActiveDirectory;
 using ModernWpf.Controls.Primitives;
+using System.Windows.Forms;
+//using System.Windows.Forms;
 
 namespace NotepadV2
 {
@@ -186,7 +188,7 @@ namespace NotepadV2
             Arguments.ProcessCommandLineArgs(true);
             if (bDebug)
             {
-                Util.SetupConsole();
+                //Util.SetupConsole();
                 Util.SetupLogger();
                 this.Title = Global.AppTitle + "Debug Release";
             }
@@ -393,12 +395,23 @@ namespace NotepadV2
 
         private void MenuFontBtn_Click(object sender, RoutedEventArgs e)
         {
-            //todo
+            System.Windows.Forms.FontDialog dlg = new System.Windows.Forms.FontDialog();
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                GetCurrentlySelectedTabTextBox().FontFamily = new FontFamily(dlg.Font.Name);
+                GetCurrentlySelectedTabTextBox().FontSize = dlg.Font.Size * 98.0 / 72.0;
+                GetCurrentlySelectedTabTextBox().FontWeight = dlg.Font.Bold ? FontWeights.Bold : FontWeights.Regular;
+                GetCurrentlySelectedTabTextBox().FontStyle = dlg.Font.Italic ? FontStyles.Italic : FontStyles.Normal;
+            }
         }
 
         private void MenuColorBtn_Click(object sender, RoutedEventArgs e)
         {
-            //todo
+            System.Windows.Forms.ColorDialog dlg = new System.Windows.Forms.ColorDialog();
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                GetCurrentlySelectedTabTextBox().Foreground = new SolidColorBrush(Color.FromArgb(dlg.Color.A, dlg.Color.R, dlg.Color.G, dlg.Color.B));
+            }
         }
 
         private void MenuAboutBtn_Click(object sender, RoutedEventArgs e)
