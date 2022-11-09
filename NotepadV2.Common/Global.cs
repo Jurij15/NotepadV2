@@ -31,5 +31,7 @@ namespace NotepadV2.Common
         public static bool IsCurrentlDocumentSaved { get; set; }
 
         public static int TabsCount = 1;
+
+        public static int RunningTimeInSeconds = 0;
     }
 }

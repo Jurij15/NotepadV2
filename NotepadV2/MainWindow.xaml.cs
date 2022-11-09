@@ -247,6 +247,7 @@ namespace NotepadV2
         void timer_tick(object sender, EventArgs e)
         {
             TimeBtn.Content = DateTime.Now.ToString("HH:mm:ss");
+            Global.RunningTimeInSeconds++;
         }
         #region Old Code
         public void AdjustAppTitleByDocumentName(string DocumentName)
@@ -474,5 +475,11 @@ namespace NotepadV2
             ControlTabs.Items.Insert(1, tab);
         }
         #endregion
+
+        private void StatisticsMenuBtn_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow stats = new StatisticsWindow();
+            stats.ShowDialog();
+        }
     }
 }

@@ -15,8 +15,13 @@
                 <MenuItem Header="Open" x:Name="MenuOpenBtn" Click="MenuOpenBtn_Click"/>
                 <MenuItem Header="Save" x:Name="MenuSaveBtn" Click="MenuSaveBtn_Click"/>
                 <Separator/>
+                <MenuItem Header="File Templates">
+                    <MenuItem Header="HTML Document"/>
+                </MenuItem>
+                <Separator/>
                 <MenuItem Header="Preferences" x:Name="MenuPreferencesBtn" Click="MenuPreferencesBtn_Click"/>
                 <MenuItem Header="Instance Manager" x:Name="InstanceManagerBtn" Click="InstanceManagerBtn_Click"/>
+                <MenuItem Header="Statistics" x:Name="StatisticsMenuBtn" Click="StatisticsMenuBtn_Click"/>
                 <Separator/>
                 <MenuItem Header="Exit" x:Name="MenuExitBtn" Click="MenuExitBtn_Click"/>
             </MenuItem>
