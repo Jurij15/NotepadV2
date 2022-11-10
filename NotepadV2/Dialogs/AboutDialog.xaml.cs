@@ -30,7 +30,7 @@ namespace NotepadV2.Dialogs
         }
         public AboutDialog()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             Init();
         }
 

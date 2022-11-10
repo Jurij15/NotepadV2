@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:NotepadV2.Windows"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
-        Title="App Statistic" Height="286" Width="542" ResizeMode="NoResize" Closing="Window_Closing"
+        Title="App Statistic" Height="320" Width="594" ResizeMode="NoResize" Closing="Window_Closing"
                          xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True">
-    <ListBox x:Name="AllStatsBox" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+    <Grid>
+        <ListBox x:Name="AllStatsBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,33,0,0"/>
+        <Button Content="Details" x:Name="DetailsBtn" Click="DetailsBtn_Click" Margin="0,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="594"/>
+    </Grid>
 </Window>

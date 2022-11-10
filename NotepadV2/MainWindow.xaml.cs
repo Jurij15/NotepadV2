@@ -248,6 +248,7 @@ namespace NotepadV2
         {
             TimeBtn.Content = DateTime.Now.ToString("HH:mm:ss");
             Global.RunningTimeInSeconds++;
+            Global.CurrentDateTime = DateTime.Now;
         }
         #region Old Code
         public void AdjustAppTitleByDocumentName(string DocumentName)
@@ -274,8 +275,16 @@ namespace NotepadV2
 
         private void TimeBtn_Click(object sender, RoutedEventArgs e)
         {
-            ClockPopUp window = new ClockPopUp();
-            window.Show();
+            if (!Global.UseClockDialog)
+            {
+                ClockPopUp window = new ClockPopUp();
+                window.Show();
+            }
+            else if (Global.UseClockDialog)
+            {
+                ClockDialog clock = new ClockDialog();
+                clock.ShowAsync();
+            }
         }
 
         private void ThemeBtn_Click(object sender, RoutedEventArgs e)

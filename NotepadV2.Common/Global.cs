@@ -14,6 +14,7 @@ namespace NotepadV2.Common
         public static bool ShortcutsBarVisibility = true; //true by default
         public static bool ShowTimeInMenuBar = true; //true by default
         public static bool ShowPathBox = false;
+        public static bool UseClockDialog = true;
 
         //not important DO NOT CHANGE
         public static string Error { get; set; }
@@ -33,5 +34,7 @@ namespace NotepadV2.Common
         public static int TabsCount = 1;
 
         public static int RunningTimeInSeconds = 0;
+
+        public static DateTime CurrentDateTime;
     }
 }

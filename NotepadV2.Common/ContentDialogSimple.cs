@@ -8,7 +8,7 @@ using ModernWpf.Controls;
 
 namespace NotepadV2.Common
 {
-    public class ContentDialog
+    public class ContentDialogSimple
     {
         public static void ShowSimpleContentDialog(string Title, string Content, string CloseButtonText, bool bFullScreen)
         {

@@ -162,7 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arguments.cs" />
-    <Compile Include="ContentDialog.cs" />
+    <Compile Include="ContentDialogSimple.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="InstanceManager\InstanceManagerFunctions.cs" />
     <Compile Include="LogSharper.cs" />
