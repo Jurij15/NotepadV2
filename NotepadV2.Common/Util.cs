@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using LogSharper;
 using Windows.Perception.Spatial.Preview;
+using Microsoft.Win32.SafeHandles;
+using System.IO;
 
 namespace NotepadV2.Common
 {

@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:NotepadV2"
         mc:Ignorable="d"
         Title="Notepad" Height="648" Width="1040"
-                 xmlns:ui="http://schemas.modernwpf.com/2019" Closing="Window_Closing" AllowsTransparency="False"
-        ui:WindowHelper.UseModernWindowStyle="True">
-    <DockPanel LastChildFill="True" x:Name="DPanel">
+                 xmlns:mui="http://schemas.modernwpf.com/2019" Closing="Window_Closing" AllowsTransparency="False"
+        mui:WindowHelper.UseModernWindowStyle="True">
+    <DockPanel LastChildFill="True" x:Name="DPanel" Background="Transparent">
         <Menu Background="Transparent" x:Name="MainMenu" DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem Header="New" x:Name="MenuNewBtn" Click="MenuNewBtn_Click"/>
@@ -16,7 +16,8 @@
                 <MenuItem Header="Save" x:Name="MenuSaveBtn" Click="MenuSaveBtn_Click"/>
                 <Separator/>
                 <MenuItem Header="File Templates">
-                    <MenuItem Header="HTML Document"/>
+                    <MenuItem Header="Version Notes" x:Name="VerNotesMenuItem" Click="VerNotesMenuItem_Click"/>
+                    <MenuItem Header="HTML Document"/> 
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="Preferences" x:Name="MenuPreferencesBtn" Click="MenuPreferencesBtn_Click"/>
@@ -57,9 +58,12 @@
             <MenuItem Header="Paste"/>
             <TextBox TextWrapping="NoWrap" IsReadOnly="True" x:Name="PathBox" Width="681" />
         </Menu>
-        <ui:ContentDialog Content="TestDialog" x:Name="TestDialog" Visibility="Collapsed">
+        <mui:ContentDialog Content="TestDialog" x:Name="TestDialog" Visibility="Collapsed">
 
-        </ui:ContentDialog>
+        </mui:ContentDialog>
+
+        <TextBlock DockPanel.Dock="Bottom" Text="PositionHere" x:Name="PosTextBox"/>
+
         <TabControl DockPanel.Dock="Top" x:Name="ControlTabs">
             <TabControl.Resources>
                 <DataTemplate x:Name="TabTemplate" DataType="TabItem">

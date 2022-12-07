@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "NotepadV2": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

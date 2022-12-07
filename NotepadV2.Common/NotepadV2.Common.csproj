@@ -190,5 +190,8 @@
   <ItemGroup>
     <Folder Include="FileTemplates\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="VersionNotes\VersionNotes0-3.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

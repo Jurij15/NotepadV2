@@ -27,6 +27,7 @@ using System.DirectoryServices.ActiveDirectory;
 using ModernWpf.Controls.Primitives;
 //using System.Windows.Forms;
 //using System.Windows.Forms;
+using NotepadV2.Common.VersionNotes;
 
 namespace NotepadV2
 {
@@ -249,6 +250,9 @@ namespace NotepadV2
             TimeBtn.Content = DateTime.Now.ToString("HH:mm:ss");
             Global.RunningTimeInSeconds++;
             Global.CurrentDateTime = DateTime.Now;
+
+            PosTextBox.Text = GetCurrentlySelectedTabTextBox().Document.ContentStart.GetOffsetToPosition(GetCurrentlySelectedTabTextBox().CaretPosition).ToString();
+            this.Title = GetCurrentlySelectedTab().Header + "-" + Global.AppTitle;
         }
         #region Old Code
         public void AdjustAppTitleByDocumentName(string DocumentName)
@@ -473,6 +477,38 @@ namespace NotepadV2
             TabItem tab = new TabItem();
             tab.Header = "New Tab";
 
+            ///TODO
+            ///Implement a way to check if the tab its trying to add already exists
+            ///
+            ///something like tghis
+            ///  will fix this for 0.4
+            /*
+            int newindex = 0;
+
+            bool bFoundNewIndex = false;
+            while (!bFoundNewIndex)
+            { 
+                //explanation
+
+                //we create a new variable and increment it, then search if it exists
+                int currentindex = 0;
+                currentindex++;
+                string name = "TextBox" + currentindex.ToString();
+                var bExists = FindName(name);
+                if ((bool)bExists)
+                {
+                    //if it does we just continiue
+                    continue;
+                }
+                else if (!(bool)bExists)
+                {
+                    //if it doesnt, we are done and stop the loop
+                    newindex = currentindex;
+                    bFoundNewIndex = true;
+                }
+            }
+            */
+
             RichTextBox rtextbox = new RichTextBox();
             int math = GetSelectedTabIndex() + 1;
             rtextbox.Name = "TextBox"+math.ToString();
@@ -482,6 +518,10 @@ namespace NotepadV2
             RegisterName(rtextbox.Name, rtextbox);
 
             ControlTabs.Items.Insert(1, tab);
+            //we should also select the newly added tab
+            //ControlTabs.SelectedItem = tab;
+            Dispatcher.BeginInvoke((Action)(() => ControlTabs.SelectedIndex = math));
+            //bFoundNewIndex = false; //for later
         }
         #endregion
 
@@ -489,6 +529,12 @@ namespace NotepadV2
         {
             StatisticsWindow stats = new StatisticsWindow();
             stats.ShowDialog();
+        }
+
+        private void VerNotesMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            AddTabBtn_Click(sender, e);
+            GetCurrentlySelectedTabTextBox().Document.Blocks.Add(new Paragraph(new Run(VersionNotes03.VersionNotesBigString)));
         }
     }
 }
