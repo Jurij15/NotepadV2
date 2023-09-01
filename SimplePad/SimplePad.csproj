@@ -12,6 +12,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Dialogs\SettingsDialog.xaml" />
     <None Remove="Pages\EditorPage.xaml" />
     <None Remove="Styles\RichEditBox.xaml" />
   </ItemGroup>
@@ -27,8 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Labs.WinUI.SettingsControls" Version="0.0.18" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230822000" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="WinUIEx" Version="2.2.0" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -48,6 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\EditorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dialogs\SettingsDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -11,7 +11,7 @@
     <windowex:WindowEx.SystemBackdrop>
         <MicaBackdrop/>
     </windowex:WindowEx.SystemBackdrop>
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
             <RowDefinition Height="*"/>

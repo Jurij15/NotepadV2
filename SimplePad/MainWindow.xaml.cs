@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using SimplePad.Pages;
+using SimplePad.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,6 +39,7 @@ namespace SimplePad
         private void RootFrame_Loaded(object sender, RoutedEventArgs e)
         {
             RootFrame.Navigate(typeof(EditorPage));
+            DialogService.XamlRoot = RootGrid.XamlRoot;
         }
     }
 }

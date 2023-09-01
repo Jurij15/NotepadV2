@@ -44,6 +44,9 @@
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
                 <MenuFlyoutSeparator/>
+                <MenuFlyoutItem Text="Settings" x:Name="SettingsMenuBtn" Click="SettingsMenuBtn_Click">
+                </MenuFlyoutItem>
+                <MenuFlyoutSeparator/>
                 <MenuFlyoutItem Text="Exit" x:Name="ExitFileMenuBtn" Click="ExitFileMenuBtn_Click">
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Key="Q" Modifiers="Control"/>
@@ -51,8 +54,10 @@
                 </MenuFlyoutItem>
             </MenuBarItem>
         </MenuBar>
-        <Grid x:Name="NotificationsGrid" Grid.Row="1"/>
-        <ScrollViewer ZoomMode="Enabled" Grid.Row="2" MinZoomFactor="1" HorizontalScrollMode="Auto">
+        <Grid x:Name="NotificationsGrid" Grid.Row="1">
+            <InfoBar x:Name="DevelopmentInfoBar" Title="Under development" Message="This is under development!" Severity="Informational" IsOpen="True" IsClosable="False"/>
+        </Grid>
+        <ScrollViewer ZoomMode="Enabled" Grid.Row="2" MinZoomFactor="1" HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" VerticalScrollMode="Enabled">
             <RichEditBox x:Name="TextBox" Style="{StaticResource RichEditBoxDefaultTabStyle}" Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"/>
         </ScrollViewer>
         <Grid x:Name="StatusGrid" Grid.Row="3"/>
