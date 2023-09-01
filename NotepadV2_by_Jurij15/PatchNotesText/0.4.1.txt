@@ -1,4 +1,0 @@
-﻿Patch 0.4.1 alpha
--Fixes:
---Web browser no longer crashes
---PDFreader minor issues fixed

@@ -1,3 +1,0 @@
-﻿    <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="32" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" />
-    </WindowChrome.WindowChrome>

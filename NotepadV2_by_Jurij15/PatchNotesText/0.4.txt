@@ -1,9 +1,0 @@
-﻿Patch 0.4 alpha
-New updates:
--API has been (finnaly) moved to heroku (yay no more localhost)
---Download site is in the works, will be made in the next build
--Much progress made in PDFReader and WebBrowser
---There are still a lot of issues that need to be fixed
-Known issues:
--Web browser
---Searching directly in AdressBox might crash the program

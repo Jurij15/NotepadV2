@@ -1,8 +1,0 @@
-﻿about box with checkforupdates and checkserverstat - under works
-
-updatebox message (If your app is unresponsive for more than ...seconds, please force quit it and restart it )
-
-heroku site download page
-
-web browser finish
-pdfreader finish
