@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="SimplePad.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SimplePad.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:settings="using:CommunityToolkit.WinUI.Controls"
+    Background="{ThemeResource LayerOnMicaBaseAltFillColorDefaultBrush}"
+    mc:Ignorable="d">
+
+    <Grid
+        MinWidth="900"
+        MaxWidth="900"
+        Margin="0,14,0,0"
+        HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            Style="{ThemeResource TitleLargeTextBlockStyle}"
+            Text="Settings" />
+        <settings:SettingsCard
+            x:Name="ThemeCard"
+            Grid.Row="1"
+            Margin="0,18,0,0"
+            Description="Change App Theme"
+            Header="Theme">
+            <settings:SettingsCard.HeaderIcon>
+                <FontIcon Glyph="&#xE790;" />
+            </settings:SettingsCard.HeaderIcon>
+        </settings:SettingsCard>
+        <settings:SettingsCard
+            x:Name="EditorBackgroundCard"
+            Grid.Row="2"
+            Margin="0,4,0,0"
+            Description="Change Editor Background"
+            Header="Editor Backround">
+            <settings:SettingsCard.HeaderIcon>
+                <FontIcon Glyph="&#xE70A;" />
+            </settings:SettingsCard.HeaderIcon>
+        </settings:SettingsCard>
+    </Grid>
+</Page>

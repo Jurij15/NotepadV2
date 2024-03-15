@@ -26,22 +26,56 @@ namespace SimplePad
     /// </summary>
     public sealed partial class MainWindow : WinUIEx.WindowEx
     {
-        public MainWindow()
+        private TabService _tabService;
+        void InitDesign()
         {
-            this.InitializeComponent();
+            ExtendsContentIntoTitleBar = true;
+            SetTitleBar(CustomDragRegion);
 
-            this.ExtendsContentIntoTitleBar = true;
-            this.SetTitleBar(AppTitleBar);
+            MicaBackdrop backdrop = new MicaBackdrop();
+            backdrop.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt;
+            SystemBackdrop = backdrop;
 
-            this.SetWindowSize(612, 750);
+            this.Title = "SimplePad";
 
+            this.SetWindowSize(1085, 700);
+            //this.MinWidth = 1285;
+            //this.MinHeight = 685;
             this.CenterOnScreen();
         }
 
-        private void RootFrame_Loaded(object sender, RoutedEventArgs e)
+        public MainWindow()
         {
-            RootFrame.Navigate(typeof(EditorPage));
-            DialogService.XamlRoot = RootGrid.XamlRoot;
+            this.InitializeComponent();
+            InitDesign();
+        }
+
+        private void RootGrid_AddTabButtonClick(TabView sender, object args)
+        {
+            _tabService.AddNewEditorTab(_tabService);
+        }
+
+        private void RootGrid_TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
+        {
+            if (!_tabService.GetCurrentTabTag().Saved)
+            {
+                //show a warning for closing
+            }
+
+            _tabService.CloseTab(_tabService.GetCurrentTab());
+        }
+
+        private void RootGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            _tabService = new TabService(RootGrid);
+
+            //check for hometab
+            _tabService.AddNewEditorTab(_tabService);
+        }
+
+        private void RootGrid_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
+        {
+
         }
     }
 }

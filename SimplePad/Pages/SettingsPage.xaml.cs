@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using SimplePad.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,16 +17,18 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace SimplePad.Dialogs
+namespace SimplePad.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class FontDialog : Page
+    public sealed partial class SettingsPage : Page
     {
-        public FontDialog()
+        private TabService _tabService;
+        public SettingsPage(TabService service)
         {
             this.InitializeComponent();
+            _tabService = service;
         }
     }
 }
