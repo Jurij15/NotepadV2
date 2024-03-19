@@ -37,6 +37,7 @@ namespace SimplePad.Services
                 }
             }
         }
+
         public static void ChangeTheme(ElementTheme Theme)
         {
             if (m_window.Content is FrameworkElement element)

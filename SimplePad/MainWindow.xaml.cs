@@ -14,7 +14,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using SimplePad.Structs;
 using WinUIEx;
+using TabViewItem = ABI.Microsoft.UI.Xaml.Controls.TabViewItem;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,14 +29,11 @@ namespace SimplePad
     public sealed partial class MainWindow : WinUIEx.WindowEx
     {
         private TabService _tabService;
+        private ConfigService _configService;
         void InitDesign()
         {
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(CustomDragRegion);
-
-            MicaBackdrop backdrop = new MicaBackdrop();
-            backdrop.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt;
-            SystemBackdrop = backdrop;
 
             this.Title = "SimplePad";
 
@@ -52,25 +51,30 @@ namespace SimplePad
 
         private void RootGrid_AddTabButtonClick(TabView sender, object args)
         {
-            _tabService.AddNewEditorTab(_tabService);
+            _tabService.AddNewEditorTab(_tabService, _configService);
         }
 
         private void RootGrid_TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
         {
-            if (!_tabService.GetCurrentTabTag().Saved)
+            if (!(args.Tab.Tag as TabTagStruct).Saved)
             {
                 //show a warning for closing
             }
 
-            _tabService.CloseTab(_tabService.GetCurrentTab());
+            _tabService.CloseTab(args.Tab);
         }
 
         private void RootGrid_Loaded(object sender, RoutedEventArgs e)
         {
             _tabService = new TabService(RootGrid);
+            _configService = new();
+
+            //apply theme
+            ThemeService.ChangeTheme(_configService.GetTheme());
+            BackdropService.SetBackdrop(_configService.GetBackdrop());
 
             //check for hometab
-            _tabService.AddNewEditorTab(_tabService);
+            _tabService.AddNewEditorTab(_tabService, _configService);
         }
 
         private void RootGrid_ContextRequested(UIElement sender, ContextRequestedEventArgs args)

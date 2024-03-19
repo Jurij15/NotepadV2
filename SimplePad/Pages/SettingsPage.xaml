@@ -38,13 +38,34 @@
             <settings:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xE790;" />
             </settings:SettingsCard.HeaderIcon>
+            <ComboBox
+                x:Name="ThemeCombo"
+                Loaded="ThemeCombo_Loaded"
+                SelectionChanged="ThemeCombo_SelectionChanged"
+                Unloaded="ThemeCombo_OnUnloaded" />
+        </settings:SettingsCard>
+        <settings:SettingsCard
+            x:Name="BackdropCard"
+            Grid.Row="2"
+            Margin="0,3,0,0"
+            Description="Change Backdrops"
+            Header="Backdrop">
+            <settings:SettingsCard.HeaderIcon>
+                <FontIcon Glyph="&#xEB42;" />
+            </settings:SettingsCard.HeaderIcon>
+            <ComboBox
+                x:Name="BackdropCombo"
+                Loaded="BackdropCombo_OnLoaded"
+                SelectionChanged="BackdropCombo_OnSelectionChanged"
+                Unloaded="BackdropCombo_Unloaded" />
         </settings:SettingsCard>
         <settings:SettingsCard
             x:Name="EditorBackgroundCard"
             Grid.Row="2"
             Margin="0,4,0,0"
             Description="Change Editor Background"
-            Header="Editor Backround">
+            Header="Editor Backround"
+            Visibility="Collapsed">
             <settings:SettingsCard.HeaderIcon>
                 <FontIcon Glyph="&#xE70A;" />
             </settings:SettingsCard.HeaderIcon>

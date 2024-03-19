@@ -15,7 +15,6 @@
   <ItemGroup>
     <None Remove="Pages\SettingsPage.xaml" />
     <None Remove="Pages\TabbedEditorPage.xaml" />
-    <None Remove="Styles\RichEditBox.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,11 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\TabbedEditorPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Styles\RichEditBox.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

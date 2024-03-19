@@ -46,6 +46,7 @@ namespace SimplePad
             m_window.Activate();
 
             ThemeService.m_window = m_window;
+            BackdropService.MainWindow = m_window;
         }
 
         private Window m_window;

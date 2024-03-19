@@ -24,10 +24,10 @@ namespace SimplePad.Services
             return _tabCount;
         }
 
-        public void AddNewEditorTab(TabService _tabService)
+        public void AddNewEditorTab(TabService _tabService, ConfigService _configService)
         {
             TabViewItem item = new TabViewItem();
-            TabbedEditorPage page = new TabbedEditorPage(_tabService);
+            TabbedEditorPage page = new TabbedEditorPage(_tabService, _configService);
             Frame f = new Frame();
             TabTagStruct tag = new TabTagStruct();
 
@@ -45,10 +45,10 @@ namespace SimplePad.Services
             _tabView.SelectedItem = item;
         }
 
-        public void AddNewSettingsTab(TabService _tabService)
+        public void AddNewSettingsTab(TabService _tabService, ConfigService _configService)
         {
             TabViewItem item = new TabViewItem();
-            SettingsPage page = new SettingsPage(_tabService);
+            SettingsPage page = new SettingsPage(_tabService, _configService);
             Frame f = new Frame();
             TabTagStruct tag = new TabTagStruct();
 
@@ -84,7 +84,14 @@ namespace SimplePad.Services
 
         public void CloseTab(TabViewItem tab)
         {
-            _tabView.TabItems.Remove(tab);
+            foreach (TabViewItem item in _tabView.TabItems)
+            {
+                if ((item.Tag as TabTagStruct).GUID == (tab.Tag as TabTagStruct).GUID)
+                {
+                    _tabView.TabItems.Remove(item);
+                    break;
+                }
+            }
         }
 
         public void RenameTag(string GUID, string NewName)

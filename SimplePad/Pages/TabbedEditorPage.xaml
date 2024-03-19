@@ -23,84 +23,132 @@
             </Grid.ColumnDefinitions>
             <MenuBar Grid.Column="0" Background="{ThemeResource LayerOnMicaBaseAltFillColorDefaultBrush}">
                 <MenuBarItem Title="File">
-                    <MenuFlyoutItem Text="New">
+                    <MenuFlyoutItem
+                        x:Name="NewMenuButton"
+                        Click="NewMenuButton_Click"
+                        Text="New">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="N" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem Text="Open Another Instance">
+                    <MenuFlyoutItem
+                        x:Name="OpenNewInstanceMenuButton"
+                        Click="OpenNewInstanceMenuButton_Click"
+                        Text="New Window">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="N" Modifiers="Control,Shift" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem Text="Open">
+                    <MenuFlyoutItem
+                        x:Name="OpenMenuButton"
+                        Click="OpenMenuButton_Click"
+                        Text="Open">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="O" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem Text="Save">
+                    <MenuFlyoutItem
+                        x:Name="SaveMenuButton"
+                        Click="SaveMenuButton_Click"
+                        Text="Save">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="S" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem Text="Save As">
+                    <MenuFlyoutItem
+                        x:Name="SaveAsMenuButton"
+                        Click="SaveAsMenuButton_Click"
+                        Text="Save As">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="S" Modifiers="Control,Shift" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
                     <MenuFlyoutSeparator />
-                    <MenuFlyoutItem Text="Close Tab">
+                    <MenuFlyoutItem
+                        x:Name="CloseTabMenuButton"
+                        Click="CloseTabMenuButton_Click"
+                        Text="Close Tab">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="W" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem Text="Exit" />
+                    <MenuFlyoutItem
+                        x:Name="ExitMenuButton"
+                        Click="ExitMenuButton_Click"
+                        Text="Exit" />
                 </MenuBarItem>
                 <MenuBarItem Title="Edit">
-                    <MenuFlyoutItem Text="Undo">
+                    <MenuFlyoutItem
+                        x:Name="UndoMenuButton"
+                        Click="UndoMenuButton_Click"
+                        Text="Undo">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="Z" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem Text="Redo">
+                    <MenuFlyoutItem
+                        x:Name="RedoMenuButton"
+                        Click="RedoMenuButton_Click"
+                        Text="Redo">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="Y" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
                     <MenuFlyoutSeparator />
-                    <MenuFlyoutItem Text="Cut">
+                    <MenuFlyoutItem
+                        x:Name="CutMenuButton"
+                        Click="CutMenuButton_Click"
+                        Text="Cut">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="X" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem Text="Copy">
+                    <MenuFlyoutItem
+                        x:Name="CopyMenuButton"
+                        Click="CopyMenuButton_Click"
+                        Text="Copy">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="C" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem Text="Paste">
+                    <MenuFlyoutItem
+                        x:Name="PasteMenuButton"
+                        Click="PasteMenuButton_Click"
+                        Text="Paste">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="V" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
                     <MenuFlyoutSeparator />
-                    <MenuFlyoutItem Text="Select All">
+                    <MenuFlyoutItem
+                        x:Name="SelectAllMenuButton"
+                        Click="SelectAllMenuButton_Click"
+                        Text="Select All">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="A" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
                 </MenuBarItem>
                 <MenuBarItem Title="View">
-                    <MenuFlyoutSubItem Text="Language Highlighting">
-                        <MenuFlyoutItem Text="PlainText" />
+                    <ToggleMenuFlyoutItem
+                        x:Name="WordWrapToggle"
+                        Click="WordWrapToggle_Click"
+                        Text="Word Wrap" />
+                </MenuBarItem>
+                <MenuBarItem x:Name="LanguageItem" Title="Language">
+                    <MenuBarItem.Items>
+                        <ToggleMenuFlyoutItem
+                            Click="LangFlyoutItem_Click"
+                            IsChecked="True"
+                            Text="PlainText" />
                         <MenuFlyoutSeparator />
-                        <MenuFlyoutItem Text="C#" />
-                        <MenuFlyoutItem Text="C++" />
-                        <MenuFlyoutItem Text="JavaScript" />
-                        <MenuFlyoutItem Text="JSON" />
-                        <MenuFlyoutItem Text="XML" />
-                        <MenuFlyoutItem Text="HTML" />
-                    </MenuFlyoutSubItem>
+                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="C#" />
+                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="C++" />
+                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="JavaScript" />
+                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="JSON" />
+                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="XML" />
+                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="HTML" />
+                    </MenuBarItem.Items>
                 </MenuBarItem>
             </MenuBar>
             <Grid
@@ -113,9 +161,10 @@
                     Width="30"
                     Height="30"
                     Margin="0,0,8,0"
-                    Padding="0" Click="SettingsBtn_Click"
+                    Padding="0"
                     VerticalAlignment="Center"
                     BorderThickness="0"
+                    Click="SettingsBtn_Click"
                     ToolTipService.ToolTip="Settings">
                     <Button.Resources>
                         <ResourceDictionary>
@@ -182,7 +231,6 @@
         <winuieditor:CodeEditorControl
             x:Name="CodeEditor"
             Grid.Row="1"
-            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
             Loaded="CodeEditorControl_Loaded" />
         <Grid
             Grid.Row="2"
