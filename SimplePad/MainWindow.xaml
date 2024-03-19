@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <windowex:WindowEx
+    mc:Ignorable="d"
     x:Class="SimplePad.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SimplePad"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:windowex="using:WinUIEx"
-    mc:Ignorable="d">
-    <TabView
-        x:Name="RootGrid"
-        Grid.Row="3"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
-        AddTabButtonClick="RootGrid_AddTabButtonClick"
-        CanDrag="False"
-        CanDragTabs="False"
-        CanReorderTabs="True"
-        CloseButtonOverlayMode="Auto"
-        ContextRequested="RootGrid_ContextRequested"
-        Loaded="RootGrid_Loaded"
-        TabCloseRequested="RootGrid_TabCloseRequested">
-        <TabView.Resources>
-            <StaticResource x:Key="TabViewItemHeaderBackgroundSelected" ResourceKey="LayerOnMicaBaseAltFillColorDefaultBrush" />
-            <StaticResource x:Key="TabViewSelectedItemBorderBrush" ResourceKey="LayerOnMicaBaseAltFillColorDefaultBrush" />
-            <SolidColorBrush x:Key="TabViewItemHeaderBackground" Color="Transparent" />
-        </TabView.Resources>
-        <TabView.Transitions>
-            <TransitionCollection />
-        </TabView.Transitions>
-        <TabView.TabStripHeader>
-            <ImageIcon Width="16" Height="16" />
-        </TabView.TabStripHeader>
-        <TabView.TabStripFooter>
-            <Grid
-                x:Name="CustomDragRegion"
-                MinWidth="190"
-                Background="Transparent" />
-        </TabView.TabStripFooter>
-    </TabView>
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid x:Name="RootGrid">
+        <TabView
+            AddTabButtonClick="RootGrid_AddTabButtonClick"
+            CanDrag="False"
+            CanDragTabs="False"
+            CanReorderTabs="True"
+            CloseButtonOverlayMode="Auto"
+            ContextRequested="RootGrid_ContextRequested"
+            HorizontalAlignment="Stretch"
+            Loaded="RootGrid_Loaded"
+            TabCloseRequested="RootGrid_TabCloseRequested"
+            VerticalAlignment="Stretch"
+            x:Name="RootTabs">
+            <TabView.Resources>
+                <StaticResource ResourceKey="LayerOnMicaBaseAltFillColorDefaultBrush" x:Key="TabViewItemHeaderBackgroundSelected" />
+                <StaticResource ResourceKey="LayerOnMicaBaseAltFillColorDefaultBrush" x:Key="TabViewSelectedItemBorderBrush" />
+                <SolidColorBrush Color="Transparent" x:Key="TabViewItemHeaderBackground" />
+            </TabView.Resources>
+            <TabView.Transitions>
+                <TransitionCollection />
+            </TabView.Transitions>
+            <TabView.TabStripHeader>
+                <ImageIcon Height="16" Width="16" />
+            </TabView.TabStripHeader>
+            <TabView.TabStripFooter>
+                <Grid
+                    Background="Transparent"
+                    MinWidth="190"
+                    x:Name="CustomDragRegion" />
+            </TabView.TabStripFooter>
+        </TabView>
+    </Grid>
 </windowex:WindowEx>

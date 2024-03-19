@@ -108,5 +108,15 @@ namespace SimplePad.Pages
         {
 
         }
+
+        private void ResetSettingsBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void VersionBlock_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            VersionBlock.Text = NotepadVersion.Version;
+        }
     }
 }
