@@ -34,6 +34,23 @@ namespace SimplePad
         public App()
         {
             this.InitializeComponent();
+
+            ConfigService srv = new ConfigService(); //just so i can check the theme
+            if (srv.GetTheme() == ElementTheme.Default)
+            {
+                //just cancel, set the default
+            }
+            else if (srv.GetTheme() == ElementTheme.Dark)
+            {
+                Application.Current.RequestedTheme = ApplicationTheme.Dark;
+            }
+            else
+            {
+                Application.Current.RequestedTheme = ApplicationTheme.Light;
+            }
+
+            LanguageDefinitions defs = new LanguageDefinitions();
+            //defs.LoadDefinitions(); //maybe not the best idea, but it works
         }
 
         /// <summary>

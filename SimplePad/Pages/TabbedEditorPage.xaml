@@ -13,6 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -129,27 +130,21 @@
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
                 </MenuBarItem>
-                <MenuBarItem Title="View">
-                    <ToggleMenuFlyoutItem
-                        x:Name="WordWrapToggle"
-                        Click="WordWrapToggle_Click"
-                        Text="Word Wrap" />
-                </MenuBarItem>
-                <MenuBarItem x:Name="LanguageItem" Title="Language">
+                <MenuBarItem x:Name="ViewItem" Title="View">
                     <MenuBarItem.Items>
                         <ToggleMenuFlyoutItem
-                            Click="LangFlyoutItem_Click"
+                            x:Name="WordWrapToggle"
+                            Click="WordWrapToggle_Click"
                             IsChecked="True"
-                            Text="PlainText" />
-                        <MenuFlyoutSeparator />
-                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="C#" />
-                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="C++" />
-                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="JavaScript" />
-                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="JSON" />
-                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="XML" />
-                        <ToggleMenuFlyoutItem Click="LangFlyoutItem_Click" Text="HTML" />
+                            Tag="WordWrap"
+                            Text="Word Wrap" />
                     </MenuBarItem.Items>
                 </MenuBarItem>
+                <MenuBarItem
+                    x:Name="LanguageItem"
+                    Title="Language"
+                    Loaded="LanguageItem_Loaded"
+                    Unloaded="LanguageItem_Unloaded" />
             </MenuBar>
             <Grid
                 Grid.Column="1"
@@ -228,12 +223,23 @@
                 </Button>
             </Grid>
         </Grid>
-        <winuieditor:CodeEditorControl
-            x:Name="CodeEditor"
-            Grid.Row="1"
-            Loaded="CodeEditorControl_Loaded" />
+        <StackPanel x:Name="InfoBarPanel" Grid.Row="1">
+            <InfoBar
+                x:Name="AutoDetectedFileType"
+                IsOpen="False"
+                Message="You can change the default behaviour and file types in settings" />
+        </StackPanel>
         <Grid
+            x:Name="EditorBackgroundGrid"
             Grid.Row="2"
+            Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
+            <winuieditor:CodeEditorControl
+                x:Name="CodeEditor"
+                Background="Transparent"
+                Loaded="CodeEditorControl_Loaded" />
+        </Grid>
+        <Grid
+            Grid.Row="3"
             Height="32"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"

@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using SimplePad.Enums;
 using static SimplePad.Services.BackdropService;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -59,7 +60,7 @@ namespace SimplePad.Pages
                 var enumVal = Enum.GetValues(typeof(Theme)).Cast<Theme>();
                 ThemeCombo.ItemsSource = enumVal;
 
-                ThemeCombo.SelectedItem = _configService.GetTheme();
+                ThemeCombo.SelectedIndex = (int)_configService.GetTheme();
                 _themeLoaded = true;
             }
         }
@@ -117,6 +118,73 @@ namespace SimplePad.Pages
         private void VersionBlock_OnLoaded(object sender, RoutedEventArgs e)
         {
             VersionBlock.Text = NotepadVersion.Version;
+        }
+
+        private bool _editorBackgroundLoaded = false;
+        private void EditorBackgroundCombo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_editorBackgroundLoaded) //prevent accidental clicks
+            {
+                EditorTheme theme = (EditorTheme)((ComboBox)sender).SelectedItem;
+
+                _configService.SetEditorTheme(theme);
+            }
+        }
+
+        private void EditorBackgroundCombo_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (!_editorBackgroundLoaded)
+            {
+                var enumVal = Enum.GetValues(typeof(EditorTheme)).Cast<EditorTheme>();
+                EditorBackgroundCombo.ItemsSource = enumVal;
+
+                EditorBackgroundCombo.SelectedItem = _configService.GetEditorBackground();
+                _editorBackgroundLoaded = true;
+            }
+        }
+        private void EditorBackgroundCombo_OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private bool _autoSetLangLoaded = false;
+        private void AutoSetLangSwitch_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!_autoSetLangLoaded)
+            {
+                AutoSetLangSwitch.IsOn = _configService.GetAutoSetLanguage();
+                _autoSetLangLoaded = true;
+            }
+        }
+
+        private void AutoSetLangSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (_autoSetLangLoaded) //prevent accidental clicks
+            {
+                bool newstate = AutoSetLangSwitch.IsOn;
+
+                _configService.SetAutoSetLanguage(newstate);
+            }
+        }
+
+        private bool _showAutoSetLangLoaded = false;
+        private void ShowAutoSetNotificationSwitch_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!_showAutoSetLangLoaded)
+            {
+                AutoSetLangSwitch.IsOn = _configService.GetShowAutoSetLanguageWarning();
+                _showAutoSetLangLoaded = true;
+            }
+        }
+
+        private void ShowAutoSetNotificationSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (_showAutoSetLangLoaded) //prevent accidental clicks
+            {
+                bool newstate = ShowAutoSetNotificationSwitch.IsOn;
+
+                _configService.SetShowAutoSetLanguageWarning(newstate);
+            }
         }
     }
 }

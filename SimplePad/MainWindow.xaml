@@ -9,6 +9,10 @@
     xmlns:windowex="using:WinUIEx"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid x:Name="RootGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <TabView
             AddTabButtonClick="RootGrid_AddTabButtonClick"
             CanDrag="False"
@@ -16,6 +20,7 @@
             CanReorderTabs="True"
             CloseButtonOverlayMode="Auto"
             ContextRequested="RootGrid_ContextRequested"
+            Grid.Column="1"
             HorizontalAlignment="Stretch"
             Loaded="RootGrid_Loaded"
             TabCloseRequested="RootGrid_TabCloseRequested"
