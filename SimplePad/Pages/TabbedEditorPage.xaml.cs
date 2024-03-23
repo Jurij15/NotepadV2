@@ -132,7 +132,7 @@ namespace SimplePad.Pages
 
         private void LanguageItem_Loaded(object sender, RoutedEventArgs e)
         {
-            LanguageItem.Items.Clear(); //prepare to get all definitions
+            LanguageItem.Items.Clear(); //for some reason, this does actually not clear the list
 
             foreach (var item in LanguageDefinitions.GetAllDisplayNames())
             {
@@ -146,11 +146,25 @@ namespace SimplePad.Pages
 
         private void LanguageItem_Unloaded(object sender, RoutedEventArgs e)
         {
-            //BUG: ITEMS GET DUPLICATED
-            foreach (ToggleMenuFlyoutItem item in LanguageItem.Items)
+            //the stupidest code i probably ever had to write, but it works
+            /*
+             * LanguageItem.Items.Clear(); this does absolutely not work, so i have to do it manually
+             * but for some reason, clearing the array once does not work, neither does two times, only 3 times works
+             */
+            foreach (var item in LanguageItem.Items)
             {
                 LanguageItem.Items.Remove(item);
             }
+            foreach (var item in LanguageItem.Items)
+            {
+                LanguageItem.Items.Remove(item);
+            }
+            foreach (var item in LanguageItem.Items)
+            {
+                LanguageItem.Items.Remove(item);
+            }
+
+            //await Task.Delay(100);
         }
 
         private async void WordWrapToggle_Click(object sender, RoutedEventArgs e)

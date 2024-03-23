@@ -68,7 +68,7 @@ namespace SimplePad.Services
         
         public EditorTheme GetEditorBackground()
         {
-            EditorTheme theme = EditorTheme.Translucent; //default
+            EditorTheme theme = EditorTheme.Solid; //default
 
             try
             {

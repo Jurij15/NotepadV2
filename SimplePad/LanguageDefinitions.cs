@@ -16,7 +16,7 @@ namespace SimplePad
             Tuple.Create("javascript", "js", "JavaScript"),
             Tuple.Create("json", "json", "JSON"),
             Tuple.Create("xml", "xml", "XML"),
-            Tuple.Create("HTML", "html", "HTML"),
+            Tuple.Create("html", "html", "HTML"),
         }; // lang name, file ending, display name
 
         public static string GetLanguageNameFromFileEnding(string FileEnding)
