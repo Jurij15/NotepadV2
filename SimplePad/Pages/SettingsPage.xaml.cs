@@ -172,7 +172,7 @@ namespace SimplePad.Pages
         {
             if (!_showAutoSetLangLoaded)
             {
-                AutoSetLangSwitch.IsOn = _configService.GetShowAutoSetLanguageWarning();
+                ShowAutoSetNotificationSwitch.IsOn = _configService.GetShowAutoSetLanguageWarning();
                 _showAutoSetLangLoaded = true;
             }
         }

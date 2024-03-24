@@ -132,12 +132,36 @@
                 </MenuBarItem>
                 <MenuBarItem x:Name="ViewItem" Title="View">
                     <MenuBarItem.Items>
+                        <MenuFlyoutSubItem Text="Zoom">
+                            <MenuFlyoutItem Text="Zoom In">
+                                <MenuFlyoutItem.KeyboardAccelerators>
+                                    <KeyboardAccelerator Key="Add" Modifiers="Control" />
+                                </MenuFlyoutItem.KeyboardAccelerators>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem Text="Zoom Out">
+                                <MenuFlyoutItem.KeyboardAccelerators>
+                                    <KeyboardAccelerator Key="Subtract" Modifiers="Control" />
+                                </MenuFlyoutItem.KeyboardAccelerators>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem
+                                x:Name="RestoreDefaultZoom"
+                                Click="RestoreDefaultZoom_Click"
+                                Text="Restore Default Zoom">
+                                <MenuFlyoutItem.KeyboardAccelerators>
+                                    <KeyboardAccelerator Key="O" Modifiers="Control" />
+                                </MenuFlyoutItem.KeyboardAccelerators>
+                            </MenuFlyoutItem>
+                        </MenuFlyoutSubItem>
                         <ToggleMenuFlyoutItem
                             x:Name="WordWrapToggle"
                             Click="WordWrapToggle_Click"
                             IsChecked="True"
                             Tag="WordWrap"
-                            Text="Word Wrap" />
+                            Text="Word Wrap">
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="Z" Modifiers="Menu" />
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </ToggleMenuFlyoutItem>
                     </MenuBarItem.Items>
                 </MenuBarItem>
                 <MenuBarItem
@@ -223,11 +247,16 @@
                 </Button>
             </Grid>
         </Grid>
-        <StackPanel x:Name="InfoBarPanel" Grid.Row="1">
+        <StackPanel
+            x:Name="InfoBarPanel"
+            Grid.Row="1"
+            Background="Transparent">
             <InfoBar
                 x:Name="AutoDetectedFileType"
+                CornerRadius="0"
                 IsOpen="False"
-                Message="You can change the default behaviour and file types in settings" />
+                Message="You can change the default behaviour and file types in settings"
+                Severity="Success" />
         </StackPanel>
         <Grid
             x:Name="EditorBackgroundGrid"
@@ -243,6 +272,48 @@
             Height="32"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Background="{ThemeResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
+            Background="{ThemeResource LayerOnMicaBaseAltFillColorDefaultBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="0"
+                Margin="20,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <TextBlock
+                    x:Name="CaretPosBox"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Style="{ThemeResource CaptionTextBlockStyle}" />
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="2"
+                Margin="0,0,20,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="4">
+                <TextBlock
+                    x:Name="ZoomAmountBox"
+                    VerticalAlignment="Center"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Style="{ThemeResource CaptionTextBlockStyle}" />
+                <TextBlock
+                    Margin="-3,0,4,0"
+                    VerticalAlignment="Center"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Style="{ThemeResource CaptionTextBlockStyle}"
+                    Text="%" />
+                <ProgressBar
+                    x:Name="ZoomSlider"
+                    Width="100"
+                    ValueChanged="ZoomSlider_ValueChanged" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

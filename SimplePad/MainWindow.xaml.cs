@@ -5,7 +5,9 @@ using SimplePad.Services;
 using SimplePad.Interop;
 using SimplePad.Structs;
 using WinUIEx;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using UnhandledExceptionEventArgs = Microsoft.UI.Xaml.UnhandledExceptionEventArgs;
+using Windows.Foundation;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -76,7 +78,11 @@ namespace SimplePad
 
         private void RootGrid_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
         {
-
+            FlyoutShowOptions options = new FlyoutShowOptions();
+            Point p = new Point();
+            args.TryGetPosition(sender, out p);
+            options.Position = p;
+            TabContextMenu.ShowAt(sender, options);
         }
     }
 }

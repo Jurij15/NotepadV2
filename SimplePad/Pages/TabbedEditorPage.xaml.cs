@@ -14,6 +14,7 @@ using ABI.Microsoft.UI.Xaml.Controls.Primitives;
 using SimplePad.Enums;
 using SimplePad.Interop;
 using WinUIEditor;
+using System.Linq;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -36,6 +37,7 @@ namespace SimplePad.Pages
         private readonly ConfigService _configService;
 
         private StorageFile _currentFile;
+        private string _currentLanguage;
         public TabbedEditorPage(TabService tabService, ConfigService config)
         {
             this.InitializeComponent();
@@ -46,23 +48,60 @@ namespace SimplePad.Pages
         void ApplyTheme()
         {
             string Theme = "SubtleFillColorTertiaryBrush"; //semi translucent
-            //string Theme = "SolidBackgroundFillColorTertiaryBrush"; //solid (does not react to theme changes)
-            string SolidTheme = "SystemControlBackgroundChromeMediumLowBrush"; //solid
-            
+            string SolidTheme = "SystemControlBackgroundChromeMediumLowBrush"; //solid (does not react to theme changes)
+
+            //NOTE: UNCOMMENT THIS TO GET THEME CHANGES WORKING AGAIN
             if (_configService.GetEditorBackground() == EditorTheme.Translucent)
             {
-                EditorBackgroundGrid.Background = Application.Current.Resources[Theme] as SolidColorBrush;
+                //EditorBackgroundGrid.Background = Application.Current.Resources[Theme] as SolidColorBrush;
             }
             else
             {
-                EditorBackgroundGrid.Background = Application.Current.Resources[SolidTheme] as SolidColorBrush;
+                //EditorBackgroundGrid.Background = Application.Current.Resources[SolidTheme] as SolidColorBrush;
             }
+        }
+
+        private void SetZoomSlider()
+        {
+            ZoomSlider.Maximum = 282;
+
+            CodeEditor.Editor.ZoomChanged += Editor_ZoomChanged;
+
+            int size = CodeEditor.Editor.StyleGetSizeFractional((int)StylesCommon.Default);
+            double num = ((size + CodeEditor.Editor.Zoom * 100) * 100.0 / size);
+            int amount = (int)Math.Round(num);
+            ZoomAmountBox.Text = amount.ToString();
+
+            ZoomSlider.Value = amount;
+        }
+
+        private void Editor_ZoomChanged(Editor sender, ZoomChangedEventArgs args)
+        {
+            int size = CodeEditor.Editor.StyleGetSizeFractional((int)StylesCommon.Default);
+            double num = ((size + CodeEditor.Editor.Zoom * 100) * 100.0 / size);
+            int amount = (int)Math.Round(num);
+            ZoomAmountBox.Text = amount.ToString();
+
+            ZoomSlider.Value = amount;
         }
 
         private void CodeEditorControl_Loaded(object sender, RoutedEventArgs e)
         {
             CodeEditor.Editor.WrapMode = Wrap.Word;
             ApplyTheme();
+            SetZoomSlider();
+
+            CodeEditor.Editor.UpdateUI += Editor_UpdateUI;
+
+            long pos = CodeEditor.Editor.CurrentPos;
+            CaretPosBox.Text = $"Ln {CodeEditor.Editor.LineFromPosition(pos)}, Col {CodeEditor.Editor.GetColumn(pos)}";
+        }
+
+        private void Editor_UpdateUI(Editor sender, UpdateUIEventArgs args)
+        {
+            //update caret position
+            long pos = CodeEditor.Editor.CurrentPos;
+            CaretPosBox.Text = $"Ln {CodeEditor.Editor.LineFromPosition(pos)}, Col {CodeEditor.Editor.GetColumn(pos)}";
         }
 
         private async Task GetAndLoadFile()
@@ -84,9 +123,17 @@ namespace SimplePad.Pages
             CodeEditor.Editor.SetText(text);
             CodeEditor.Focus(FocusState.Keyboard);
 
+            //auto set language
             if (_configService.GetAutoSetLanguage())
             {
                 string language = LanguageDefinitions.GetLanguageNameFromFileEnding(file.FileType.Replace(".", ""));
+                bool shouldShowInfo = false;
+
+                if (language is not null && language != string.Empty)
+                {
+                    shouldShowInfo = true; //only show if lang detected
+                }
+
                 CodeEditor.HighlightingLanguage = language;
 
                 foreach (var item in LanguageItem.Items)
@@ -99,6 +146,14 @@ namespace SimplePad.Pages
                     {
                         (item as ToggleMenuFlyoutItem).IsChecked = false;
                     }
+                }
+                _currentLanguage = LanguageDefinitions.GetLanguageDisplayNameFromName(language);
+
+                if (_configService.GetShowAutoSetLanguageWarning() && shouldShowInfo)
+                {
+                    AutoDetectedFileType.IsOpen = false;
+                    AutoDetectedFileType.Title = $"Language recognized as {_currentLanguage}";
+                    AutoDetectedFileType.IsOpen = true;
                 }
             }
         }
@@ -139,6 +194,11 @@ namespace SimplePad.Pages
                 ToggleMenuFlyoutItem control = new ToggleMenuFlyoutItem();
                 control.Text = item;
                 control.Click += LangFlyoutItem_Click;
+
+                if (item == "Plain Text") //select plain text by default
+                {
+                    control.IsChecked = true;
+                }
 
                 LanguageItem.Items.Add(control);
             }
@@ -272,5 +332,15 @@ namespace SimplePad.Pages
             CodeEditor.Focus(FocusState.Keyboard);
         }
         #endregion
+
+        private void ZoomSlider_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
+        {
+
+        }
+
+        private void RestoreDefaultZoom_Click(object sender, RoutedEventArgs e)
+        {
+            CodeEditor.Editor.Zoom = 0;
+        }
     }
 }
