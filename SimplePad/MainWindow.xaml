@@ -25,12 +25,19 @@
             CloseButtonOverlayMode="Auto"
             ContextRequested="RootGrid_ContextRequested"
             Loaded="RootGrid_Loaded"
-            TabCloseRequested="RootGrid_TabCloseRequested">
+            SelectionChanged="RootTabs_SelectionChanged"
+            TabCloseRequested="RootGrid_TabCloseRequested"
+            TabItemsChanged="RootTabs_TabItemsChanged">
             <TabView.Resources>
                 <StaticResource x:Key="TabViewItemHeaderBackgroundSelected" ResourceKey="LayerOnMicaBaseAltFillColorDefaultBrush" />
                 <StaticResource x:Key="TabViewSelectedItemBorderBrush" ResourceKey="LayerOnMicaBaseAltFillColorDefaultBrush" />
                 <SolidColorBrush x:Key="TabViewItemHeaderBackground" Color="Transparent" />
                 <MenuFlyout x:Name="TabContextMenu">
+                    <MenuFlyoutItem x:Name="NewTabTabContextMenuItem" Text="New Tab">
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="N" Modifiers="Control" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
                     <MenuFlyoutItem Text="test" />
                 </MenuFlyout>
             </TabView.Resources>

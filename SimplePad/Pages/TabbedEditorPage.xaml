@@ -298,7 +298,9 @@
                 VerticalAlignment="Center"
                 Orientation="Horizontal"
                 Spacing="4">
-                <TextBlock
+                <Rectangle Width="1" Height="16" Fill="{ThemeResource DividerStrokeColorDefaultBrush}"/>
+                <TextBlock 
+                    Margin="4,0,0,0"
                     x:Name="ZoomAmountBox"
                     VerticalAlignment="Center"
                     Foreground="{ThemeResource TextFillColorSecondaryBrush}"

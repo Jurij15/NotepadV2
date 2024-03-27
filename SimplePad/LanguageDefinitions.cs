@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,6 +78,22 @@ namespace SimplePad
             }
 
             return langs;
+        }
+
+        public static string GetFileEndingFromDisplayName(string DisplayName)
+        {
+            string res = string.Empty;
+
+            foreach (var tuple in LanguageDefinitionsList)
+            {
+                if (tuple.Item3 == DisplayName)
+                {
+                    res = tuple.Item2;
+                    break;
+                }
+            }
+
+            return res;
         }
     }
 }

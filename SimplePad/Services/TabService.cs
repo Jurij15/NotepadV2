@@ -1,4 +1,7 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using ABI.Windows.AI.MachineLearning;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using SimplePad.Pages;
 using SimplePad.Structs;
 using System;
@@ -6,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
+using WinUIEx;
 
 namespace SimplePad.Services
 {
@@ -14,9 +19,15 @@ namespace SimplePad.Services
         private TabView _tabView;
         private int _tabCount;
 
-        public TabService(TabView tabView)
+        MainWindow mainWindow;
+
+        TypedEventHandler<UIElement, ContextRequestedEventArgs> TabViewItemContextRequested;
+
+        public TabService(TabView tabView, MainWindow wnd, TypedEventHandler<UIElement, ContextRequestedEventArgs> TViewContextReq)
         {
             _tabView = tabView;
+            mainWindow = wnd;   
+            TabViewItemContextRequested = TViewContextReq;
         }
 
         public int GetTabCount()
@@ -24,10 +35,10 @@ namespace SimplePad.Services
             return _tabCount;
         }
 
-        public void AddNewEditorTab(TabService _tabService, ConfigService _configService)
+        public TabViewItem AddNewEditorTab(TabService _tabService, ConfigService _configService, FileService _fileService)
         {
             TabViewItem item = new TabViewItem();
-            TabbedEditorPage page = new TabbedEditorPage(_tabService, _configService);
+            TabbedEditorPage page = new TabbedEditorPage(_tabService, _configService, _fileService);
             Frame f = new Frame();
             TabTagStruct tag = new TabTagStruct();
 
@@ -40,9 +51,13 @@ namespace SimplePad.Services
             item.Content = f;
             item.Tag = tag;
 
+            item.ContextRequested += TabViewItemContextRequested;
+
             _tabView.TabItems.Add(item);
             _tabCount++;
             _tabView.SelectedItem = item;
+
+            return item;
         }
 
         public void AddNewSettingsTab(TabService _tabService, ConfigService _configService)
@@ -110,6 +125,12 @@ namespace SimplePad.Services
         public TabTagStruct GetCurrentTabTag()
         {
             return (_tabView.SelectedItem as TabViewItem).Tag as TabTagStruct;
+        }
+
+        public void SetCurrentTabTitle(string NewTitle)
+        {
+            GetCurrentTab().Header = NewTitle;
+            mainWindow.SetTitle(NewTitle);
         }
     }
 }

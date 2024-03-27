@@ -66,6 +66,6 @@ namespace SimplePad
             BackdropService.MainWindow = m_window;
         }
 
-        private Window m_window;
+        public static Window m_window;
     }
 }

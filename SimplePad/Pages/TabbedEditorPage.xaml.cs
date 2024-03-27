@@ -15,6 +15,9 @@ using SimplePad.Enums;
 using SimplePad.Interop;
 using WinUIEditor;
 using System.Linq;
+using System.IO;
+using Windows.Storage.Streams;
+using Windows.ApplicationModel.UserDataTasks;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -22,9 +25,6 @@ using System.Linq;
 
 namespace SimplePad.Pages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class TabbedEditorPage : Page
     {
         /// <summary>
@@ -35,14 +35,16 @@ namespace SimplePad.Pages
 
         private readonly TabService _tabService;
         private readonly ConfigService _configService;
+        private readonly FileService _fileService;
 
         private StorageFile _currentFile;
         private string _currentLanguage;
-        public TabbedEditorPage(TabService tabService, ConfigService config)
+        public TabbedEditorPage(TabService tabService, ConfigService config, FileService fileService)
         {
             this.InitializeComponent();
             _tabService = tabService;
             _configService = config;
+            _fileService = fileService;
         }
 
         void ApplyTheme()
@@ -75,6 +77,21 @@ namespace SimplePad.Pages
             ZoomSlider.Value = amount;
         }
 
+        private async Task PickSetSaveFile()
+        {
+            _currentFile = await _fileService.GetSaveFile();
+        }
+
+        private async Task SaveToCurrentFile()
+        {
+            long lenght = CodeEditor.Editor.Length;
+            IBuffer buffer = _fileService.GetBufferFromLong(lenght);
+            long text = CodeEditor.Editor.GetTextWriteBuffer(lenght, buffer);
+
+            await _fileService.SaveToStorageFile(_currentFile, text, buffer);
+            CodeEditor.Editor.SetSavePoint();
+        }
+
         private void Editor_ZoomChanged(Editor sender, ZoomChangedEventArgs args)
         {
             int size = CodeEditor.Editor.StyleGetSizeFractional((int)StylesCommon.Default);
@@ -92,6 +109,7 @@ namespace SimplePad.Pages
             SetZoomSlider();
 
             CodeEditor.Editor.UpdateUI += Editor_UpdateUI;
+            CodeEditor.FontFamily = new FontFamily("Arial");
 
             long pos = CodeEditor.Editor.CurrentPos;
             CaretPosBox.Text = $"Ln {CodeEditor.Editor.LineFromPosition(pos)}, Col {CodeEditor.Editor.GetColumn(pos)}";
@@ -116,12 +134,20 @@ namespace SimplePad.Pages
 
             // Open the picker for the user to pick a file
             var file = await openPicker.PickSingleFileAsync();
+
+            if (file == null)
+            {
+                return; // no file opened
+            }
+
             _currentFile = file;
 
             var text = await FileIO.ReadTextAsync(file);
 
             CodeEditor.Editor.SetText(text);
             CodeEditor.Focus(FocusState.Keyboard);
+
+            _tabService.SetCurrentTabTitle(file.Name);
 
             //auto set language
             if (_configService.GetAutoSetLanguage())
@@ -274,9 +300,18 @@ namespace SimplePad.Pages
             await GetAndLoadFile();
         }
 
-        private void SaveMenuButton_Click(object sender, RoutedEventArgs e)
+        private async void SaveMenuButton_Click(object sender, RoutedEventArgs e)
         {
+            if (_currentFile != null)
+            {
+                //file already exists, delete it and save it
 
+                await SaveToCurrentFile();
+            }
+            else
+            {
+                await PickSetSaveFile();
+            }
         }
 
         private void SaveAsMenuButton_Click(object sender, RoutedEventArgs e)

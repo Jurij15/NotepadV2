@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePad", "SimplePad\SimplePad.csproj", "{F8B65D79-B51A-4171-8E2B-9CDB95BCEE9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notepad#", "SimplePad\Notepad#.csproj", "{F8B65D79-B51A-4171-8E2B-9CDB95BCEE9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
